@@ -49,7 +49,7 @@ if(e.status == 200){
 cookies.set("token",s)
 // console.log(s)
 
-  router.replace('/client');
+  router.replace('/client/status');
 }
 
 }
