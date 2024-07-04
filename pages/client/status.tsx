@@ -356,6 +356,7 @@ router.reload()
         {e.fields["Nationality copy"]?<h1 className={Style['almarai-bold']}> الجنسية</h1>:null}
     {e.fields["Nationality copy"]? <h1 >{e.fields["Nationality copy"]}</h1>:null}
         
+    
         {e.fields["Salary - الراتب"]?<h1 className={Style['almarai-bold']}> الراتب</h1>:null}
         {e.fields["Salary - الراتب"]?<h1 >{e.fields["Salary - الراتب"]} sar</h1>:null} 
 
