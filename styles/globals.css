@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.divbox{
+
+
+    display:grid;
+    /* gred */
+  
+  align-items: stretch;
+    /* row-gap: "4px"; */
+    /* justify-content: center; */
+    justify-items: center;
+    align-items: center;
+
+    grid-template-columns: repeat(3, auto);
+grid-template-rows: repeat(3, auto);
+
+/* grid-template-columns: 22px; */
+    grid-row-gap: 22px;
+    justify-content: space-evenly;
+  grid-column-gap: 22px;
+  
+  
+  }

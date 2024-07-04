@@ -1,0 +1,170 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+ 
+  url      = "mongodb+srv://heshammoha231992:BozLnMORjollMgoC@cluster0.ewjihyo.mongodb.net/rawaesdashboard"
+}
+model Office{
+
+ id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  Officename        String  @unique
+  Location           String    
+  phonenumber     String
+ 
+
+
+}
+
+model Client{
+
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  isUser          Boolean
+  fullname        String
+  email           String    @unique
+  phonenumber     String
+  password        String    
+  createdat       DateTime? @default(now())
+  
+}
+model User {
+
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  admin           Boolean    
+  pictureurl      String    @default("")
+  username        String
+  password        String
+  repeatpassword  String   @ignore
+  role            String
+  idnumber        Int   @unique
+}
+
+model FemalWorker {
+
+id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+clientname        String
+insurance         String
+musanedContract    String
+visanumber         String
+idnumber          String
+mobilenumber      Int
+passportnumber    String
+workername        String
+age               Int
+experience            String
+contractstatus         String  
+city                   String
+orderDate           DateTime  
+
+canceled            Boolean @default(false)
+ended               Boolean @default(false)
+
+externaloffice      String
+nationality         String
+externalmusanedcontract String
+visaordernumber     String
+notes           String
+
+
+}
+
+
+
+model MaleWorker {
+
+id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+clientname        String
+insurance         String
+musanedContract    String
+visanumber         String
+idnumber          String
+mobilenumber      Int
+passportnumber    String
+workername        String
+canceled            Boolean @default(false)
+ended               Boolean @default(false)
+age               Int
+job                String
+experience            String
+contractstatus         String  
+city                   String
+orderDate           DateTime
+externaloffice      String
+nationality         String
+externalmusanedcontract String
+visaordernumber     String
+notes           String
+
+
+}
+
+model HomeMaid {
+
+id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+clientname       String
+clientnameinenglishlanguage   String
+internalmusanedContract       String
+nationalidnumber              String
+contacntnumber                String
+passportnumber                String
+kingdomentrydate              String
+daydate                       DateTime @default(now())
+workduration                  String
+cost                          String
+homemaidnumber                String
+notes                         String
+}
+
+
+model Transfer{
+id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+
+client            String
+mobilenumber      String
+nationalidnumber  String
+passportnumber    String
+homemaid          String
+nationality       String
+kingdomentrydate  String
+daydate           DateTime 
+workduration      Int
+newclientname     String
+newclientmobilenumber String
+newclientnationalidnumber String
+newclientcity     String
+experimentstart   String
+experimentend   String
+dealcost        String
+paid            String
+restofpaid      String
+experimentresult  String
+accomaditionnumber  String
+
+marketeername String
+
+notes     String
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
