@@ -136,6 +136,8 @@ try {
   setUser({isUser:false})
 } 
     try {
+
+      // alert(router.pathname == "")
       async function names( )  {
         await fetch("../../api/orderlistforclient").then(response => response.json())
         .then(json  => {
@@ -249,13 +251,13 @@ router.reload()
  {/* <li className='btn  text-l'>Home</li> */}
  <li className='btn btn-ghost text-l'>نبذة عننا</li>
       <Link href="/client/status">
-    <li className='btn btn-ghost text-l'>
+    <li className='btn btn-ghost text-l' >
       طلباتي
     </li>
       
       </Link>
 
- <li className='btn btn-ghost text-l' style={{fontFamily: "Almarai",
+ <li className='btn btn-ghost text-l' style={{
   fontWeight: 800,
   fontStyle: 'normal'}} onClick={()=>router.push("/client")}  >الرئيسية</li>
 

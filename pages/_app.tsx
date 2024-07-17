@@ -23,6 +23,8 @@ useEffect(()=>{
 // console.log(router.pathname)
 if(router.pathname=="/newcv") return;
 if(router.pathname=="/newcv/[slug]") return;
+if(router.pathname=="/client/filter/[country]") return;
+if(router.pathname=="/client/filter") return;
 
 if(router.pathname=="/client") return;
 if(router.pathname=="/client/book") return;

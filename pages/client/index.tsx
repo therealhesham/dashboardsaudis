@@ -142,7 +142,6 @@ try {
   setUser({isUser:false})
 } 
 (async function getname(){
-
 const fetcher = await fetch('../api/listfifty',{method:"get"})
 const waiter = await fetcher.json()
 setData(waiter)
@@ -173,23 +172,19 @@ return (
       </div>
 {user.isUser?       
       <ul style={{backgroundColor:"whitesmoke"}} tabIndex={0}        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-<li  className='btn btn-ghost text-l'  onClick={()=>router.push("/client")}>الرئيسية</li>
-        
+    <li  className='btn btn-ghost text-l'  onClick={()=>router.push("/client")}>الرئيسية</li>   
     <li className='btn btn-ghost text-l'>
 <Link href="/client/status">
       طلباتي
       </Link>
-    </li>
+</li>
         <li  className='btn btn-ghost text-l'><a>نبذة عننا</a></li>
-      
-<li className='btn btn-ghost text-l' style={{backgroundColor:"#003749" ,color:"whitesmoke"}} onClick={()=>{
-
+      <li className='btn btn-ghost text-l' style={{backgroundColor:"#003749" ,color:"whitesmoke"}} onClick={()=>{
         Cookies.remove("token")
-router.reload()
+        router.reload()
       }}>
       تسجيل الخروج
-    </li>
-</ul>
+    </li></ul>
       :
 <ul style={{backgroundColor:"whitesmoke"}} tabIndex={0}        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
 
@@ -484,7 +479,11 @@ router.reload()
 
 
     </div>
-      {e?.fields.Picture?<img     src={e?.fields.Picture[0].url}  />:""}
+      {e?.fields.Picture?
+      <div style={{width:"100%",height:"100%"}}>
+      <img     src={e?.fields.Picture[0].url}  />
+      </div>
+      :""}
 
 
 </div>
