@@ -418,6 +418,23 @@ router.reload()
   {data.length>0?
   <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 80%)":"repeat(3, auto)"}}>{data?.map((e,i)=>
   <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+  <div style={{left:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
+    
+    >
+    <WhatsappShareButton
+  url={window.location.origin+"/client/cvdetails/"+e.id}
+
+
+>
+
+    <ShareAltOutlined  />
+
+</WhatsappShareButton>
+
+
+
+    </div>
+
   <div className="pic" style={{marginTop:"9px"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
@@ -454,7 +471,7 @@ router.reload()
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
       <li  >{e.fields['Nationality copy']}</li> 
 
-      < li >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} years old</li> 
+      < li >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
       <li >{e?.fields["marital status - الحالة الاجتماعية"]}</li>
       {/* <p  >{e?.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]}</p> */}
       <li >{e?.fields["Religion - الديانة"]}</li>
@@ -464,7 +481,7 @@ router.reload()
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{display:"flex",justifyItems:"space-around"}}>
+<div style={{display:"flex",justifyContent:"flex-end"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 

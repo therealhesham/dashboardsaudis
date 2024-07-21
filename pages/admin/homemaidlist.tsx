@@ -144,6 +144,8 @@ return (
               <TableCell>التكلفة</TableCell>
               <TableCell>ؤقم هاتف العاملة</TableCell>
               <TableCell>ملاحظات</TableCell>
+              <TableCell>حذف</TableCell>
+              <TableCell>الغاء</TableCell>
 
 
 

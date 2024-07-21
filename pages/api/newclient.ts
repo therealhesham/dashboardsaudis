@@ -50,7 +50,7 @@ const create = base('العملاء').create([
   {
     "fields": {
       "رقم العميل": Number(req.body.phonenumber),
-      "اسم العميل": req.body.fullname,
+      "اسم العميل": req.body.fullname
   
     }
   }])
@@ -67,7 +67,7 @@ const create = base('العملاء').create([
   {
     "id": req.body.id,
     "fields": {
-      "العملاء":req.body.fullname,
+      "phone":req.body.phonenumber,
       "حالة الحجز":"حجز جديد"
     }}])
 

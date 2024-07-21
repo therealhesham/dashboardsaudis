@@ -440,7 +440,7 @@ router.reload()
 <div style={{display:"flex",justifyContent:"center",marginTop:"5px"}}><Button style={{alignItems:"center",cursor:"pointer",backgroundColor:"#Ecc383"}} onClick={()=>post()}>Search</Button></div>
 </div>
   
- <div>
+  <div>
   
 
        <Modal  isOpen={isModalOpen} onClose={closeModal}>
@@ -456,14 +456,13 @@ router.reload()
         </ModalFooter>
       </Modal>
 {/* <div> */}
-        {!filtering?<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >أحدث السير الذاتية</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
+        {!filtering?
+        <p style={{display: "flex",justifyContent: "flex-start",marginRight:"16px"}}  dir="rtl"  className={Style['almarai-bold'] } >السير الذاتية الخاصة بـ{router.query.country}</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
 {/* </div> */}
   {data.length>0?
   <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 80%)":"repeat(3, auto)"}}>{data?.map((e,i)=>
-  <div style={{width:media?"100%":"90%",display:"grid",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
-  <div className="pic" style={{marginTop:"9px"}}> 
-    <div  style={{width:"80px",height:"70px"}}> 
-    <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
+  <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+  <div style={{left:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
     
     >
     <WhatsappShareButton
@@ -479,35 +478,54 @@ router.reload()
 
 
     </div>
+
+  <div className="pic" style={{marginTop:"9px"}}> 
+    {/* <div  style={{width:"80px",height:"70px"}}>  */}
+    {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
+        >
+    <WhatsappShareButton
+  url={window.location.origin+"/client/cvdetails/"+e.id}
+
+
+>
+
+    <ShareAltOutlined  />
+
+</WhatsappShareButton>
+
+
+
+    </div> */}
       {e?.fields.Picture?
-      <div style={{width:"100%",height:"100%"}}>
-      <img     src={e?.fields.Picture[0].url}  />
+
+      <div >
+      <img  style={{maxHeight:"200px"}}   src={e?.fields.Picture[0].url}  />
       </div>
       :""}
 
 
-</div>
+{/* </div> */}
 
 </div>
 
   <div className="card-body" >
-    <div className="textcard">
+    <div className="textcard" dir='rtl' style={{margin:"13px"}}>
       {/* {/* e?.fields[ksd["age - العمر"] } */}
       <h2 className="card-title">{e?.fields['م']}</h2>
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
-      <p  >{e.fields['Nationality copy']}</p> 
+      <li  >{e.fields['Nationality copy']}</li> 
 
-      <p  >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} years old</p> 
-      <p  >{e?.fields["marital status - الحالة الاجتماعية"]}</p>
+      < li >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
+      <li >{e?.fields["marital status - الحالة الاجتماعية"]}</li>
       {/* <p  >{e?.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]}</p> */}
-      <p  >{e?.fields["Religion - الديانة"]}</p>
+      <li >{e?.fields["Religion - الديانة"]}</li>
 
       
       
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{display:"flex",justifyItems:"space-around"}}>
+<div style={{display:"flex",justifyContent:"flex-end"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
@@ -517,9 +535,6 @@ router.reload()
 
   
  </span>
-{/* </Link> */}
- 
-  {/* <PlusOutlined  /> */}
 
 
 </div>
@@ -551,6 +566,7 @@ router.reload()
   
   </div></div>
  </div>
+  
   
   
 <div>

@@ -25,9 +25,9 @@ if(router.pathname=="/newcv") return;
 if(router.pathname=="/newcv/[slug]") return;
 if(router.pathname=="/client/filter/[country]") return;
 if(router.pathname=="/client/filter") return;
+if(router.pathname=="/admin/homemaidlist") return;
 
 if(router.pathname=="/client") return;
-if(router.pathname=="/client/book") return;
 if(router.pathname=="/client/book/[slug]") return;
 if(router.pathname=="/client/cvdetails") return;
 if(router.pathname=="/client/cvdetails/[slug]") return;
