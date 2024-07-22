@@ -96,6 +96,8 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
     // console.log('parsed json', json) // access json.body here
     setFulldata(json)
     json?setPaginatedData(json?.slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
+ 
+ console.log(json)
     // setData(json)   
 // const arr=[];
   // json?.length>0?json.map(e=>{if(!arr.includes(e.fields.office)) arr.push(e.fields.office)}):console.log(json.length)
@@ -142,7 +144,7 @@ return (
 
               <TableCell>مدة العمل</TableCell>
               <TableCell>التكلفة</TableCell>
-              <TableCell>ؤقم هاتف العاملة</TableCell>
+              <TableCell>رقم هاتف العاملة</TableCell>
               <TableCell>ملاحظات</TableCell>
               <TableCell>حذف</TableCell>
               <TableCell>الغاء</TableCell>
@@ -161,64 +163,64 @@ return (
 
                 
                 <TableCell>
-                  <span className="text-md">{e.clientname}</span>
+                  <span className="text-md">{e.fields["اسم العميل"]}</span>
 
                 </TableCell>
                  <TableCell>
-                  <span className="text-md">{e.clientnameinenglishlanguage}</span>
-
-                </TableCell>
-
-                 <TableCell>
-                  <span className="text-md">{e.internalmusanedContract}</span>
+                  <span className="text-md">{e.fields["اسم العميل انجليزي"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.nationalidnumber}</span>
+                  <span className="text-md">{e.fields["عقد مساند الداخلي"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.contacntnumber}</span>
+                  <span className="text-md">{e.fields["رقم الهويه"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.passportnumber}</span>
+                  <span className="text-md">{e.fields["رقم التواصل"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.kingdomentrydate}</span>
+                  <span className="text-md">{e.fields["الجواز"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-{((dayjs(e.kingdomentrydate).diff(new Date()))/100000000).toFixed()}
+                  <span className="text-md">{e.fields["تاريخ الدخول للمملكة"]}</span>
+
+                </TableCell>
+
+                 <TableCell>
+{((dayjs(e.fields["تاريخ الدخول للمملكة"]).diff(new Date()))/100000000).toFixed()}
 
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.workduration}</span>
+                  <span className="text-md">{e.fields["مده العمل"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.cost}</span>
+                  <span className="text-md">{e.fields["التكلفه"]}</span>
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.homemaidnumber}</span>
+                  <span className="text-md">{e.fields["رقم جوال العامله"]}</span>
 
                 </TableCell>
 
 
 
                  <TableCell>
-                  <span className="text-md">{e.notes}</span>
+                  <span className="text-md">{e.fields["ملاحظات"]}</span>
 
                 </TableCell>
 

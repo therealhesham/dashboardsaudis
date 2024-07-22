@@ -22,6 +22,7 @@ import dayjs from 'dayjs'
 // useEffect
 
 function Waitinglist() {
+  const router = useRouter();
 useEffect(()=>{
 try {
 
@@ -99,7 +100,7 @@ const onSubmit = async (data) => {
   // console.log(errors)
 
 setFetching(true)
-  const fetcher = await fetch('../api/addfemaleworker',{method:"post",headers: {'Accept':'application/json',
+  const fetcher = await fetch('../api/addhomemaid',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify(data)})
 
@@ -157,14 +158,14 @@ errorfunc()
         <Label>
 
           <span>Client Name in English</span>
-          <Input   aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("clientnameinenglishlanguage", { required: true })}    className="mt-1" placeholder="التأمين"  type='text' />
+          <Input   aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("clientnameinenglishlanguage", { required: true })}    className="mt-1" placeholder="client name in english"  type='text' />
         {errors.clientnameinenglishlanguage?<span style={{backgroundColor:"pink"}}>{errors.clientnameinenglishlanguage.message}</span>:""}
         
         </Label>
         <Label>
           
           <span>عقد مساند داخلي</span>
-          <Input   aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("internalmusanedContract", { required: true })}    className="mt-1" placeholder="عقد مساند الداخلي"  type='text' />
+          <Input type="number"  aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("internalmusanedContract", { required: true })}    className="mt-1" placeholder="عقد مساند الداخلي"  type='text' />
         {errors.internalmusanedContract?<span style={{backgroundColor:"pink"}}>{errors.internalmusanedContract.message}</span>:""}
         
         </Label>
@@ -179,13 +180,13 @@ errorfunc()
 
         <Label className="mt-4">
           <span>رقم التواصل</span>
-          <Input aria-invalid={errors.contacntnumber ? "true" : "false"} {...register("contacntnumber", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+          <Input aria-invalid={errors.contacntnumber ? "true" : "false"} {...register("contacntnumber", { required: true })} className="mt-1" placeholder="رقم التواصل" />
         {errors.contacntnumber?<span style={{backgroundColor:"pink"}}>{errors.contacntnumber.message}</span>:""}
        
         </Label>
           <Label className="mt-4">
           <span>رقم الجواز</span>
-          <Input aria-invalid={errors.passportnumber ? "true" : "false"} {...register("passportnumber", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+          <Input aria-invalid={errors.passportnumber ? "true" : "false"} {...register("passportnumber", { required: true })} className="mt-1" placeholder="رقم الجواز" />
         {errors.passportnumber?<span style={{backgroundColor:"pink"}}>{errors.passportnumber.message}</span>:""}
        
         </Label>
@@ -193,7 +194,7 @@ errorfunc()
 
 <Label className="mt-4">
           <span>تاريخ دخول المملكة</span>
-          <Input aria-invalid={errors.kingdomentrydate ? "true" : "false"} {...register("kingdomentrydate", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+          <Input aria-invalid={errors.kingdomentrydate ? "true" : "false"} type='date'{...register("kingdomentrydate", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
         {errors.kingdomentrydate?<span style={{backgroundColor:"pink"}}>{errors.kingdomentrydate.message}</span>:""}
        
         </Label>
@@ -214,8 +215,8 @@ errorfunc()
 
 <Label className="mt-4">
           <span>رقم جوال العاملة</span>
-          <Input aria-invalid={errors.homemaidnumber ? "true" : "false"} {...register("homemaidnumber", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
-        {errors.homemaidnumber?<span style={{backgroundColor:"pink"}}>{errors.homemaidnumber.message}</span>:""}
+          <Input aria-invalid={errors.contacntnumber ? "true" : "false"} {...register("contacntnumber", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+        {errors.contacntnumber?<span style={{backgroundColor:"pink"}}>{errors.contacntnumber.message}</span>:""}
        
         </Label>
 

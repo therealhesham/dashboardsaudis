@@ -38,15 +38,15 @@ const create = base('قائمة وصول الخادمات').create([
       // "Name": req.body.country
       "اسم العميل":clientname,
       "اسم العميل انجليزي":clientnameinenglishlanguage,
-      "عقد مساند الداخلي":internalmusanedContract,
-      "رقم الهوية":nationalidnumber,
+      "عقد مساند الداخلي":Number(internalmusanedContract),
+      "رقم الهويه":Number(nationalidnumber),
       "رقم جوال العامله":homemaidnumber,
       "الجواز":passportnumber,
       "اسم العاملة المنزلية":homemaidname,
       "تاريخ الدخول للمملكة":kingdomentrydate,
       "تاريخ اليوم":daydate,
       "مدة العمل":workduration,
-      "التكلفه":cost,
+      "التكلفه":Number(cost),
 "ملاحظات":notes
     }
   }

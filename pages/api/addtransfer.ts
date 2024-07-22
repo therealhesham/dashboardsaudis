@@ -47,7 +47,30 @@ const create = base('مـــعــــــــامــــــــلات نــ
       "رقم الجوال":mobilenumber,
       "رقم الهوية":nationalidnumber,
       "رقم جواز العاملة":passportnumber,
-      "أسـم العــامــل":homemaid
+      "أسـم العــامــل":homemaid,
+      "الجنسية": nationality,
+      "تاريخ الدخول للملكة":kingdomentrydate,
+    "المدة":workduration,
+      "اسم صاحب العمل / الجديد":newclientname,
+      "رقم الجوال الكفيل الجديد":newclientmobilenumber,
+      "رقم الهوية الكفيل الجديد":newclientnationalidnumber,
+      "مدينة الكفيل الجديد":newclientcity,
+      "بداية التجربة":experimentstart,
+      "نهاية التجربة":experimentend,
+      // "المدينة":city
+      "تاريخ تقديم الطلب":applicationdate,
+      "تاريخ الوصول":arrivaldate,
+      "مبلغ الاتفاق":dealcost,
+      "المدفوع":paid,
+      "المتبقى":restofpaid,
+      "نتيجة التجربة":experimentresult,
+      "رقم الاقامة للعاملة":accomaditionnumber,
+      "اسم المسوقة":marketeername,
+      "ملاحظات":notes
+
+
+      
+
     }
   }
 ])
