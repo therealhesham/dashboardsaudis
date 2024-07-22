@@ -66,6 +66,18 @@ const routes: IRoute[] = [
     path: '/admin/addadmin',
     icon: 'CardsIcon',
     name: 'اضافة مديرين الى الداشبورد',
+  },
+ 
+  {
+    path: '/admin/homemaidlist',
+    icon: 'CardsIcon',
+    name: 'قائمة الوصول',
+  },
+ 
+  {
+    path: '/admin/addhomemaid',
+    icon: 'CardsIcon',
+    name: 'اضافة الى الوصول',
   }
 //   {
 //     path: '/admin/addhomemaid', 
