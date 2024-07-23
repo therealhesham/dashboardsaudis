@@ -213,7 +213,7 @@ return (
               <TableCell>رقم الهوية</TableCell>
               <TableCell>رقم الجوال</TableCell>
               <TableCell>رقم الجواز</TableCell>
-              <TableCell>اسم العاملة</TableCell>
+              <TableCell>اسم العامل</TableCell>
               <TableCell>العمر</TableCell>
               <TableCell>الخبرة العملية</TableCell>
               <TableCell>حالة العقد</TableCell>

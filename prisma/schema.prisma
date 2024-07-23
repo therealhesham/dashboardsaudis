@@ -14,23 +14,25 @@ datasource db {
   url      = "mongodb+srv://heshammoha231992:BozLnMORjollMgoC@cluster0.ewjihyo.mongodb.net/rawaesdashboard"
 }
 model Office{
-
- id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
   Officename        String  @unique
   Location           String    
   phonenumber     String
- 
-
-
 }
+
 model Timeline{
-id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  isUser          Boolean
-  fullname        String
-  email           String    @unique
-  phonenumber     String
-  password        String    
-  createdat       DateTime? @default(now())
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  type            String
+  date            DateTime? @default(now())
+  fulltext        String
+
+
+  // isUser          Boolean
+  // fullname        String
+  // email           String    @unique
+  // phonenumber     String
+  // password        String    
+  // createdat       DateTime? @default(now())
 
 
 }

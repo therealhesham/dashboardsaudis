@@ -90,6 +90,18 @@ const routes: IRoute[] = [
     path: '/admin/maleworkerslist',
     icon: 'CardsIcon',
     name: 'عمالة الذكور',
+  },
+ 
+  {
+    path: '/admin/cancelcontract',
+    icon: 'CardsIcon',
+    name: 'الغاء العقد',
+  },
+ 
+  {
+    path: '/admin/cancelledcontracts',
+    icon: 'CardsIcon',
+    name: 'العقود الملغاة',
   }
 //   {
 //     path: '/admin/addhomemaid', 
