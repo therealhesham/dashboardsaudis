@@ -27,7 +27,7 @@ const update = base('السير الذاتية').select({
       {
         //@ts-ignore
         for (let index = 0; index < e.length; index++) {
-          if(e[index].get("العملاء") == req.body.fullname)   arr.push(e[index]);   
+          if(e[index].get("phone") == req.body.phone)   arr.push(e[index]);   
           }
           if(arr.length == 0) return res.status(201).json("Not Found") ;
         //@ts-ignore

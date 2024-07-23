@@ -23,7 +23,17 @@ model Office{
 
 
 }
+model Timeline{
+id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  isUser          Boolean
+  fullname        String
+  email           String    @unique
+  phonenumber     String
+  password        String    
+  createdat       DateTime? @default(now())
 
+
+}
 model Client{
 
   id              String    @id @default(auto()) @map("_id") @db.ObjectId

@@ -91,7 +91,9 @@ function onPageChange(p: number) {
     
   
       (async function data( )  {
-     await fetch("../api/clients")
+  console.log(
+  jwtDecode(Cookies.get("token")))
+        await fetch("../api/clients")
      .then(response => response.json())
   .then(json  => {
 // console.log(json)
@@ -126,9 +128,9 @@ const confirm=async (id)=>{
     }
 // const [fullname,setFullname]=useState("")
 const [clientlistOrders,setClientOrderslist]= useState([])
-const fetchClientinfo=async (fullname)=>{
+const fetchClientinfo=async (phone)=>{
   // axios.post
-await axios.post('../api/fetchClientinfo',{fullname},{ headers: {
+await axios.post('../api/fetchClientinfo',{phone},{ headers: {
     'Content-Type': 'application/json'
   }}).then((e)=>{
     if(e.status == 201) return alert("not found data related to this client");
@@ -216,7 +218,7 @@ setClientOrderslist(e.data)
               <TableRow >
                 
 {/* <Li */}
-                <TableCell style={{cursor:"pointer"}} onClick={()=>fetchClientinfo(e.fields["اسم العميل"])}>
+                <TableCell style={{cursor:"pointer"}} onClick={()=>fetchClientinfo(e.fields["رقم العميل"])}>
                   <span className="text-md">{e.fields["اسم العميل"]}</span>
 
                 </TableCell>
