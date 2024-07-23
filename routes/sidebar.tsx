@@ -77,7 +77,19 @@ const routes: IRoute[] = [
   {
     path: '/admin/addhomemaid',
     icon: 'CardsIcon',
-    name: 'اضافة الى الوصول',
+    name: 'اضافة الى قائمة الوصول',
+  },
+ 
+  {
+    path: '/admin/addmaleworker',
+    icon: 'CardsIcon',
+    name: 'اضافة عمالة ذكور',
+  },
+ 
+  {
+    path: '/admin/maleworkerslist',
+    icon: 'CardsIcon',
+    name: 'عمالة الذكور',
   }
 //   {
 //     path: '/admin/addhomemaid', 

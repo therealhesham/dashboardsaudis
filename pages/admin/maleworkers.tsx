@@ -228,9 +228,9 @@ return (
 <TableCell>المكتب الخارجي</TableCell>
                <TableCell>تاريخ تقديم الطلب</TableCell>
                <TableCell>مدة الطلب</TableCell>
-
+{/* 
 <TableCell>الغاء العقد</TableCell>
-<TableCell>انهاء العقد</TableCell>
+<TableCell>انهاء العقد</TableCell> */}
 
 
 
@@ -243,112 +243,92 @@ return (
 
               <TableCell>
                 
-                  <span className="text-md">{e.clientname}</span>
+                  <span className="text-md">{e.fields["اســــم الـــعــمـــيـــل"]}</span>
                 
                 </TableCell>
               <TableCell>
 
-                  <span className="text-md">{e.insurance}</span>
+                  <span className="text-md">{e.fields["التأمين"]}</span>
 
               </TableCell>
               <TableCell>
                 
-                  <span className="text-md">{e.musanedContract}</span>
+                  <span className="text-md">{e.fields["عقد مساند الداخلي"]}</span>
                 
                 </TableCell>
               <TableCell>
                 
-                  <span className="text-md">{e.visanumber}</span>
+                  <span className="text-md">{e.fields["رقم التأشيرة"]}</span>
                 
                 
                 </TableCell>
               <TableCell>
                 
                 
-                  <span className="text-md">{e.idnumber}</span>
+                  <span className="text-md">{e.fields["رقم الهوية"]}</span>
                 
                 </TableCell>
               <TableCell>
                 
-                  <span className="text-md">{e.mobilenumber}</span>
+                  <span className="text-md">{e.fields["رقم الجوال"]}</span>
                 
                 </TableCell>
               <TableCell>
-                  <span className="text-md">{e.passportnumber}</span>
+                  <span className="text-md">{e.fields["رقم جواز العاملة"]}</span>
                 
                 </TableCell>
               <TableCell>
                 
-                  <span className="text-md">{e.workername}</span>
+                  <span className="text-md">{e.fields["أســـــم الــعــــامــــل"]}</span>
                 
                 </TableCell>
               <TableCell>
-                  <span className="text-md">{e.age}</span>
+                  <span className="text-md">{e.fields[" العمر "]}</span>
                 
                 </TableCell>
               <TableCell>
-                  <span className="text-md">{e.experience}</span>
+                  <span className="text-md">{e.fields["المهنة"]}</span>
                 
                 </TableCell>
               <TableCell>
-                  <span className="text-md">{e.contractstatus}</span>
+                  <span className="text-md">{e.fields["حالة العقد"]}</span>
                 
                 </TableCell>
 <TableCell>
   
-                  <span className="text-md">{e.city}</span>
+                  <span className="text-md">{e.fields["المدينة"]}</span>
 
 
 </TableCell>
 
 
 <TableCell>
-                  <span className="text-md">{e.visaordernumber}</span>
+                  <span className="text-md">{e.fields["تاريخ تقديم الطلب"]}</span>
   
 
 </TableCell>
 <TableCell>
-                  <span className="text-md">{e.notes}</span>
+                  <span className="text-md">{e.fields["تاريخ اليوم"]}</span>
   
   
   </TableCell>
 <TableCell>
-                  <span className="text-md">{e.externalmusanedcontract}</span>
+                  <span className="text-md">{e.fields["مدة التقديم"]}</span>
   
 </TableCell>
 <TableCell>
-                  <span className="text-md">{e.nationality}</span>
+                  <span className="text-md">{e.fields["المكتب الخارجي"]}</span>
   
   
   </TableCell>
 <TableCell>
   
-                  <span className="text-md">{e.externaloffice}</span>
+                  <span className="text-md">{e.fields["الجنسية"]}</span>
   </TableCell>
   <TableCell>
-                  <span className="text-md">{e.orderDate}</span>
+                  <span className="text-md">{e.fields["عقد مساند الخارجي"]}</span>
     
     </TableCell>
-
-<TableCell>
-{((dayjs(new Date()).diff(e.orderDate))/100000000).toFixed()}
-
-</TableCell>
-
-                <TableCell>
-                 
-
-<DeleteOutlined onClick={()=>cancelRecord(e.id)} style={{color:"dodgerblue"}} />
-                </TableCell>
-
-                <TableCell>
-                 
-
-<DeleteOutlined onClick={()=>endRecord(e.id)} style={{color:"red"}} />
-                </TableCell>
-
-
-
 
 
 
