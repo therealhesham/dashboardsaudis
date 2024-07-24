@@ -210,7 +210,7 @@ setClientOrderslist(e.data)
               <TableCell>Full Name</TableCell>
               <TableCell>Phone Number</TableCell>
               {/* <TableCell>رقم الطلب</TableCell> */}
-<TableCell>orders ID</TableCell>
+{/* <TableCell>orders ID</TableCell> */}
             </tr>
           </TableHeader>
           <TableBody>
@@ -230,43 +230,6 @@ setClientOrderslist(e.data)
                 </TableCell>
 
       {/* </Link> */}
-
-                <TableCell>
-                  <span className="text-md">{e.fields["الطلبات"]}</span>
-
-                  {/* <Badge type={user.status}>{user.status}</Badge> */}
-                </TableCell>
-
- 
-
-                <TableCell>
-                  <span className="text-md">
-               
-               <Link href={"/admin/cvdetails/"+e.Cvnumber} >
-                  <span className="text-md" style={{textDecorationLine:"underline",textDecorationColor:"blueviolet"}}>{e.Cvnumber}</span>
-</Link>
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  </span>
-                </TableCell>
-                <TableCell>
-                  <span className="text-md">
-                  <span className="text-md">{e?.Cvnumber}</span>
-
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  </span>
-                </TableCell>
-                <TableCell>
-                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
-                  {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.Created?e?.Created:""}</span>
-
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  {/* </span> */}
-                {/* </Link> */}
-                </TableCell>
 
               </TableRow>
             ))}

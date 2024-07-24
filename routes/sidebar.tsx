@@ -30,10 +30,17 @@ const routes: IRoute[] = [
     name: 'الرئيسية', 
     exact: true,
   },  {
+    path: '/admin/orders', 
+    icon: 'HomeIcon', 
+    name: 'قائمة الطلبات'
+  },
+  {
     path: '/admin/dashboardadmins', 
     icon: 'HomeIcon', 
     name: 'قائمة مديرين الداشبورد'
-  },
+  },  
+  
+  
 
 {
     path: '/admin/addcountry', 
@@ -87,7 +94,7 @@ const routes: IRoute[] = [
   },
  
   {
-    path: '/admin/maleworkerslist',
+    path: '/admin/maleworkers',
     icon: 'CardsIcon',
     name: 'عمالة الذكور',
   },

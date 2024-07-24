@@ -132,7 +132,7 @@ return (
 
 
 
-      <PageTitle>Employer Transfers Table</PageTitle>
+      <PageTitle>معاملات نقل الكفالة</PageTitle>
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
 
@@ -157,18 +157,7 @@ return (
               <TableCell> Accomadition Number</TableCell>
               <TableCell> Marketeer Name</TableCell>
 
-   
-dealcost        String
-paid            String
-restofpaid      String
-experimentresult  String
-accomaditionnumber  String
-
-marketeername String
-
-notes     String
-
-
+=
             </tr>
           </TableHeader>
           <TableBody>

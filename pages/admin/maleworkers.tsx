@@ -172,32 +172,10 @@ setID(c)
 
 
 return (
-  // <Layout>
-
-// clientname        String
-// insurance         String
-// musanedContract    String
-// visanumber         String
-// idnumber          String
-// mobilenumber      Int
-// passportnumber    String
-// workername        String
-// age               Int
-// experience            String
-// contractstatus         String  
-// city                   String
-// orderDate           DateTime
-// dayDate             DateTime
-// duration            String
-// externaloffice      String
-// nationality         String
-// externalmusanedcontract String
-// visaordernumber     String
-// notes           String
-
+  <Layout>
 <div>
-  <Button onClick={()=> router.back()}>الرجوع للخلف</Button>
-      <PageTitle>Male Workers Database</PageTitle>
+  <Button style={{margin:"13px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
+      <PageTitle>بيان ارسالية العمالة الذكور</PageTitle>
   
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
@@ -349,7 +327,10 @@ return (
 
                 </div>
  
-  )
+  
+
+</Layout>
+)
 }
 
 export default FemaleWorkers

@@ -117,10 +117,10 @@ names()
 
 
 return (
-  
+
 <div>
-  <Button onClick={()=> router.back()}>الرجوع للخلف</Button>
-      <PageTitle>قاعدة بيانات العاملات</PageTitle>
+  <Button style={{margin:"13px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
+      <PageTitle>قائمة الوصول</PageTitle>
   
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
