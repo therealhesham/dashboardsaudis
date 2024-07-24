@@ -460,9 +460,9 @@ router.reload()
         <p style={{display: "flex",justifyContent: "flex-start",marginRight:"16px"}}  dir="rtl"  className={Style['almarai-bold'] } >احدث سير ذاتية</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
 {/* </div> */}
   {data.length>0?
-  <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 85%)":"repeat(4, auto)"}}>{data?.map((e,i)=>
+  <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 80%)":"repeat(4, auto)"}}>{data?.map((e,i)=>
     <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"160px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
-{ e.fields.phone != null ? <span style={{transform:"rotate(-30deg)",position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوز </span>:""}
+{ e.fields.phone != null ? <span style={{position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوزة </span>:""}
   {/* <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
     
     >
@@ -527,7 +527,7 @@ router.reload()
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{ bottom:"10px",position:"absolute",marginBottom:"1px",display:"flex",justifyItems:"space-between",right:"6px"}}>
+<div style={{ bottom:"10px",position:"absolute",marginBottom:"1px",display:"flex",justifyItems:"space-between",fontSize:"12px",right:"6px"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
@@ -535,7 +535,7 @@ router.reload()
 ""
 
 :
- <span  style={{backgroundColor:"#003749",cursor:"pointer",borderRadius:"6px",padding:"4px",color:"whitesmoke"}}>احجز الآن
+ <span  style={{backgroundColor:"#003749",cursor:"pointer",borderRadius:"6px",padding:"4px",color:"whitesmoke"}}>حـــجــــز
 
 
 
@@ -546,7 +546,7 @@ router.reload()
 </div>
 <div style={{display:"inline-flex",marginLeft:"5px",cursor:"pointer",bottom:"1px"}}> 
   {/* <Link href={"../client/cvdetails/"+e.id} > */}
- <span style={{backgroundColor:"#Ecc383",borderRadius:"6px",padding:"4px",color:"whitesmoke"}} onClick={()=>router.push("../client/cvdetails/"+e.id)}>التفاصيل</span>
+ <span style={{backgroundColor:"#Ecc383",borderRadius:"6px",padding:"4px",color:"whitesmoke",fontSize:"12px"}} onClick={()=>router.push("../client/cvdetails/"+e.id)}>التفاصيل</span>
 
 {/* </Link> */}
   {/* <FileOutlined /> */}
