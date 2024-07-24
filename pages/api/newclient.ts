@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+
 import { PrismaClient } from "@prisma/client";
 import Airtable ,{Table} from "airtable";
 import { Console } from "console";
@@ -22,7 +23,7 @@ baseFinder("السير الذاتية").find(req.body.id, function(err, record) 
     if (err) { console.error(err); return; }
     //@ts-ignore
     // console.log('Retrieved', record.id);
-    if(record?.fields["العملاء"] != null) return  res.status(302).json("sign")  
+    if(record?.fields["phone"] != null) return  res.status(302).json("sign")  
 
 });
 
@@ -77,6 +78,32 @@ const create = base('العملاء').create([
 
    
   })
+
+
+const resultbookedcv =  await new Promise((resolve,reject)=>{
+
+  
+
+const resultbooked=base('السير الذاتية المحجوزة').create([
+  {
+    "fields": {"اسم العميل":req.body.fullname,
+
+"رقم جوال العميل":req.body.phonenumber,
+"رقم السيفي":req.body.cvnumber,
+"اسم العاملة":req.body.workername,
+// "حالة الحجز":"",
+"اسم الموظف":"حجز من الموقع"
+
+
+    }
+  }
+]);
+resolve(resultbooked)
+   
+  })
+
+
+
 const sign =jwt.sign(newclient,"secret");  
     // Cookies.set("token",sign);
     // console.log(Cookies.get("token"))

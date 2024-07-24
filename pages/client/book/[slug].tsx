@@ -167,10 +167,10 @@ const onSubmitNewclient = async (sata) => {
 setFetching(true)
   const fetcher = await fetch('../../api/newclient',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
-      },body:JSON.stringify({...sata,id:data.id,cvnumber:data.fields.Name})})
+      },body:JSON.stringify({...sata,id:data.id,cvnumber:data.fields.Name,workername:data.fields["Name - الاسم"]})})
 
       const e= await fetcher.text()
-      
+      console.log(e)
       // console.log(fetcher.status)
 if(fetcher.status == 200) {
   Cookies.set("token",e)
