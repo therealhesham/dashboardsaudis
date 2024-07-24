@@ -480,7 +480,7 @@ router.reload()
 
     </div>
 
-  <div className="pic" style={{marginTop:"9px"}}> 
+  <div className="pic" style={{width:"50%",marginTop:"9px"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
         >
@@ -499,9 +499,9 @@ router.reload()
     </div> */}
       {e?.fields.Picture?
 
-      <div >
-      <img  style={{height:"150px",width:"100px"}}   src={e?.fields.Picture[0].url}  />
-      </div>
+      // <div   >
+      <img  style={{height:"100%"}}    src={e?.fields.Picture[0].url}  />
+      // </div>
       :""}
 
 

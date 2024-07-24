@@ -117,8 +117,7 @@ names()
 
 
 return (
-
-<div>
+<Layout><div>
   <Button style={{margin:"13px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
       <PageTitle>قائمة الوصول</PageTitle>
   
@@ -245,7 +244,8 @@ return (
       </TableContainer>
 
                 </div>
- 
+ </Layout>
+
   )
 }
 

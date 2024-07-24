@@ -12,6 +12,7 @@ interface IMain{
 function Main({ children }: IMain) {
   return (
     <main className="h-full overflow-y-auto">
+{/* <input></input> */}
       <div className="container grid px-6 mx-auto">{children}</div>
     
     
