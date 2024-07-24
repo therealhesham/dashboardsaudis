@@ -460,10 +460,10 @@ router.reload()
         <p style={{display: "flex",justifyContent: "flex-start",marginRight:"16px"}}  dir="rtl"  className={Style['almarai-bold'] } >احدث سير ذاتية</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
 {/* </div> */}
   {data.length>0?
-  <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 90%)":"repeat(3, auto)"}}>{data?.map((e,i)=>
-    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"200px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+  <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 90%)":"repeat(4, auto)"}}>{data?.map((e,i)=>
+    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"160px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
 { e.fields.phone != null ? <span style={{transform:"rotate(-30deg)",position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوز </span>:""}
-  <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
+  {/* <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
     
     >
     <WhatsappShareButton
@@ -478,9 +478,9 @@ router.reload()
 
 
 
-    </div>
+    </div> */}
 
-  <div className="pic" style={{width:"50%",maxHeight:"200px",marginTop:"9px"}}> 
+  <div className="pic" style={{width:"40%",maxHeight:"120px",marginTop:"9px",display:"flex",justifyContent:"center"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
         >
@@ -500,33 +500,34 @@ router.reload()
       {e?.fields.Picture?
 
       // <div   >
-      <img  style={{height:"190px"}}    src={e?.fields.Picture[0].url}  />
+      <img  style={{height:"130px",width:"min-content"}}    src={e?.fields.Picture[0].url}  />
       // </div>
       :""}
 
 
 {/* </div> */}
+    <span style={{ display:"flex",justifyItems:"center",position:"absolute", bottom:"12px",backgroundColor:"white",padding:"5px",borderRadius:"6px",color:"gray"}}>{e?.fields["م"]}</span>
 
 </div>
 
   <div className="card-body" style={{}}>
-    <div className="textcard" dir='rtl' style={{right:"1px",margin:"13px"}}>
+      {/* <h2 className="card-title">{e?.fields['م']}</h2>   */}
+    <div className="textcard" dir='rtl' style={{marginRight:"1px"}}>
       {/* {/* e?.fields[ksd["age - العمر"] } */}
-      <h2 className="card-title">{e?.fields['م']}</h2>
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
-      <li   >{e.fields['Nationality copy']}</li> 
+      <li  style={{fontSize:"15px"}}  >{e.fields['Nationality copy']}</li> 
 
-      < li >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
-      <li >{e?.fields["marital status - الحالة الاجتماعية"]}</li>
+      < li  style={{fontSize:"15px"}}>{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
+      <li  style={{fontSize:"15px"}}>{e?.fields["marital status - الحالة الاجتماعية"]}</li>
       {/* <p  >{e?.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]}</p> */}
-      <li >{e?.fields["Religion - الديانة"]}</li>
+      <li style={{fontSize:"15px"}}>{e?.fields["Religion - الديانة"]}</li>
 
       
       
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{ bottom:"1px",position:"absolute",marginBottom:"1px",display:"flex",justifyContent:"flex-end",right:"6px"}}>
+<div style={{ bottom:"10px",position:"absolute",marginBottom:"1px",display:"flex",justifyItems:"space-between",right:"6px"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
@@ -543,7 +544,7 @@ router.reload()
 }
 
 </div>
-<div style={{display:"inline-flex",cursor:"pointer",bottom:"1px"}}> 
+<div style={{display:"inline-flex",marginLeft:"5px",cursor:"pointer",bottom:"1px"}}> 
   {/* <Link href={"../client/cvdetails/"+e.id} > */}
  <span style={{backgroundColor:"#Ecc383",borderRadius:"6px",padding:"4px",color:"whitesmoke"}} onClick={()=>router.push("../client/cvdetails/"+e.id)}>التفاصيل</span>
 
