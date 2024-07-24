@@ -461,7 +461,7 @@ router.reload()
 {/* </div> */}
   {data.length>0?
   <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 90%)":"repeat(3, auto)"}}>{data?.map((e,i)=>
-    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",minHeight:"240px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"200px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
 { e.fields.phone != null ? <span style={{transform:"rotate(-30deg)",position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوز </span>:""}
   <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
     
@@ -480,7 +480,7 @@ router.reload()
 
     </div>
 
-  <div className="pic" style={{width:"50%",maxHeight:"250px",marginTop:"9px"}}> 
+  <div className="pic" style={{width:"50%",maxHeight:"200px",marginTop:"9px"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
         >
@@ -500,7 +500,7 @@ router.reload()
       {e?.fields.Picture?
 
       // <div   >
-      <img  style={{height:"250px"}}    src={e?.fields.Picture[0].url}  />
+      <img  style={{height:"190px"}}    src={e?.fields.Picture[0].url}  />
       // </div>
       :""}
 
@@ -514,7 +514,7 @@ router.reload()
       {/* {/* e?.fields[ksd["age - العمر"] } */}
       <h2 className="card-title">{e?.fields['م']}</h2>
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
-      <li  >{e.fields['Nationality copy']}</li> 
+      <li   >{e.fields['Nationality copy']}</li> 
 
       < li >{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
       <li >{e?.fields["marital status - الحالة الاجتماعية"]}</li>
