@@ -526,7 +526,7 @@ router.reload()
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{ bottom:"1px",position:"absolute",marginBottom:"1px",display:"flex",justifyContent:"flex-end"}}>
+<div style={{ bottom:"1px",position:"absolute",marginBottom:"1px",display:"flex",justifyContent:"flex-end",right:"6px"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
