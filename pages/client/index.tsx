@@ -515,12 +515,12 @@ router.reload()
     <div className="textcard" dir='rtl' style={{marginRight:"1px"}}>
       {/* {/* e?.fields[ksd["age - العمر"] } */}
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
-      <li  style={{fontSize:"15px"}}  >{e.fields['Nationality copy']}</li> 
+      <li  style={{fontSize:"13px"}}  >{e.fields['Nationality copy']}</li> 
 
-      < li  style={{fontSize:"15px"}}>{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
-      <li  style={{fontSize:"15px"}}>{e?.fields["marital status - الحالة الاجتماعية"]}</li>
+      < li  style={{fontSize:"13px"}}>{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
+      <li  style={{fontSize:"13px"}}>{e?.fields["marital status - الحالة الاجتماعية"]}</li>
       {/* <p  >{e?.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]}</p> */}
-      <li style={{fontSize:"15px"}}>{e?.fields["Religion - الديانة"]}</li>
+      <li style={{fontSize:"13px"}}>{e?.fields["Religion - الديانة"]}</li>
 
       
       
