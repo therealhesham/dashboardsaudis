@@ -30,8 +30,10 @@ baseFinder("السير الذاتية").find(req.body.id, function(err, record) 
 
 
   // console.log(req.body)
-const finder = await prisma.client.findFirst({where:{email:req.body.email}})
-if(finder?.email == req.body.email) return res.status(301).json({error:"البريد الالكتروني مسجل لدينا في قاعدة البيانات"});
+const finder = await prisma.client.findFirst({where:{phonenumber:req.body.phonenumber}})
+
+
+if(finder?.phonenumber == req.body.phonenumber) return res.status(301).json({error:"رقم الجوال مسجل لدينا في قاعدة البيانات"});
 try {
   //@ts-ignore
   if(req.body.password.length < 8) return res.status(301).json({error:"خطأ في الرقم السري"});
@@ -40,11 +42,11 @@ try {
   return res.status(301).json({error:"خطأ في الرقم السري"});
 }
 
-const newclient = await prisma.client.create({data:{isUser:true,fullname:req.body.fullname,password:req.body.password,email:req.body.email,
+const newclient = await prisma.client.create({data:{isUser:true,fullname:req.body.fullname,password:req.body.password,
     phonenumber:req.body.phonenumber
   }})
 
-
+// await prisma.timeline.create({data:{fulltext:""}})
   
   const resultone =  await new Promise((resolve,reject)=>{
 const create = base('العملاء').create([
@@ -91,7 +93,7 @@ const resultbooked=base('السير الذاتية المحجوزة').create([
 "رقم جوال العميل":req.body.phonenumber,
 "رقم السيفي":req.body.cvnumber,
 "اسم العاملة":req.body.workername,
-// "حالة الحجز":"",
+"حالة الحجز":"محتمل",
 "اسم الموظف":"حجز من الموقع"
 
 
@@ -107,7 +109,7 @@ resolve(resultbooked)
 const sign =jwt.sign(newclient,"secret");  
     // Cookies.set("token",sign);
     // console.log(Cookies.get("token"))
-
+await prisma.timeline.create({data:{fulltext:`${req.body.fullname} created Booked cv  ${req.body.cvnumber}`,type:"new reservation",}})
 // console.log(result)
   res.status(200).json(sign)  
 } catch (error) {

@@ -262,11 +262,10 @@ return (
           <RoundIcon
             iconColorClass="text-blue-500 dark:text-blue-100"
             bgColorClass="bg-blue-100 dark:bg-blue-500"
-            className="mr-4"
-          />
+            className="mr-4"/>
         </InfoCard>
 </div>
-        <InfoCard title="استقدامات" value={0}>
+        <InfoCard title="السير الذاتية المحجوزة" value={0}>
           {/* @ts-ignore */}
           <RoundIcon
             icon={ChatIcon}
@@ -276,6 +275,48 @@ return (
           />
         </InfoCard>
       </div>
+
+      {/* <div>
+<TableContainer>
+
+<Table>
+<TableHeader>
+<tr>
+<TableCell>
+Status
+
+</TableCell>
+<TableCell>
+Details
+  
+</TableCell>
+<TableCell>
+Date
+  
+</TableCell>
+
+
+
+
+</tr>
+
+</TableHeader>
+<TableBody>
+<TableRow></TableRow>
+
+</TableBody>
+
+
+
+</Table>
+
+</TableContainer>
+
+
+
+
+
+      </div> */}
 {listType =="workers"?
       <TableContainer>
         <Table>
@@ -284,7 +325,7 @@ return (
               {listType =="workers"?<TableCell>اسم العامل</TableCell>:<TableCell>اسماء المكاتب</TableCell>}
               {/* {listType =="workers"?<TableCell>العمر</TableCell>: null} */}
               {listType =="workers"?<TableCell>الحالة الاجتماعية</TableCell>:null}
-              {listType =="workers"?<TableCell>المكاتب</TableCell>:null}
+              {listType =="workers"?<TableCell>الجنسية</TableCell>:null}
               {listType =="workers"?<TableCell>Religion</TableCell>:null}
               {listType =="workers"?<TableCell>Delete</TableCell>:null}
             </tr>
@@ -297,7 +338,7 @@ return (
                   <div className="flex items-center text-sm" style={{width:"200px"}}>
                     
                     <div>
-                     {e?.fields["Name - الاسم"] ? <p className="font-semibold" >{e?.fields["Name - الاسم"]}</p>:""}
+                     {e?.fields["Name - الاسم"] ? <p style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>router.push("../client/cvdetails/"+e.id)} className="font-semibold" >{e?.fields["Name - الاسم"]}</p>:""}
                       <p className="text-xs text-gray-600 dark:text-gray-400">
                         
                       </p>
@@ -311,7 +352,7 @@ return (
                 </TableCell>
                 <TableCell>
                   <span className="text-sm">
-                  <span className="text-sm">{("External office - المكتب الخارجي (from External office - المكتب الخارجي)" in e.fields)?e.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]:""}</span>
+                  <span className="text-sm">{("Nationality copy" in e.fields)?e.fields["Nationality copy"]:""}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}

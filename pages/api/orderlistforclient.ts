@@ -23,8 +23,8 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse) 
   const arr = [];
   try {
   const token = req.cookies.token;
-  // console.log(token)
   const verify= jwt.verify(token,'secret');
+  console.log(verify)
   //@ts-nocheck
   //@ts-ignore
   if (verify.fullname == undefined) return  res.status(301).json("error")
@@ -33,15 +33,15 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse) 
 // console.log(verify)
 
 
-    base('السير الذاتية').select({
-      view: "الاساسي"
+    base('السير الذاتية المحجوزة').select({
+      view: "جدول الحجوزات"
       
     }).all().then(e=>
       {
         //@ts-ignore
-        // console.log(e)
+        // console.log(e[0].id)
         for (let index = 0; index < e.length; index++) {
-          if(e[index].get("phone") == verify.phonenumber)   arr.push(e[index]);   
+          if(e[index].get("رقم جوال العميل") == verify.phonenumber)   arr.push(e[index]);   
           }
           if(arr.length == 0) return res.status(201).json("Not Found") ;
         //@ts-ignore

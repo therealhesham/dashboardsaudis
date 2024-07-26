@@ -25,10 +25,10 @@ try {
 const finderror =    baseFinder("السير الذاتية").find(req.body.id, function(err, record) {
     if (err) { console.error(err); return; }
     //@ts-ignore
-    if(record?.fields["العملاء"] != null) return res.status(202).json("sign")  
+    // if(record?.fields["العملاء"] != null) {return res.status(202).json("sign") } 
 
 
-    // console.log('Retrieved', record.id);
+    console.log('Retrieved', 31);
   //@ts-ignore
   })
   //@ts-ignore
@@ -52,7 +52,46 @@ const update = base('السير الذاتية').update([
    
   })
 
-  res.status(200).json("sign")  
+
+    console.log('Retrieved', 56);
+
+
+const resultbookedcv =  await new Promise((resolve,reject)=>{
+
+  
+
+const resultbooked=base('السير الذاتية المحجوزة').create([
+  {
+    "fields": {"اسم العميل":req.body.fullname,
+
+"رقم جوال العميل":req.body.phonenumber,
+"رقم السيفي":req.body.cvnumber,
+"اسم العاملة":req.body.workername,
+ "حالة الحجز":"محتمل",
+"اسم الموظف":"حجز من الموقع"
+
+
+    }
+  }
+]);
+resolve(resultbooked)
+   
+  })
+
+    console.log('Retrieved', 81);
+
+
+
+
+
+
+
+
+    console.log('Retrieved', 90);
+
+  res.status(200).json("sign")
+    // console.log('Retrieved', 81);
+
 } catch (error) {
   console.log(error)
   res.status(302).json({error:"connectivity error"})  

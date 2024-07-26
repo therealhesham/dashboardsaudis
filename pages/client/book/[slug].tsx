@@ -147,7 +147,7 @@ const onSubmit = async (sata) => {
 setFetching(true)
   const fetcher = await fetch('../../api/orderforexistingclient',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
-      },body:JSON.stringify({fullname:user.fullname,phonenumber:user.phonenumber,email:user.email,id:data.id,cvnumber:data.fields.Name})})
+      },body:JSON.stringify({fullname:user.fullname,phonenumber:user.phonenumber,id:data.id,cvnumber:data.fields.Name,workername:data.fields["Name - الاسم"]})})
 
 
       const e= await fetcher.text()
@@ -183,7 +183,7 @@ else{errorfunc()
   const [user,setUser] = useState({})
   const [list,setSourceList] = useState([]);
 
-const Schema =yup.object({ id:yup.string(),source:yup.string().notRequired(),email:yup.string().notRequired() , phonenumber:yup.string(),password:yup.string().notRequired(),fullname:yup.string().typeError("الرجاء كتابة الاسم ثلاثي")
+const Schema =yup.object({ id:yup.string(),source:yup.string().notRequired(), phonenumber:yup.string(),password:yup.string().notRequired(),fullname:yup.string().typeError("الرجاء كتابة الاسم ثلاثي")
 })
   const{register,handleSubmit,formState:{errors}} = useForm({resolver:yupResolver(Schema)})
 
@@ -663,17 +663,6 @@ data.fields["English - الانجليزية"] == e?<Rating disabled style={{opac
             {errors.fullname?<span>{errors.fullname.message}</span>:""}
           {/* <h1 className="mt-1"  >{data.fields["Name - الاسم"]}</h1> */}
         </Label>
-
-  <Label className="mt-4">
-  
-  
-  
-  <span>البريد الالكتروني </span>
-  
-          <Input className="mt-1" placeholder="Email" type='text' {...register("email",{required:true})}/>
-{errorEmail?<span style={{color:"red"}}>البريد الالكتروني مسجل في قاعدة البيانات لستجيل الدخول اضغط <Link href="/client/login" ><span style={{color:"black",cursor:"pointer"}}>هنا</span></Link></span>:""}
-        </Label>
-  
   <Label className="mt-4">
   
   

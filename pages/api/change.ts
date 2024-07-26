@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { PrismaClient } from "@prisma/client";
@@ -13,12 +15,15 @@ var base = new Airtable({apiKey: 'patovGWItwsDoXzng.84565b10c27835cf1ac38c9f9b64
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
 try {
-
+const details = req.cookies.token
+console.log("details",details)
+const getdetails = jwt.verify(details,"secret")
   const result =  await new Promise((resolve,reject)=>{
 const update = base('السير الذاتية المحجوزة').update([
   {
     "id": req.body.id,
     "fields": {
+      "اسم الموظف":getdetails.name,
       // "العملاء":req.body.fullname,
       "حالة الحجز":req.body.status
     }}])

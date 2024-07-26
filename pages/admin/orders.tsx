@@ -157,6 +157,8 @@ return (
               <TableCell>رقم السيرة الذاتية</TableCell>
 
               <TableCell>اسم العاملة</TableCell>
+              <TableCell>اسم الموظف</TableCell>
+
               <TableCell>حالة الحجز</TableCell>
               <TableCell>تغيير الحالة</TableCell>
            
@@ -195,6 +197,17 @@ return (
                   <span className="text-md">{e?.fields["اسم العاملة"]}</span>
 
       </TableCell>
+
+
+
+
+
+
+                <TableCell>
+                  <span className="text-md">{e?.fields["اسم الموظف"]}</span>
+
+      </TableCell>
+
 
 
 
