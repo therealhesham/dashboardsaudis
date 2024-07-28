@@ -12,10 +12,12 @@ import RoundIcon from 'example/components/RoundIcon'
 import Layout from 'example/containers/Layout'
 import response, { ITableData } from 'utils/demo/tableData'
 import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from 'icons'
+// import 
 import {
   TableBody,
   TableContainer,
   Table,
+  Input,
   TableHeader,
   TableCell,
   TableRow,
@@ -24,6 +26,11 @@ import {
   Badge,
   Pagination,
   Button,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
 } from '@roketid/windmill-react-ui'
 
 import {
@@ -94,15 +101,31 @@ function Dashboard() {
 }
 // console.log(officelist)
        const [admins,setAdmins] = useState(null)
-  const [page, setPage] = useState(1)
-  const [length,setLength]=useState(0)
-  const [data, setData] = useState([])
-  const [time,setTime]=useState(0)
+       const [bookedReserved,setBooked] = useState([]);
+
+       const [Transfer,setTransfer] = useState([]);
+    
+    
+    
+       const [cvnumber,setCVnumber]=useState("");
+  const [page, setPage] = useState(1);
+  const [length,setLength]=useState(0);
+  const [data, setData] = useState([]);
+  const [time,setTime]=useState(0);
+  // const [time,setTime]=useState(0)
+
   const [deletedid,setDeletedid]=useState("")
   const [office,setOffice]=useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+const [fullname,setFullname]=useState("");
+const [phonenumber,setPhonenumber]=useState("");
+const [password,setPassword]=useState("");
+
   // pagination setup
   const [fulldata,setFulldata]=useState([])
   const resultsPerPage = 10
+  // Label
   const totalResults = fulldata.length;
   const user =useContext(User)
 // setTimeout(() =
@@ -110,7 +133,21 @@ function Dashboard() {
   const [paginatedData,setPaginatedData]=useState([])
   // console.log(time)
   const [listType,setTypeList] = useState("workers")
-const router = useRouter()
+  const [cvnumberbook,setcvnumberbook]=useState("");
+  const [cvid,setcvid]=useState("");
+  const [workername,setworkername]=useState("")
+
+
+  const bookmodal = (cvn,idd,wn)=>{
+setworkername(wn);
+setcvnumberbook(cvn)
+setcvid(idd)
+openModal()
+
+  }
+
+
+  const router = useRouter()
 const [list,setList]=useState([]);
 function onPageChange(p: number) {
   console.log(p)
@@ -123,9 +160,68 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
   // on page change, load new sliced data
   // here you would make another server request for new data
 
+ function openModal() {
+    setIsModalOpen(true)
+  }
+  function closeModal() {
+    setIsModalOpen(false)
+  }
 
 
 
+
+
+
+  
+const book = async ()=>{
+
+const fetcher =  await fetch("./api/newclientbyadmin",{method:"post",headers: {'Accept':'application/json',
+        "Content-Type": "application/json",
+      },body:JSON.stringify({id:cvid,cvnumber:cvnumberbook,workername:workername,phonenumber,fullname,password})})
+  
+      const f = await fetcher.json()
+
+if(fetcher.status == 200) {return closeModal()}
+if(fetcher.status !=200 ) alert ("Error Booking ")
+  // names();
+
+
+}
+
+
+
+
+  
+const search = ()=>{
+
+      async function names( )  {
+    const fetcher =  await fetch("./api/searchbutton",{method:"post",headers: {'Accept':'application/json',
+        "Content-Type": "application/json",
+      },body:JSON.stringify({cvnumber})})
+    const f = await fetcher.json()
+// console.log(,f)
+  .then(json  => {
+//  console.log(json)
+//  if ()
+  json?setLength(json.length):"";
+
+    // console.log('parsed json', json) // access json.body here
+    setFulldata(json)
+    json?setPaginatedData(json?.slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
+// console.log(new Date().getSeconds())
+    // setData(json)   
+
+  } 
+  // names();
+
+)
+}
+
+names()
+
+
+
+}
 function FindNatioinality(namenation) {
 console.log(namenation)
 
@@ -187,6 +283,44 @@ useEffect(() => {
 
 names()
 
+
+
+ async function orders( )  {
+    const fetcher =  await fetch("./api/orders");
+    const f = await fetcher.json()
+
+  .then(json  => {
+//  
+setBooked(json)
+  }
+
+)
+}
+
+orders()
+
+
+
+
+
+
+ async function transfer( )  {
+    const fetcher =  await fetch("./api/homemaidlist");
+    const f = await fetcher.json()
+
+  .then(json  => {
+//  
+// console.log(json)
+setTransfer(json)
+  }
+
+)
+}
+
+transfer()
+
+
+
 async function Admins() {
    const fetcher =  await fetch("./api/admins");
     const f = await fetcher.json()
@@ -223,8 +357,34 @@ if(fetcher.status == 200) setDeletedid(id)
 
 }
 return (
-    <Layout>
+
+
+
+<Layout>
       {/* {alert(user.username)} */}
+<Modal isOpen={isModalOpen} onClose={closeModal}>
+        <ModalHeader>{`Book CV Number ${cvnumberbook}`}</ModalHeader>
+        <ModalBody>
+
+
+<Input placeholder='اسم العميل'  value={fullname} onChange={(e)=>setFullname(e.target.value)}/>
+<Input placeholder='جوال العميل' value={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)}/>
+<Input placeholder='رقم العميل السري' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+          
+        </ModalBody>
+        <ModalFooter>
+          <Button className="w-full sm:w-auto" layout="outline" onClick={closeModal}>
+            Close
+          </Button>
+
+          <Button className="w-full sm:w-auto" layout="primary" onClick={()=>book()}>
+            confirm
+          </Button>
+
+
+        </ModalFooter>
+      </Modal>
+
 <h1 style={{fontSize:"23px"}}> Hello {user.name}</h1>
       <PageTitle>Dashboard</PageTitle>
 
@@ -274,6 +434,35 @@ return (
             className="mr-4"
           />
         </InfoCard>
+ 
+          {/* <div  style={{cursor:"pointer"}} onClick={e=>setTypeList("offices")}> */}
+        <InfoCard  title="المحجوز" value={bookedReserved.length}  >
+          {/* @ts-ignore */}
+          <RoundIcon
+          
+            icon={MoneyIcon}
+            iconColorClass="text-green-500 dark:text-green-100"
+            bgColorClass="bg-yellow-100 dark:bg-green-500"
+            className="mr-4"
+            />
+        </InfoCard>
+            {/* </div> */}
+
+
+
+<InfoCard  title="قائمة الوصول" value={Transfer.length}  >
+          {/* @ts-ignore */}
+          <RoundIcon
+          
+            icon={MoneyIcon}
+            iconColorClass="text-green-500 dark:text-green-100"
+            bgColorClass="bg-red-100 dark:bg-black-500"
+            className="mr-4"
+            />
+        </InfoCard>
+        
+
+ 
       </div>
 
       {/* <div>
@@ -317,6 +506,12 @@ Date
 
 
       </div> */}
+      <Label >
+  {/* <span>search by cv number</span> */}
+ 
+ <div style={{display:"inline-flex"}}> <Input  placeholder='search by cv number' className="mt-1" style={{width:"180px"}} onChange={(e)=>setCVnumber(e.target.value)}/> <Button onClick={()=>search()}> search</Button>
+</div>
+</Label>
 {listType =="workers"?
       <TableContainer>
         <Table>
@@ -326,8 +521,13 @@ Date
               {/* {listType =="workers"?<TableCell>العمر</TableCell>: null} */}
               {listType =="workers"?<TableCell>الحالة الاجتماعية</TableCell>:null}
               {listType =="workers"?<TableCell>الجنسية</TableCell>:null}
-              {listType =="workers"?<TableCell>Religion</TableCell>:null}
+              {listType =="workers"?<TableCell>الديانة</TableCell>:null}
+              {listType =="workers"?<TableCell>حالة الحجز</TableCell>:null}
+
+              {listType =="workers"?<TableCell>Book</TableCell>:null}
+
               {listType =="workers"?<TableCell>Delete</TableCell>:null}
+
             </tr>
           </TableHeader>
           <TableBody>
@@ -368,6 +568,31 @@ Date
                   {/* </span> */}
                 {/* </Link> */}
                 </TableCell>
+
+
+
+
+                <TableCell>
+                  {/* <Link href={"/admin/officeinfo/"+e?.fields["External office - المكتب الخارجي"]}  >                  */}
+                  {/* <span className="text-sm"> */}
+                  <span className="text-sm">{e?.fields["Religion - الديانة"]?e?.fields["حالة الحجز"]:""}</span>
+
+                    
+                    {/* {new Date(user.date).toLocaleDateString()} */}
+                  {/* </span> */}
+                {/* </Link> */}
+                </TableCell>
+
+
+
+
+                <TableCell>
+
+                <Button onClick={()=>{bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"]) }} style={{backgroundColor:"wheat",color:"black"}}>Book CV </Button>
+                </TableCell>
+
+
+
 
 
 
