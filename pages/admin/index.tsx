@@ -51,14 +51,28 @@ import {
   Legend,
 } from 'chart.js'
 import Link from 'next/dist/client/link'
+import Style from "styles/Home.module.css"
+
 
 // import""
 import { User } from 'utils/usercontext'
 import { useRouter } from 'next/router'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
+import dayjs from 'dayjs'
+import { Rating } from '@mui/material'
+// Rating
+
 // import link from 'next/link'
 function Dashboard() {
+
+const rates =["inner - مبتدأ",
+"Beginner - مبتدأ",
+"Intermediate - جيد",
+"Advanced - جيد جداً",
+"Expert - ممتاز"]
+
+
   Chart.register(
     ArcElement,
     CategoryScale,
@@ -110,7 +124,7 @@ function Dashboard() {
        const [cvnumber,setCVnumber]=useState("");
   const [page, setPage] = useState(1);
   const [length,setLength]=useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [time,setTime]=useState(0);
   // const [time,setTime]=useState(0)
 
@@ -356,12 +370,181 @@ if(fetcher.status == 200) setDeletedid(id)
       console.log(fetcher.status)
 
 }
+const openCvmodal=(cvdata)=>{
+
+setData(cvdata)
+setcvopen(true)
+
+}
+const closeCvModal = ()=>{
+setcvopen(false)
+
+}
+
+
+// {bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"])
+  const openbookModal = (m,ids,name)=>{
+  setcvopen(false)
+setworkername(name);
+setcvnumberbook(m)
+setcvid(ids)
+openModal()
+
+
+
+  // openModal()
+
+}
+
+
+const [isCvModalOpen,setcvopen]=useState(false)
 return (
 
 
 
-<Layout>
+<Layout >
       {/* {alert(user.username)} */}
+      
+      {data.fields?
+      <Modal  isOpen={isCvModalOpen} onClose={closeCvModal} >
+        <ModalHeader>{`Details ${data.fields["م"]}`}</ModalHeader>
+        <ModalBody >
+
+{/* <div style={{width:"95%",display:"flex",justifyContent:"center",flexDirection:"column"}}> */}
+    {/* <div style={{display:"flex",marginTop:"12px",marginLeft:"auto",justifyContent:"center",marginRight:"auto",width:"60%",backgroundColor:"white"}}   className="card card-compact card-side w-100 bg-base-100 shadow-xl"  > */}
+ 
+  <div className="card-body" style={{ borderRadius:"10px",display:"flex",flexDirection:"row"}} >
+   <div className="pic"> 
+    <div  style={{width:"80px",height:"70px"}}> 
+    <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
+    
+    >
+    
+    </div>
+   <div>
+       {data.fields.Picture?<img     src={data.fields.Picture[0].url}  />:""}
+</div>
+</div>
+
+</div>
+
+<div>
+   <h2 className="card-title" style={{marginTop:"12px"}}>{data.fields["م"]}</h2>
+
+    <h2 className="card-title">{data.fields["Name - الاسم"]}</h2>
+    <div className="textcard">
+      {/* data.fields[ksd["age - العمر"] }
+      {/* <p  >{data.fields['age - العمر']?data.fields['age - العمر']:""}</p> */}
+     {data.fields["marital status - الحالة الاجتماعية"]? <h1 className={Style['almarai-bold']}>الحالة الاجتماعية</h1>:null}
+      
+      <h1 >{data.fields["marital status - الحالة الاجتماعية"]}</h1>
+      {/* <p  >{data.fields["External office - المكتب الخارجي"]}</p> */}
+{data.fields["Education - التعليم"]?      <h1 className={Style['almarai-bold']} >التعليم</h1>:null}
+
+      <h1 >{data.fields["Education - التعليم"]}</h1>
+ {data.fields["Nationality copy"]? <h1 className={Style['almarai-bold']} >الجنسية</h1>:null}
+
+  <h1 >{data.fields["Nationality copy"]}</h1>
+     {data.fields["Salary - الراتب"]? <h1 className={Style['almarai-bold']} >الراتب</h1> :null}
+      
+      <h1 >{data.fields["Salary - الراتب"]} sar</h1> 
+     {data.fields["Religion - الديانة"]? <h1 className={Style['almarai-bold']}  >الديانة</h1>:null}
+     
+      <h1 >{data.fields["Religion - الديانة"]}</h1>
+    {data.fields['date of birth - تاريخ الميلاد']?  <h1 className={Style['almarai-bold']}  >العمر</h1>:null}
+      
+<h1 >{Math.ceil(dayjs(new Date()).diff(data.fields['date of birth - تاريخ الميلاد'])/31556952000)}</h1>
+      <strong className='card-title'>المهارات</strong>
+      {/* <div className="rating rating-sm"> */}
+      
+{/* </div> */}
+
+      <strong className='card-title'>اللغات</strong>
+<div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around",alignContent:"space-around",justifyItems:"center",flexDirection:"row",width:"50%"}}><div >  <h4>اللغة العربية</h4>
+  {rates.map((e,i)=>
+data.fields["Arabic -  العربية"] == e?<Rating   aria-label={e} name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        
+        )}
+        </div><div>
+<h4>اللغة الانجليزية</h4>
+  {rates.map((e,i)=>
+data.fields["English - الانجليزية"] == e?<Rating aria-label={e} name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}
+</div>
+
+</div>
+
+
+      </div>
+ </div>
+    <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around",alignContent:"space-around",justifyItems:"center",flexDirection:"row",width:"50%"}}>
+      <div>
+      <h4>الغسيل</h4>  {rates.map((e,i)=>
+data.fields["laundry - الغسيل"] == e?<Rating  name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}</div>
+        <div>
+  <h4>الكوي</h4>  {rates.map((e,i)=>
+data.fields["Ironing - كوي"] == e?<Rating  name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}</div>
+        <div>
+ <h4>التنظيف</h4>  {rates.map((e,i)=>
+data.fields["cleaning - التنظيف"] == e?<Rating  name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}
+</div>
+<div>
+         <h4>الطبخ</h4>  {rates.map((e,i)=>
+data.fields["Cooking - الطبخ"] == e?<Rating  name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}
+     </div>
+
+
+<div>
+         <h4>الخياطة</h4>  {rates.map((e,i)=>
+data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultValue={i+1}  />:console.log(e)
+        
+
+        )}
+
+
+
+     </div>
+
+
+        </div>
+   
+  </div>    
+{/* </div> */}
+
+
+  
+  {/* </div> */}
+           
+        </ModalBody>
+        <ModalFooter>
+          <Button className="w-full sm:w-auto" layout="outline" onClick={closeCvModal}>
+            Close
+          </Button>
+
+          <Button className="w-full sm:w-auto" layout="primary" onClick={()=>openbookModal(data.fields["م"],data.id,data.fields["Name - الاسم"])}>
+            BOOK
+          </Button>
+
+        </ModalFooter>
+      </Modal>:""
+
+      }
 <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalHeader>{`Book CV Number ${cvnumberbook}`}</ModalHeader>
         <ModalBody>
@@ -538,7 +721,7 @@ Date
                   <div className="flex items-center text-sm" style={{width:"200px"}}>
                     
                     <div>
-                     {e?.fields["Name - الاسم"] ? <p style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>router.push("../client/cvdetails/"+e.id)} className="font-semibold" >{e?.fields["Name - الاسم"]}</p>:""}
+                     {e?.fields["Name - الاسم"] ? <p style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>openCvmodal(e)} className="font-semibold" >{e?.fields["Name - الاسم"]}</p>:""}
                       <p className="text-xs text-gray-600 dark:text-gray-400">
                         
                       </p>
