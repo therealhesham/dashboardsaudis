@@ -184,7 +184,14 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
 
 
 
+function removeaftersend (){
+setPassword("")
+setPhonenumber("")
+setFullname("")
+closeModal()
 
+
+}
 
   
 const book = async ()=>{
@@ -195,7 +202,7 @@ const fetcher =  await fetch("./api/newclientbyadmin",{method:"post",headers: {'
   
       const f = await fetcher.json()
 
-if(fetcher.status == 200) {return closeModal()}
+if(fetcher.status == 200) {return removeaftersend()}
 if(fetcher.status !=200 ) alert ("Error Booking ")
   // names();
 
