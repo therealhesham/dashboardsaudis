@@ -20,6 +20,18 @@ model Office{
   phonenumber     String
 }
 
+
+model Tasks{
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  fullmessage     String
+  title           String
+  createdat       DateTime? @default(now())
+  sender          String
+  receiver        String  
+  read            Boolean @default(false)
+}
+
+
 model Timeline{
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   type            String

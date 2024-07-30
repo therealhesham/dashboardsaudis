@@ -158,13 +158,12 @@ errorfunc()
         <Label>
 
           <span>Client Name in English</span>
-          <Input   aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("clientnameinenglishlanguage", { required: true })}    className="mt-1" placeholder="client name in english"  type='text' />
+          <Input   aria-invalid={errors.clientnameinenglishlanguage ? "true" : "false"} {...register("clientnameinenglishlanguage", { required: true })}    className="mt-1" placeholder="client name in english"  type='text' />
         {errors.clientnameinenglishlanguage?<span style={{backgroundColor:"pink"}}>{errors.clientnameinenglishlanguage.message}</span>:""}
+                </Label>
         
-        </Label>
         <Label>
-          
-          <span>عقد مساند داخلي</span>
+                  <span>عقد مساند داخلي</span>
           <Input type="number"  aria-invalid={errors.internalmusanedContract ? "true" : "false"} {...register("internalmusanedContract", { required: true })}    className="mt-1" placeholder="عقد مساند الداخلي"  type='text' />
         {errors.internalmusanedContract?<span style={{backgroundColor:"pink"}}>{errors.internalmusanedContract.message}</span>:""}
         
@@ -232,7 +231,7 @@ errorfunc()
 
         {/* </Label> */}
       </div>
-  <Button type="submit" > <h2>Submit</h2>
+  <Button type="submit" > <h2>submit</h2>
 </Button>
 
 </form>} 

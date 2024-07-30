@@ -278,49 +278,7 @@ router.reload()
   
 }
  <div>
-{/*   
-  <div style={{}}  >
-  
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-    </div>
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  
-  
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
-  <div className="carousel-item object-contain h-20 w-96">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/320px-Flag_of_Kenya.svg.png"
-      />
-  </div>
 
-</div> */}
- 
   <div style={{display:'grid',gridTemplateColumns:media?"100%":"20% 80%"}}>
 <div style={{marginTop:"60px",margin:"20px",borderRadius:"10px",gridRowStart:media?"1":null,gridRowEnd:media?"2":null,gridColumnStart:media?null:1,gridColumnEnd:media?null:1,overflow:"hidden",}}>
 

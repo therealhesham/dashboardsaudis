@@ -3,6 +3,11 @@
 import React from 'react'
 import RoundIcon from 'example/components/RoundIcon';
 import { TwitterIcon } from 'icons';
+
+import { Avatar, Badge, Input, Dropdown,Modal,
+  ModalBody,
+  ModalHeader,
+  ModalFooter, DropdownItem, WindmillContext } from '@roketid/windmill-react-ui'
 import { TwitchOutlined, TwitterOutlined ,FacebookFilled} from '@ant-design/icons';
 interface IMain{
   children: React.ReactNode
@@ -11,12 +16,14 @@ interface IMain{
 
 function Main({ children }: IMain) {
   return (
+    
     <main className="h-full overflow-y-auto">
 {/* <input></input> */}
+    
+    
       <div className="container grid px-6 mx-auto">{children}</div>
     
-    
-                                        <footer className="rounded-xl bg-inherit-100">
+         <footer className="rounded-xl bg-inherit-100">
   <div className="container m-auto space-y-8 px-6 py-16 text-gray-600 md:px-12 lg:px-20">
     <div className="flex flex-wrap items-center justify-between gap-4 border-b pb-8">
       <img
@@ -63,22 +70,13 @@ function Main({ children }: IMain) {
         </ul>
       </div>
       <div>
-        <h6 className="text-lg font-medium text-cyan-900">Products</h6>
+        {/* <h6 className="text-lg font-medium text-cyan-900">Products</h6> */}
         <ul className="mt-4 list-inside space-y-4">
           <li>
             <a href="#" className="transition hover:text-cyan-600">About</a>
           </li>
           <li>
-            <a href="#" className="transition hover:text-cyan-600">Customers</a>
-          </li>
-          <li>
-            <a href="#" className="transition hover:text-cyan-600">Enterprise</a>
-          </li>
-          <li>
-            <a href="#" className="transition hover:text-cyan-600">Partners</a>
-          </li>
-          <li>
-            <a href="#" className="transition hover:text-cyan-600">Jobs</a>
+            {/* <a href="#" className="transition hover:text-cyan-600">Jobs</a> */}
           </li>
         </ul>
       </div>
