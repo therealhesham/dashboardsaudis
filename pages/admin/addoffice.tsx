@@ -175,7 +175,7 @@ const{register,handleSubmit,formState:{errors},setValue} = useForm({resolver:yup
         {/* {errors.location?<span style={{color:"red"}}>{errors.location.message}</span>:null} */}
         </Label>
 
-<Button type='submit'>ِAdd Office</Button>
+<Button type='submit' style={{backgroundColor:"#003749"}}>ِاضافة مكتب</Button>
 
       </div>
 </form>}

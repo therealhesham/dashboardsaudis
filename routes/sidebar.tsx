@@ -88,7 +88,7 @@ const routes: IRoute[] = [
   },
  
   {
-    path: '/admin/addmaleworker',
+    path: '/admin/newmaleworker',
     icon: 'CardsIcon',
     name: 'اضافة عمالة ذكور',
   },

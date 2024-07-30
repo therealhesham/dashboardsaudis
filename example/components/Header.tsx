@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { useContext, useEffect, useState } from 'react'
 import SidebarContext from 'context/SidebarContext'
-// import im from "";
+// import  "";
 import {
   SearchIcon,
   MoonIcon,
@@ -22,7 +22,7 @@ Button,Table,TableBody,TableCell,TableContainer,TableFooter,TableHeader,TableRow
   Label,
   Textarea,
   Pagination} from '@roketid/windmill-react-ui'
-import { MessageFilled, SendOutlined } from '@ant-design/icons'
+import { MessageFilled, SendOutlined ,StepForwardFilled} from '@ant-design/icons'
 function Header() {
   const { mode, toggleMode } = useContext(WindmillContext)
   const { toggleSidebar } = useContext(SidebarContext)
@@ -33,11 +33,15 @@ const [ receiver,setReceiver]=useState("")
 const [ fullmessage,setFullmessage]=useState("")
 const [ title,setTitle]=useState("")
   const [paginatedData,setPaginatedData]=useState([])
+  const [length,setLength]=useState(0);
+
+  const [page, setPage] = useState(1);
+
 const resultsPerPage = 10
 const [fulldata,setFulldata]=useState([])
 const totalResults=fulldata.length
 
-function onPageChange(p: number) {
+function onPageChange(p) {
   console.log(p)
   // console.log(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
     // json?setData(json?.slice((page - 1) * resultsPerPage, page * resultsPerPage)):console.log("e");
@@ -46,12 +50,14 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
     // setPage(p)
   }
 // Pagination
-  useEffect(()=>{
+  
+const [statu,setStatus]=useState("")
+useEffect(()=>{
 
   
     try {
       async function names( )  {
-    const fetcher =  await fetch("./api/messages")
+    const fetcher =  await fetch("../api/messages")
     const f = await fetcher.json()
 // console.log(,f)
   .then(json  => {
@@ -91,7 +97,10 @@ getnames()
 } 
 
 
-})
+getUnreaMessages()
+
+
+},[statu])
 
 
 const closemodalaftersendmessage =()=>{
@@ -100,6 +109,7 @@ setReceiver("")
 setTitle("")
 setFullmessage("")
   closeModal()
+  setStatus("ssss")
 
 }
 
@@ -110,12 +120,16 @@ const sendmessage=async ()=>{
       },body:JSON.stringify({receiver,fullmessage,title})})
 
       const e= await fetcher.json()
-      if(fetcher.status == 200) return closemodalaftersendmessage();
+      if(fetcher.status == 200) {return closemodalaftersendmessage()};
       // console.log(fetcher.status)
 // closeModal()
 
     }
 
+
+    // let str = "This is a long ";  
+    // let truncatedStr = str.substring(0, 10); // get the first 10 characters  
+    // console.log(truncatedStr);   
 
 
   function handleNotificationsClick() {
@@ -136,8 +150,8 @@ const sendmessage=async ()=>{
 
 
 
-
-const [isMessagesOpen, setMessagesopen] = useState(false)
+const [isspecificMessagesOpen, setspecificMessagesopen] = useState(false);
+const [isMessagesOpen, setMessagesopen] = useState(false);
  function openMessageModal() {
     setMessagesopen(true)
   }
@@ -148,10 +162,87 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
 
 
 
-  return (
-    <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
+ function openspecificMessageModal() {
+    setspecificMessagesopen(true)
+  }
+  function closespecificMessageModal() {
+    setspecificMessagesopen(false)
+  }
+const [messid,setmessid]=useState("");
+
+const [specificTitle,setSpeificTitle]=useState("");
+const [specificMessage,setSpeificMessage]=useState("");
+const [specificSender,setSpeificSender]=useState("");
+const [specificread,setspecificread]=useState("");
+const openreadmessage=(e)=>{
+setSpeificTitle(e.title)
+setSpeificSender(e.sender)
+setSpeificMessage(e.fullmessage)
+openspecificMessageModal()
+
+
+
+}
+
+
+const Readmessage = async (id)=>{
+  const fetcher = await fetch('../api/checkreadmessage',{method:"post",headers: {'Accept':'application/json',
+        "Content-Type": "application/json"
+      },body:JSON.stringify({id})})
+
+      const e= await fetcher.json()
+      if(fetcher.status == 200) {return openreadmessage(e)};
+      // console.log(fetcher.status)
+// closeModal()
+
+
+
+
+
+}
+const [unreadMessages,setUnreadMessages]=useState([])
+const getUnreaMessages=()=>{
+// console.log(fulldata)  
+const arr =fulldata.filter((e)=> {return e.read == false})
+// console.log(arr)
+setUnreadMessages(arr
+)
+// console.log(unreadMessages)
+}
+
+return (
+    <header className="z-40 py-4 bg-gray shadow-bottom dark:bg-gray-800">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         {/* <!-- Mobile hamburger --> */}
+
+
+
+        <Modal  isOpen={isspecificMessagesOpen} onClose={closespecificMessageModal} >
+        <ModalHeader>{specificTitle}</ModalHeader>
+        <span>from:</span><span>{specificSender}</span>
+        <ModalBody >
+<p>
+{specificMessage}
+
+
+</p>
+
+        </ModalBody>
+        <ModalFooter>
+          <Button className="w-full sm:w-auto" layout="outline" onClick={()=>{closespecificMessageModal()
+            setStatus(new Date())
+          }}>
+            اغلاق
+          </Button>
+
+
+        </ModalFooter>
+      </Modal>    
+
+
+
+
+
 
 
 
@@ -180,7 +271,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                   <div className="flex items-center text-sm" style={{width:"200px"}}>
                     
                     <div>
-                     {e?.title ? <p style={{fontWeight:!e.read?"bold":"",textDecorationLine:"underline",cursor:"pointer"}}  className="font-semibold" >{e.title}</p>:""}
+                     {e?.title ? <span style={{fontWeight:!e.read?"bold":""}}  className="text-sm" >{e.title}</span>:""}
                       <p className="text-xs text-gray-600 dark:text-gray-400">
                         
                       </p>
@@ -188,7 +279,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                   </div>
                 </TableCell>
                 <TableCell>
-                 {e.fullmessage? <span style={{fontWeight:!e.read?"bold":""}} className="text-sm">{e.fullmessage}</span>:""}
+                 {e.fullmessage? <span style={{fontWeight:!e.read?"bold":"",textDecorationLine:"underline",cursor:"pointer"}} className="text-sm" onClick={()=>Readmessage(e.id)}>{e.fullmessage.length>0?e.fullmessage.substring(0, 10)+"...":""}</span>:""}
 
                 </TableCell>
                 <TableCell>
@@ -221,6 +312,10 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
 
         <TableFooter>
           <Pagination
+
+          style={{color:"red"}}
+      // layout="link"
+      className="active:bg-yellow-600"
             totalResults={totalResults}
             resultsPerPage={resultsPerPage}
             label="Table navigation"
@@ -275,7 +370,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
             اغلاق
           </Button>
 
-          <Button className="w-full sm:w-auto" style={{backgroundColor:"#Ecc383"}} color="#Ecc383" onClick={closeModal}>
+          <Button className="w-full sm:w-auto" style={{backgroundColor:"#Ecc383"}} color="#Ecc383" onClick={()=>sendmessage()}>
             ارسال
           </Button>
 
@@ -310,18 +405,18 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
               aria-label="Toggle color mode"
             >
             
-            <SendOutlined />
+            <StepForwardFilled style={{color:"#Ecc383"}} />
             </button>
           </li>
           
           <li className="flex">
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple"
-              onClick={()=>setIsModalOpen(true)}
+              onClick={()=>openMessageModal()}
               aria-label="Toggle color mode"
             >
             
-            <MessageFilled />
+            <MessageFilled color='#Ecc383'style={{color:"#Ecc383"}}/>
             </button>
           </li>
           
@@ -331,7 +426,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
           
           
           
-          <li className="flex">
+          {/* <li className="flex">
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple"
               onClick={toggleMode}
@@ -343,32 +438,49 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                 <MoonIcon className="w-5 h-5" aria-hidden="true" />
               )}
             </button>
-          </li>
+          </li> */}
           {/* <!-- Notifications menu --> */}
           <li className="relative">
             <button
-              className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+
+className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
               onClick={handleNotificationsClick}
               aria-label="Notifications"
               aria-haspopup="true"
             >
-              <BellIcon className="w-5 h-5" aria-hidden="true" />
+              <BellIcon className="w-5 h-5 "  aria-hidden="true" />
               {/* <!-- Notification badge --> */}
               <span
                 aria-hidden="true"
                 className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
               ></span>
             </button>
+{/*
 
+*/}
             <Dropdown
               align="right"
               isOpen={isNotificationsMenuOpen}
               onClose={() => setIsNotificationsMenuOpen(false)}
             >
-              <DropdownItem tag="a" href="#" className="justify-between">
-                <span>Messages</span>
-                <Badge type="danger">13</Badge>
-              </DropdownItem>
+         
+          {unreadMessages.map(e=>
+              <DropdownItem tag="a" href="#" key={e.id} className="justify-between">
+          
+ {/* {console.log(e)}           */}
+{/* <span>          */}
+{/* <p style={{color:"black"}}> */}
+    {e.fullmessage.substring(0, 29)+"..."}
+    {/* </p> */}
+      {/* </span>        */}
+</DropdownItem>
+           
+           )}
+
+{/* console.log(unreadMessages)   */}
+           
+                {/* <span>Messages</span>
+                <Badge type="danger"></Badge> */}
               {/* <DropdownItem tag="a" href="#" className="justify-between">
                 <span>Sales</span>
                 <Badge type="danger">2</Badge>
@@ -377,7 +489,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                 <span>Alerts</span>
               </DropdownItem> */}
             </Dropdown>
-          </li>
+          </li> 
           {/* <!-- Profile menu --> */}
           <li className="relative">
             <button

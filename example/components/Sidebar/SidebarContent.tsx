@@ -76,7 +76,7 @@ cookies.remove("token")
         )}
       </ul>
       <div className="px-6 my-6">
-       <Button onClick={Signout}>
+       <Button style={{backgroundColor:"#003749"}} onClick={Signout}>
         Sign Out
         </Button>
       </div>

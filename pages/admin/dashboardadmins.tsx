@@ -218,8 +218,8 @@ return (
         </ModalFooter>
       </Modal>
 
-      <PageTitle>Dashboard Admins</PageTitle>
-      <span> this page can only be edited by Adminstrators</span>
+      <PageTitle>قائمة المديرين</PageTitle>
+      <span> المشرفين فقط يمكنهم حذف او تغيير الادوار</span>
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
 

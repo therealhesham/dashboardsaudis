@@ -123,7 +123,7 @@ names()
 return (
     <Layout>
 
-      <PageTitle>Foreign Offices</PageTitle>
+      <PageTitle>المكاتب الخارجية</PageTitle>
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
 

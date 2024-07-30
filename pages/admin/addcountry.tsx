@@ -138,7 +138,7 @@ const{register,handleSubmit,formState:{errors},setValue} = useForm({resolver:yup
         {errors.location?<span style={{color :"red"}}>{errors.location.message}</span>:null}
         </Label>
       
-<Button type='submit'>ِAdd Country</Button>
+<Button type='submit'>ِاضافة دولة الى قاعدة بيانات الايرتابل</Button>
 
       </div>
 </form>}

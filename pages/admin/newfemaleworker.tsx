@@ -283,7 +283,7 @@ return (
         {/* </Label> */}
       </div>
       {/* <link > */}
-  <Button type="submit"  onClick={()=>window.scrollTo(0,0)}> <h2>Submit</h2>
+  <Button type="submit"  onClick={()=>window.scrollTo(0,0)}> <h2>اضافة</h2>
 </Button>
 {/* </link> */}
 </form> 

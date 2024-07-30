@@ -197,7 +197,7 @@ const handleUpload = async (e) => {
 
   </Select>
 </Label>
-<Button type='submit'>Add Admin</Button>
+<Button type='submit'>اضافة مدير</Button>
 
       </div>
 </form>}

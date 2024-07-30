@@ -14,7 +14,7 @@ export default async function handler(
 ) {
 try {
 const details = req.cookies.token
-console.log("details",details)
+console.log("details","details")
 const getdetails = jwt.verify(details,"secret")
 
 

@@ -152,7 +152,7 @@ return (
 
 <div>
   <Button style={{margin:"13px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
-      <PageTitle>Female Workers DathomemaidlistaBase</PageTitle>
+      <PageTitle>العاملات النساء</PageTitle>
   
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
