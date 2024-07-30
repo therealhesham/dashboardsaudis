@@ -167,7 +167,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
               <TableCell>الرسالة</TableCell>
               <TableCell>المُرسل</TableCell>
               <TableCell>التاريخ</TableCell>
-              <TableCell>مقرؤة / غير مقرؤة</TableCell>
+              {/* <TableCell>مقرؤة / غير مقرؤة</TableCell> */}
 
 
             </tr>
@@ -180,7 +180,7 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                   <div className="flex items-center text-sm" style={{width:"200px"}}>
                     
                     <div>
-                     {e?.title ? <p style={{textDecorationLine:"underline",cursor:"pointer"}}  className="font-semibold" >{e.title}</p>:""}
+                     {e?.title ? <p style={{fontWeight:!e.read?"bold":"",textDecorationLine:"underline",cursor:"pointer"}}  className="font-semibold" >{e.title}</p>:""}
                       <p className="text-xs text-gray-600 dark:text-gray-400">
                         
                       </p>
@@ -188,11 +188,11 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
                   </div>
                 </TableCell>
                 <TableCell>
-                 {e.fullmessage? <span className="text-sm">{e.fullmessage}</span>:""}
+                 {e.fullmessage? <span style={{fontWeight:!e.read?"bold":""}} className="text-sm">{e.fullmessage}</span>:""}
 
                 </TableCell>
                 <TableCell>
-                  <span className="text-sm">{e.sender}</span>
+                  <span className="text-sm" style={{fontWeight:!e.read?"bold":""}}>{e.sender}</span>
 
                     
                 </TableCell>
@@ -200,18 +200,18 @@ const [isMessagesOpen, setMessagesopen] = useState(false)
 
 
        <TableCell>
-                  <span className="text-sm">{e.createdat}</span>
+                  <span style={{fontWeight:!e.read?"bold":""}} className="text-sm">{e.createdat}</span>
 
                     
                 </TableCell>
 
 
-
+{/* 
        <TableCell>
                   <span className="text-sm">{e.read}</span>
 
                     
-                </TableCell>
+                </TableCell> */}
 
 
               </TableRow>
