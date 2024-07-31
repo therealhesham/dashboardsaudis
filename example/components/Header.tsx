@@ -199,8 +199,7 @@ const getUnreaMessages=()=>{
 // console.log(fulldata)  
 const arr =fulldata.filter((e)=> {return e.read == false})
 // console.log(arr)
-setUnreadMessages(arr
-)
+setUnreadMessages(arr)
 // console.log(unreadMessages)
 }
 
