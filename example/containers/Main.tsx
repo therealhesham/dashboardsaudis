@@ -49,7 +49,7 @@ function Main({ children }: IMain) {
       </div>
     </div>
     <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-      <div>
+      {/* <div>
         <h6 className="text-lg font-medium text-cyan-900">Company</h6>
         <ul className="mt-4 list-inside space-y-4">
           <li>
@@ -69,20 +69,20 @@ function Main({ children }: IMain) {
             <a href="#" className="transition hover:text-cyan-600">Jobs</a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div>
         {/* <h6 className="text-lg font-medium text-cyan-900">Products</h6> */}
         <ul className="mt-4 list-inside space-y-4">
           <li>
-            <a href="#" className="transition hover:text-cyan-600">About</a>
+            {/* <a href="#" className="transition hover:text-cyan-600">About</a> */}
           </li>
           <li>
             {/* <a href="#" className="transition hover:text-cyan-600">Jobs</a> */}
           </li>
         </ul>
       </div>
-      <div>
-        {/* <h6 className="text-lg font-medium text-cyan-900">Developers</h6>
+      {/* <div>
+        <h6 className="text-lg font-medium text-cyan-900">Developers</h6>
         <ul className="mt-4 list-inside space-y-4">
           <li>
             <a href="#" className="transition hover:text-cyan-600">About</a>
@@ -99,8 +99,8 @@ function Main({ children }: IMain) {
           <li>
             <a href="#" className="transition hover:text-cyan-600">Jobs</a>
           </li>
-        </ul> */}
-      </div>
+        </ul>
+      </div> */}
       {/* <div>
         <h6 className="text-lg font-medium text-cyan-900">Ressources</h6>
         <ul className="mt-4 list-inside space-y-4">
@@ -124,7 +124,7 @@ function Main({ children }: IMain) {
     </div>
     <div className="flex justify-between rounded-md bg-gray-200 px-4 py-3 text-gray-600">
       <span>&copy; Rawaes Qemam <span id="year"></span></span>
-      <a href="#" className="font-medium transition hover:text-cyan-600">Licence</a>
+      <a href="#" className="font-medium transition hover:text-cyan-600"></a>
     </div>
   </div>
 </footer>
