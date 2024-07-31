@@ -206,7 +206,7 @@ return (
 
 
        <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <ModalHeader>Data Inserted Successfully</ModalHeader>
+        <ModalHeader>تم ادخال </ModalHeader>
         <ModalBody>
           تم تسجيل البيانات بنجاح
         </ModalBody>

@@ -13,7 +13,7 @@ import {
   OutlineCogIcon,
   OutlineLogoutIcon,
 } from 'icons'  
-
+import _ from "lodash"
 import { Avatar, Badge, Input, Dropdown,Modal,Select,
   ModalBody,
 Button,Table,TableBody,TableCell,TableContainer,TableFooter,TableHeader,TableRow,
@@ -53,23 +53,17 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
   
 const [statu,setStatus]=useState("")
 useEffect(()=>{
-
-  
+  // setPaginatedData( _.reverse(json).slice((0) * resultsPerPage, page * resultsPerPage))
     try {
       async function names( )  {
     const fetcher =  await fetch("../api/messages")
     const f = await fetcher.json()
-// console.log(,f)
   .then(json  => {
-//  console.log(json)
-//  if ()
-  json?setLength(json.length):"";
 
-    // console.log('parsed json', json) // access json.body here
+
+  json?setLength(json.length):"";
     setFulldata(json)
-    json?setPaginatedData(json?.slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
-// console.log(new Date().getSeconds())
-    // setData(json)   
+    json?setPaginatedData( _.reverse(json).slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
 
   } 
   // names();
