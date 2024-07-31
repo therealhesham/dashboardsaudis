@@ -7,6 +7,7 @@ import InfoCard from 'example/components/Cards/InfoCard'
 import ChartCard from 'example/components/Chart/ChartCard'
 import ChartLegend from 'example/components/Chart/ChartLegend'
 // import "./officeinfo/"
+import _ from "lodash";
 import PageTitle from 'example/components/Typography/PageTitle'
 import RoundIcon from 'example/components/RoundIcon'
 import Layout from 'example/containers/Layout'
@@ -292,7 +293,7 @@ useEffect(() => {
 
     // console.log('parsed json', json) // access json.body here
     setFulldata(json)
-    json?setPaginatedData(json?.slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
+    json?setPaginatedData(_.reverse(json).slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
 // console.log(new Date().getSeconds())
     // setData(json)   
 

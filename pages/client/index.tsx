@@ -461,7 +461,7 @@ router.reload()
 {/* </div> */}
   {data.length>0?
   <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 80%)":"repeat(4, auto)"}}>{data?.map((e,i)=>
-    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"160px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+    <div style={{direction:"rtl", width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"160px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
 { e.fields.phone != null ? <span style={{position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوزة </span>:""}
   {/* <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
     
@@ -480,7 +480,7 @@ router.reload()
 
     </div> */}
 
-  <div className="pic" style={{width:"40%",maxHeight:"120px",marginTop:"9px",display:"flex",justifyContent:"center"}}> 
+  <div className="pic" style={{width:"30%",maxHeight:"120px",marginTop:"15px",display:"flex",justifyContent:"center"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
         >
@@ -500,19 +500,19 @@ router.reload()
       {e?.fields.Picture?
 
       // <div   >
-      <img  style={{height:"130px",width:"min-content"}}    src={e?.fields.Picture[0].url}  />
+      <img  style={{height:"90px",width:"min-content"}}    src={e?.fields.Picture[0].url}  />
       // </div>
       :""}
 
 
 {/* </div> */}
-    <span style={{ display:"flex",justifyItems:"center",position:"absolute", bottom:"12px",backgroundColor:"white",padding:"5px",borderRadius:"6px",color:"gray"}}>{e?.fields["م"]}</span>
+    <span style={{ display:"flex",justifyItems:"center",position:"absolute", bottom:"16px",backgroundColor:"white",padding:"5px",borderRadius:"6px",color:"gray"}}>{e?.fields["م"]}</span>
 
 </div>
 
   <div className="card-body" style={{}}>
       {/* <h2 className="card-title">{e?.fields['م']}</h2>   */}
-    <div className="textcard" dir='rtl' style={{marginRight:"1px"}}>
+    <div className="textcard" dir='rtl' style={{marginRight:"20px"}}>
       {/* {/* e?.fields[ksd["age - العمر"] } */}
     {/* <p >{e.fields["Name - الاسم"]}</p> */}
       <li  style={{fontSize:"13px"}}  >{e.fields['Nationality copy']}</li> 
@@ -527,7 +527,15 @@ router.reload()
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{ bottom:"10px",position:"absolute",marginBottom:"1px",display:"flex",justifyItems:"space-between",fontSize:"12px",right:"6px"}}>
+<div style={{ marginBottom:"1px",display:"flex",justifyItems:"space-between",fontSize:"12px"}}>
+<div style={{display:"inline-flex",marginLeft:"5px",cursor:"pointer",bottom:"1px",marginLeft:"12px",}}> 
+  {/* <Link href={"../client/cvdetails/"+e.id} > */}
+ <span style={{backgroundColor:"#Ecc383",borderRadius:"6px",padding:"4px",color:"whitesmoke",fontSize:"12px"}} onClick={()=>router.push("../client/cvdetails/"+e.id)}>التفاصيل</span>
+
+{/* </Link> */}
+  {/* <FileOutlined /> */}
+
+</div>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
@@ -542,14 +550,6 @@ router.reload()
   
  </span>
 }
-
-</div>
-<div style={{display:"inline-flex",marginLeft:"5px",cursor:"pointer",bottom:"1px"}}> 
-  {/* <Link href={"../client/cvdetails/"+e.id} > */}
- <span style={{backgroundColor:"#Ecc383",borderRadius:"6px",padding:"4px",color:"whitesmoke",fontSize:"12px"}} onClick={()=>router.push("../client/cvdetails/"+e.id)}>التفاصيل</span>
-
-{/* </Link> */}
-  {/* <FileOutlined /> */}
 
 </div>
 
