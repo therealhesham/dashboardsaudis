@@ -68,7 +68,7 @@ function Employees() {
   const [data, setData] = useState([])
   const [time,setTime]=useState(0)
   const [office,setOffice]=useState([])
-  const [bookingstatus,setStatusBooking]=useState("")
+  const [bookingstatus,setStatusBooking]=useState("محتمل")
   
   const [fulldata,setFulldata]=useState([])
   const resultsPerPage = 10
@@ -85,6 +85,8 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
   }
   // on page change, load new sliced data
   // here you would make another server request for new data
+
+const [statetypes,changestatetypes]=useState("");
 
   useEffect(() => {
   try {
@@ -121,13 +123,20 @@ names()
   console.log(error)
 }  
 
-}, [])
+}, [statetypes])
 
 
 const [state,changeState]=useState("");
 
 
 
+
+const sss = ()=>{
+
+changeState("")
+changestatetypes(new Date())
+
+}
 
 
 
@@ -138,7 +147,7 @@ const confirmchange=async (id)=>{
       },body:JSON.stringify({id,status:bookingstatus})})
 
       const e= await fetcher.json()
-      if(fetcher.status == 200) return changeState("");
+      if(fetcher.status == 200) return sss();
       // console.log(fetcher.status)
 // closeModal()
 
@@ -221,7 +230,7 @@ return (
   {state  == e.id?                    <Select onChange={e=>setStatusBooking(e.target.value)}>
   <option disabled>اختر</option>
 
-  <option value="">الغاء الحجز</option>
+  {/* <option value="">الغاء الحجز</option> */}
   
   <option value="محتمل">محتمل</option>
   <option value="مؤكد" >مؤكد</option>

@@ -39,7 +39,7 @@ function DashboardClient() {
   }
   
 function valuetext(value: number) {
-  return `${value}`;
+  return `${value}`
 }
 
 //  const [initialdata,setinitidata]=useState(datasetiniti)
