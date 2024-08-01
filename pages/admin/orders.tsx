@@ -48,7 +48,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
-
+import _ from "lodash"
 function Employees() {
   Chart.register(
     ArcElement,
@@ -109,8 +109,8 @@ setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
      await fetch("../api/orders").then(response => response.json())
   .then(json  => {
     json?setLength(json.length):"";
-    setFulldata(json)
-    json?setPaginatedData(json?.slice((page - 1) * resultsPerPage, page * resultsPerPage)):console.log("e");
+    setFulldata(_.reverse(json))
+    // json?setPaginatedData(json?.slice((page - 1) * resultsPerPage, page * resultsPerPage)):console.log("e");
 } 
 
 )
