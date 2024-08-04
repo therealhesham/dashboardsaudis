@@ -13,6 +13,20 @@ var base = new Airtable({apiKey: 'patovGWItwsDoXzng.84565b10c27835cf1ac38c9f9b64
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
 try {
   const {  clientname,
 insurance,
@@ -34,7 +48,7 @@ externaloffice,
 nationality,
 externalmusanedcontract
 }=req.body;
-
+// console.log(Number(mobilenumber))
 const result =  await new Promise((resolve,reject)=>{
 
   const create = base('العقود الملغاة - جميع الجنسيات').create([
@@ -48,12 +62,12 @@ const result =  await new Promise((resolve,reject)=>{
       "رقم الهوية":idnumber,
       "رقم الجوال":mobilenumber,
       "رقم جواز العاملة":passportnumber,
-      "أســـــم الــعــــامــــل":workername,
+      "أســـــم  الــعــــامــــل":workername,
       "العمر":age,
       "المهنة":experience,
       "حالة العقد":contractstatus,
 "المدينة":city,
- "تاريخ تقديم الطلب":orderDate,
+ "تاريخ تقديم الطلب":formatDate(orderDate),
       "تاريخ اليوم":dayDate,
       "مدة التقديم":duration,
       "المكتب الخارجي":externaloffice,

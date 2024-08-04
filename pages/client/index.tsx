@@ -47,12 +47,6 @@ function valuetext(value: number) {
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-//     // console.log(value)
-// const filtering =initialdata?.filter(e=>{ return( e.fields["age - العمر"] >value[0] && e.fields["age - العمر"]< value[1])})
-// console.log(filtering)
-// // if(fildering.data < 0) setTime()
-//       {/* {/* e?.fields[ksd["age - العمر"] } */}
-// setData(filtering)
 
   };
 const errorModal=()=>{
@@ -66,14 +60,11 @@ const [filterdatastatus,setStatus]=useState(true)
 const post=async()=>{
   setData([])
   setStatus(true)
-// console.log("religon",religion)
 const fetcher = await fetch('../api/filterdataforclient',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify({religion:religion,ironing,cleaning,cooking,babysitting,sewing,nationality,maritalstatus,education,experience,oldCare,arabic,experiencetype,english,laundry})})
 if(fetcher.status != 200) return errorModal()
       const waiter = await fetcher.json()
-    // console.log(waiter)
-    // console.log(waiter)
     const filteringData =waiter?.filter(e=>{ return( e.fields["age - العمر"] >value[0] && e.fields["age - العمر"]< value[1])})
     if(filteringData.length == 0) return errorModal();
     setFiltering(true)
@@ -83,7 +74,7 @@ setData(filteringData)
 
 }
   
- 
+//  `asdadasds ${adsasd}`
   const [array,setArray]=useState([])
   const [times,setTimes]=useState(Date.now())
 

@@ -53,14 +53,14 @@ function Cancelcontract() {
   .object({
     clientname: yup.string().required(),
 insurance: yup.string().required(),
-    musanedContract:yup.string().required(),
-visanumber:yup.string().required(),
-idnumber:yup.string().required(),
-mobilenumber:yup.number(),
+    musanedContract:yup.number().required(),
+visanumber:yup.number().required(),
+idnumber:yup.number().required(),
+mobilenumber:yup.string().typeError("الرقم غير صحيح"),
 passportnumber:yup.string(),
 workername:yup.string(),
 job:yup.string(),
-age:yup.number().typeError("please note that age must be a number"),
+age:yup.number().typeError("قيمة غير صحيحة"),
 experience:yup.string(),
 contractstatus:yup.string(),
 city:yup.string(),
@@ -69,7 +69,7 @@ dayDate:yup.date().typeError("day date is required value"),
 duration:yup.string(),
 externaloffice:yup.string(),
 nationality:yup.string(),
-externalmusanedcontract:yup.string(),
+externalmusanedcontract:yup.number(),
 visaordernumber:yup.string(),
 notes:yup.string()
 
@@ -189,7 +189,7 @@ return (
         </Label>
         <Label className="mt-4">
           <span>رقم الجوال</span>
-          <Input className="mt-1" placeholder="رقم الجوال"  aria-invalid={errors.mobilenumber ? "true" : "false"} {...register("mobilenumber", { required: true })}/>
+          <Input className="mt-1" placeholder="رقم الجوال"  aria-invalid={errors.mobilenumber ? "true" : "false"}  {...register("mobilenumber", { required: true })}/>
           {errors.mobilenumber?<span style={{color:"red"}}>{errors.mobilenumber.message}</span>:null}  
         
         </Label><Label className="mt-4">
@@ -213,10 +213,22 @@ return (
           <Input className="mt-1" placeholder="الخبرة العملية" aria-invalid={errors.experience ? "true" : "false"} {...register("experience", { required: true })} />
           {errors.experience?<span style={{color:"red"}}>{errors.experience.message}</span>:null}  
        
-        </Label><Label className="mt-4">
+        </Label>
+        
+        <Label className="mt-4">
        
           <span>حالة العقد</span>
-          <Input className="mt-1" placeholder="حالة العقد" aria-invalid={errors.contractstatus ? "true" : "false"} {...register("contractstatus", { required: true })} />
+          <Select aria-invalid={errors.contractstatus ? "true" : "false"} {...register("contractstatus", { required: true })} > 
+<option disabled={false} selected={true}>اختر</option>
+
+<option value="تم الوصول">تم الوصول</option>
+<option value=" ربط ">ربط</option>
+<option value="تفويض">تفويض</option>
+<option value=" تفييز"> تفييز</option>
+         
+         
+         
+          </Select>
           {errors.contractstatus?<span style={{color:"red"}}>{errors.contractstatus.message}</span>:null}  
         
         </Label>
@@ -276,7 +288,7 @@ return (
         {/* </Label> */}
       </div>
       {/* <link > */}
-  <Button type="submit"  onClick={()=>window.scrollTo(0,0)}> <h2>الغاء العقد</h2>
+  <Button type="submit" style={{backgroundColor:"#Ecc383"}}  onClick={()=>window.scrollTo(0,0)}> <h2>الغاء العقد</h2>
 </Button>
 {/* </link> */}
 </form> 

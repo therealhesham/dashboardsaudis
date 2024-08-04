@@ -257,7 +257,7 @@ return (
                 </TableCell>
               <TableCell>
                 
-                  <span className="text-md">{e.fields["أســـــم الــعــــامــــل"]}</span>
+                  <span className="text-md">{e.fields["أســـــم  الــعــــامــــل"]}</span>
                 
                 </TableCell>
               <TableCell>

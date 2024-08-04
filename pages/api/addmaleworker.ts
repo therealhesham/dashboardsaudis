@@ -13,6 +13,21 @@ var base = new Airtable({apiKey: 'patovGWItwsDoXzng.84565b10c27835cf1ac38c9f9b64
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+// console.log(formatDate('Sun May 11,2014'));
 try {
   const {  clientname,
 insurance,
@@ -34,7 +49,8 @@ externaloffice,
 nationality,
 externalmusanedcontract
 }=req.body;
-
+console.log(new Date(orderDate).getUTCDate())
+      // "تاريخ اليوم":dayDate,
 const result =  await new Promise((resolve,reject)=>{
 
   const create = base('بيان إرسالية كافة الجنسيات - عمالة رجالية - معينة').create([
@@ -48,12 +64,12 @@ const result =  await new Promise((resolve,reject)=>{
       "رقم الهوية":idnumber,
       "رقم الجوال":mobilenumber,
       "رقم جواز العاملة":passportnumber,
-      "أســـــم الــعــــامــــل":workername,
+      "fldayqr4nN1kknJ83":workername,
       "العمر":age,
       "المهنة":experience,
       "حالة العقد":contractstatus,
 "المدينة":city,
- "تاريخ تقديم الطلب":orderDate,
+ "تاريخ تقديم الطلب":formatDate(orderDate),
       "تاريخ اليوم":dayDate,
       "مدة التقديم":duration,
       "المكتب الخارجي":externaloffice,

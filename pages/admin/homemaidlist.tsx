@@ -118,7 +118,7 @@ names()
 
 return (
 <Layout><div>
-  <Button style={{margin:"13px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
+  <Button style={{margin:"13px",backgroundColor:"#Ecc383"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
       <PageTitle>قائمة الوصول</PageTitle>
   
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">

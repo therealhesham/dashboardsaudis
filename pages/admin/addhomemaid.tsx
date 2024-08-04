@@ -206,7 +206,7 @@ errorfunc()
 
 <Label className="mt-4">
           <span>التكلفة</span>
-          <Input aria-invalid={errors.cost ? "true" : "false"} {...register("cost", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+          <Input aria-invalid={errors.cost ? "true" : "false"} {...register("cost", { required: true })} className="mt-1" placeholder="التكلفة" />
         {errors.cost?<span style={{backgroundColor:"pink"}}>{errors.cost.message}</span>:""}
        
         </Label>
@@ -214,7 +214,7 @@ errorfunc()
 
 <Label className="mt-4">
           <span>رقم جوال العاملة</span>
-          <Input aria-invalid={errors.contacntnumber ? "true" : "false"} {...register("contacntnumber", { required: true })} className="mt-1" placeholder="رقم التأشيرة" />
+          <Input aria-invalid={errors.contacntnumber ? "true" : "false"} {...register("contacntnumber", { required: true })} className="mt-1" placeholder="رقم الجوال" />
         {errors.contacntnumber?<span style={{backgroundColor:"pink"}}>{errors.contacntnumber.message}</span>:""}
        
         </Label>

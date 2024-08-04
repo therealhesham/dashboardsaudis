@@ -53,23 +53,28 @@ function Male() {
   .object({
     clientname: yup.string().required(),
 insurance: yup.string().required(),
-    musanedContract:yup.string().required(),
-visanumber:yup.string().required(),
-idnumber:yup.string().required(),
-mobilenumber:yup.number(),
+    musanedContract:yup.number().required(),
+visanumber:yup.number().required(),
+idnumber:yup.number().required(),
+mobilenumber:yup.string(),
 passportnumber:yup.string(),
 workername:yup.string(),
 job:yup.string(),
 age:yup.number().typeError("please note that age must be a number"),
 experience:yup.string(),
-contractstatus:yup.string(),
+contractstatus:yup.string().required().oneOf([
+    "تم الوصول",
+    " ربط ",
+    "تفويض",
+    " تفييز"
+]),
 city:yup.string(),
 orderDate:yup.date().typeError("order date is required value"),
 dayDate:yup.date().typeError("day date is required value"),
 duration:yup.string(),
 externaloffice:yup.string(),
 nationality:yup.string(),
-externalmusanedcontract:yup.string(),
+externalmusanedcontract:yup.number(),
 visaordernumber:yup.string(),
 notes:yup.string()
 
@@ -213,10 +218,22 @@ return (
           <Input className="mt-1" placeholder="الخبرة العملية" aria-invalid={errors.experience ? "true" : "false"} {...register("experience", { required: true })} />
           {errors.experience?<span style={{color:"red"}}>{errors.experience.message}</span>:null}  
        
-        </Label><Label className="mt-4">
+        </Label>
+        
+        <Label className="mt-4">
        
           <span>حالة العقد</span>
-          <Input className="mt-1" placeholder="حالة العقد" aria-invalid={errors.contractstatus ? "true" : "false"} {...register("contractstatus", { required: true })} />
+          <Select aria-invalid={errors.contractstatus ? "true" : "false"} {...register("contractstatus", { required: true })} > 
+<option disabled={false} selected={true}>اختر</option>
+
+<option value="تم الوصول">تم الوصول</option>
+<option value=" ربط ">ربط</option>
+<option value="تفويض">تفويض</option>
+<option value=" تفييز"> تفييز</option>
+         
+         
+         
+          </Select>
           {errors.contractstatus?<span style={{color:"red"}}>{errors.contractstatus.message}</span>:null}  
         
         </Label>
@@ -276,7 +293,7 @@ return (
         {/* </Label> */}
       </div>
       {/* <link > */}
-  <Button type="submit"  onClick={()=>window.scrollTo(0,0)}> <h2>اضافة الى قائمة العمالة الذكور</h2>
+  <Button type="submit"  onClick={()=>window.scrollTo(0,0)} style={{backgroundColor:"#Ecc383"}}> <h2>اضافة الى قائمة العمالة الذكور</h2>
 </Button>
 {/* </link> */}
 </form> 

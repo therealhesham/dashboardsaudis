@@ -13,6 +13,19 @@ var base = new Airtable({apiKey: 'patovGWItwsDoXzng.84565b10c27835cf1ac38c9f9b64
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 try {
 const {    client,
 mobilenumber,
@@ -47,24 +60,24 @@ const create = base('مـــعــــــــامــــــــلات نــ
       "رقم الجوال":mobilenumber,
       "رقم الهوية":nationalidnumber,
       "رقم جواز العاملة":passportnumber,
-      "أسـم العــامــل":homemaid,
+      "fldO055kFvBhFYGYg":homemaid,
       "الجنسية": nationality,
-      "تاريخ الدخول للملكة":kingdomentrydate,
+      "تاريخ الدخول للمملكة":formatDate(kingdomentrydate),
     "المدة":workduration,
       "اسم صاحب العمل / الجديد":newclientname,
       "رقم الجوال الكفيل الجديد":newclientmobilenumber,
       "رقم الهوية الكفيل الجديد":newclientnationalidnumber,
       "مدينة الكفيل الجديد":newclientcity,
-      "بداية التجربة":experimentstart,
-      "نهاية التجربة":experimentend,
+      "بداية التجربة":formatDate(experimentstart),
+      "نهاية التجربة":formatDate(experimentend),
       // "المدينة":city
-      "تاريخ تقديم الطلب":applicationdate,
-      "تاريخ الوصول":arrivaldate,
+      "تاريخ تقديم الطلب":formatDate(req.body.applicationdate),
+      // "تاريخ الوصول":arrivaldate,
       "مبلغ الاتفاق":dealcost,
       "المدفوع":paid,
       "المتبقى":restofpaid,
       "نتيجة التجربة":experimentresult,
-      "رقم الاقامة للعاملة":accomaditionnumber,
+      "fldS4bJre6SAaxnrN":accomaditionnumber,
       "اسم المسوقة":marketeername,
       "ملاحظات":notes
 

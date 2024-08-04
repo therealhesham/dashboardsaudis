@@ -109,6 +109,18 @@ const routes: IRoute[] = [
     path: '/admin/cancelledcontracts',
     icon: 'CardsIcon',
     name: 'العقود الملغاة',
+  },
+ 
+  {
+    path: '/admin/transferform',
+    icon: 'CardsIcon',
+    name: 'نقل الكفالة',
+  },
+ 
+  {
+    path: '/admin/transferlist',
+    icon: 'CardsIcon',
+    name: 'معاملات نقل الكفالة',
   }
 //   {
 //     path: '/admin/addhomemaid', 

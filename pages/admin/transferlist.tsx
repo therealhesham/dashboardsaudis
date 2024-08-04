@@ -140,24 +140,24 @@ return (
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>client</TableCell>
-              <TableCell>Mobile Number</TableCell>
-              <TableCell>National ID Number</TableCell>
-              <TableCell>Passport Number</TableCell>
-              <TableCell>Homemaid Name</TableCell>
-              <TableCell>Nationality</TableCell>
-              <TableCell>Kingdom Entry Date</TableCell>
-              <TableCell>Day Date</TableCell>
-              <TableCell>Work Duration</TableCell>
-              <TableCell>New Client Name</TableCell>
-              <TableCell>New Client Mobile Number</TableCell>
-              <TableCell>New Client National ID Number</TableCell>
-              <TableCell>New Client City</TableCell>
-              <TableCell>Experiment Start</TableCell>
-              <TableCell> Accomadition Number</TableCell>
-              <TableCell> Marketeer Name</TableCell>
+              <TableCell>صاحب العمل</TableCell>
+              <TableCell>رقم الجوال</TableCell>
+              <TableCell>رقم الهوية الوطنية</TableCell>
+              <TableCell>رقم جواز السفر</TableCell>
+              <TableCell>اسم العامل</TableCell>
+              <TableCell>الجنسية</TableCell>
+              <TableCell>تاريخ دخول المملكة</TableCell>
+              {/* <TableCell>Day Date</TableCell> */}
+              <TableCell>مدة العمل</TableCell>
+              <TableCell>اسم العامل </TableCell>
+              <TableCell>رقم جوال العامل</TableCell>
+              <TableCell>رقم الهوية للعامل</TableCell>
+              <TableCell>مدينة العميل الجديدة</TableCell>
+              <TableCell>بداية التجربة</TableCell>
+              <TableCell> رقم الاقامة</TableCell>
+              <TableCell> اسم المسوقة</TableCell>
 
-=
+
             </tr>
           </TableHeader>
           <TableBody>
@@ -165,18 +165,18 @@ return (
               <TableRow key={i}>
                 
                 <TableCell>
-                  <span className="text-md">{e?.client}</span>
+                  <span className="text-md">{e?.fields["اسم صاحب العمل / المستقدم"]}</span>
 
                 </TableCell>
                 <TableCell>
-                  <span className="text-md">{e?.mobilenumber}</span>
+                  <span className="text-md">{e?.fields["رقم الجوال"]}</span>
 
                   {/* <Badge type={user.status}>{user.status}</Badge> */}
                 </TableCell>
                 
                 <TableCell>
                   <span className="text-md">
-                  <span className="text-md">{e?.nationalidnumber}</span>
+                  <span className="text-md">{e?.fields["رقم الهوية"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -185,7 +185,7 @@ return (
                 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.passportnumber}</span>
+                  <span className="text-sm">{e?.fields["رقم جواز العاملة"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -197,7 +197,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.homemaid}</span>
+                  <span className="text-sm">{e?.fields["أســـــم  الــعــــامــــل"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -209,7 +209,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.nationality}</span>
+                  <span className="text-sm">{e?.fields["الجنسية"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -219,44 +219,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.kingdomentrydate}</span>
-
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  {/* </span> */}
-                {/* </Link> */}
-                </TableCell>
-
-
-
-
-<TableCell>
-                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
-                  {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.daydate}</span>
-
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  {/* </span> */}
-                {/* </Link> */}
-                </TableCell>
-
-<TableCell>
-                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
-                  {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.workduration}</span>
-
-                    
-                    {/* {new Date(user.date).toLocaleDateString()} */}
-                  {/* </span> */}
-                {/* </Link> */}
-                </TableCell>
-
-
-<TableCell>
-                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
-                  {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.newclientname}</span>
+                  <span className="text-sm">{e?.fields["تاريخ الدخول للمملكة"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -269,7 +232,19 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.newclientmobilenumber}</span>
+                  <span className="text-sm">{e?.fields["المدة"]}</span>
+
+                    
+                    {/* {new Date(user.date).toLocaleDateString()} */}
+                  {/* </span> */}
+                {/* </Link> */}
+                </TableCell>
+
+
+<TableCell>
+                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
+                  {/* <span className="text-sm"> */}
+                  <span className="text-sm">{e.fields["اسم صاحب العمل / الجديد"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -282,7 +257,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.newclientnationalidnumber}</span>
+                  <span className="text-sm">{e?.fields["رقم الجوال الكفيل الجديد"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -295,7 +270,20 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.newclientcity}</span>
+                  <span className="text-sm">{e?.fields["رقم الهوية الكفيل الجديد"]}</span>
+
+                    
+                    {/* {new Date(user.date).toLocaleDateString()} */}
+                  {/* </span> */}
+                {/* </Link> */}
+                </TableCell>
+
+
+
+<TableCell>
+                  {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
+                  {/* <span className="text-sm"> */}
+                  <span className="text-sm">{e.fields["مدينة الكفيل الجديد"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -305,7 +293,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.experimentstart}</span>
+                  <span className="text-sm">{e?.fields["بداية التجربة"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -320,7 +308,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.experimentend}</span>
+                  <span className="text-sm">{e?.fields["رقم الإقامة للعامله"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -334,7 +322,7 @@ return (
 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields.office}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.dealcost}</span>
+                  <span className="text-sm">{e?.fields["اسم المسوقة"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
