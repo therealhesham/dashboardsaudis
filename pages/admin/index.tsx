@@ -791,7 +791,7 @@ Date
                 <TableCell>
                 
 
-                <Button onClick={()=>{deleterecord(e.id)  }} disabled style={{backgroundColor:"red"}}>Delete CV </Button>
+                <Button onClick={()=>{deleterecord(e.id)  }} style={{backgroundColor:"red"}}>Delete CV </Button>
                 </TableCell>
 
 

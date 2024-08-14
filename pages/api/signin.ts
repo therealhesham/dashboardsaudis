@@ -21,7 +21,7 @@ try {
   console.log(createAdmin?.password == req.body.password)
 
   //@ts-ignore
-const sign =jwt.sign({admin:createAdmin?.admin,idnumber:createAdmin?.idnumber,pictureurl:createAdmin?.pictureurl,name:createAdmin?.username},"secret");  
+const sign =jwt.sign({admin:createAdmin?.admin,idnumber:createAdmin?.idnumber,pictureurl:createAdmin?.pictureurl,phonenumber:createAdmin?.phonenumber,name:createAdmin?.username},"secret");  
  
 res.status(200).json(sign)
 

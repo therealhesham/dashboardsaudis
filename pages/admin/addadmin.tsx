@@ -85,7 +85,7 @@ errorfunc()
 
 }
 
-const Schema =yup.object({admin:true,password:yup.string(),role:yup.string(),role:yup.string(),idnumber:yup.number(),admin:yup.boolean(),username:yup.string()})
+const Schema =yup.object({admin:true,password:yup.string(),role:yup.string(),role:yup.string(),idnumber:yup.number(),phonenumber:yup.number(),admin:yup.boolean(),username:yup.string()})
   
 const{register,handleSubmit,formState:{errors}} = useForm({resolver:yupResolver(Schema)})
 
@@ -173,6 +173,14 @@ const handleUpload = async (e) => {
           <span>الرقم التعريفي للدخول</span>
           <Input className="mt-1" {...register("idnumber",{required:true})} placeholder="الرقم التعريفي للدخول" type='number' onChange={(e=>setidnumber(e.target.value))}/>
         {errors.idnumber?<span style={{color:"red"}}>{errors.idnumber.message}</span>:null}
+        </Label>
+
+
+       <Label>
+
+          <span>رقم الجوال</span>
+          <Input className="mt-1" {...register("phonenumber",{required:true})} placeholder="رقم الجوال" type='number' onChange={(e=>setidnumber(e.target.value))}/>
+        {errors.phonenumber?<span style={{color:"red"}}>{errors.phonenumber.message}</span>:null}
         </Label>
 
 

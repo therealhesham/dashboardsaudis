@@ -77,7 +77,10 @@ const router = useRouter()
   const [paginatedData,setPaginatedData]=useState([])
   
   const [listType,setTypeList] = useState("workers")
-
+let p=[
+    "تم التعاقد"
+    ,   " تمت موافقة المكتب الخارجي",   
+  "تم اصدار الكشف الطبي",     "تم اصدار التأشيرة",    "تم اصدار تصريح السفر",  "تم اصدار تذكرة السفر",   "تم وصول العاملة" ]
 function onPageChange(p: number) {
   
 setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
@@ -228,13 +231,15 @@ return (
 
                 <TableCell>
   {state  == e.id?                    <Select onChange={e=>setStatusBooking(e.target.value)}>
-  <option disabled>اختر</option>
+  <option selected="">اختر</option>
 
   {/* <option value="">الغاء الحجز</option> */}
-  
-  <option value="محتمل">محتمل</option>
-  <option value="مؤكد" >مؤكد</option>
-  <option value="تم الاستقدام">تم الاستقدام</option>
+  {p.map(e=>
+  <option value={e}>{e}</option>
+
+
+
+  )}
 
 
 

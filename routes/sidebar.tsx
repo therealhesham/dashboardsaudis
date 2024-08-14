@@ -130,7 +130,7 @@ const routes: IRoute[] = [
   },
  
   {
-    path: '/admin/cancelledcontracts',
+    path: '/admin/endedcontracts',
     icon: 'CardsIcon',
     name: 'معاملات تم انهائها',
   }

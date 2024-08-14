@@ -25,7 +25,7 @@ const update = base('السير الذاتية المحجوزة').update([
     "id": req.body.id,
     "fields": {
       "اسم الموظف":getdetails.name,
-      // "العملاء":req.body.fullname,
+      "رقم جوال الموظف":getdetails.phonenumber+"",
       "حالة الحجز":req.body.status
     }}])
 

@@ -59,7 +59,7 @@ model Client{
   
 }
 model User {
-
+  phonenumber     Int? @unique
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   admin           Boolean    
   pictureurl      String    @default("")

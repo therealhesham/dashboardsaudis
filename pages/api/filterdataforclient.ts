@@ -22,20 +22,16 @@ try {
 const result =  await new Promise((resolve,reject)=>{
   const {religion,time,ironing,cleaning,cooking,babysitting,sewing,age,nationality,maritalstatus,education,experience,oldCare,arabic,experiencetype,english,laundry}=req.body;
 console.log(religion,ironing,cleaning,cooking,babysitting,sewing,nationality,maritalstatus,education,experience,oldCare,arabic,experiencetype,english,laundry)
-  // '(.*)'
+ 
 const results=    base('السير الذاتية').select({
   
    filterByFormula:`And(REGEX_MATCH({fldUXlZQMZR89xcot},"${experience}"),REGEX_MATCH({fldiWcMdEYNY6TJWy},"${nationality}"),REGEX_MATCH({fldtal17RtxfMGKFb} ,"${education}"),REGEX_MATCH({Ironing - كوي} ,"${ironing}"),REGEX_MATCH({Experience - الخبرة} ,"${experiencetype}"),REGEX_MATCH({fldJvA6tYkfWokgkC} ,"${arabic}"),REGEX_MATCH({fldW0JTWrXNBJgll9} ,"${english}"),REGEX_MATCH({Old people care - رعاية كبار السن} , "${oldCare}"),REGEX_MATCH({Babysitting - العناية بالأطفال} ,"${babysitting}"),REGEX_MATCH({fldEYaSy8nlV1btk6} ,"${religion}"))`
 ,        view: "الاساسي"
     }).all()
     
-// english id
-//fldJvA6tYkfWokgkC arabic id
-// التعليم
-//fldUXlZQMZR89xcot experience years id
  resolve(results)
 })
-// console.log(result)
+
 if(result.length == 0) return  res.status(300).json("data 0")
   res.status(200).json(result)
   
@@ -45,5 +41,3 @@ if(result.length == 0) return  res.status(300).json("data 0")
 }
 
 }
-
-  // export base;
