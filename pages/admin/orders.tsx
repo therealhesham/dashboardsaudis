@@ -77,7 +77,7 @@ const router = useRouter()
   const [paginatedData,setPaginatedData]=useState([])
   
   const [listType,setTypeList] = useState("workers")
-let p=[
+let p=["حذف",
     "تم التعاقد"
     ,   " تمت موافقة المكتب الخارجي",   
   "تم اصدار الكشف الطبي",     "تم اصدار التأشيرة",    "تم اصدار تصريح السفر",  "تم اصدار تذكرة السفر",   "تم وصول العاملة" ]
