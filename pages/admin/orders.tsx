@@ -144,8 +144,9 @@ changestatetypes(new Date())
 
 
 const confirmchange=async (id)=>{
+if(bookingstatus == "حذف"){
 
-  const fetcher = await fetch('../api/change',{method:"post",headers: {'Accept':'application/json',
+const fetcher = await fetch('../api/deleterder',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify({id,status:bookingstatus})})
 
@@ -154,6 +155,18 @@ const confirmchange=async (id)=>{
       // console.log(fetcher.status)
 // closeModal()
 
+
+}
+else{
+  const fetcher = await fetch('../api/change',{method:"post",headers: {'Accept':'application/json',
+        "Content-Type": "application/json",
+      },body:JSON.stringify({id,status:bookingstatus})})
+
+      const e= await fetcher.json()
+      if(fetcher.status == 200) return sss();
+      // console.log(fetcher.status)
+// closeModal()
+}
     }
 
 return (
