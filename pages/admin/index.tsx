@@ -145,6 +145,7 @@ const [password,setPassword]=useState("");
   const user =useContext(User)
 // setTimeout(() =
 // pagination change control
+const [cancelledcontracts,setCancelledcontracts]=useState([])
   const [paginatedData,setPaginatedData]=useState([])
   // console.log(time)
   const [listType,setTypeList] = useState("workers")
@@ -339,7 +340,25 @@ setTransfer(json)
 )
 }
 
-transfer()
+transfer();
+
+
+ async function cancelledcontracts( )  {
+    const fetcher =  await fetch("./api/cancelledcontracts");
+    const f = await fetcher.json()
+
+  .then(json  => {
+//  
+// console.log(json)
+setCancelledcontracts(json)
+  }
+
+)
+}
+
+cancelledcontracts()
+
+
 
 
 
@@ -607,7 +626,7 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
             />
         </InfoCard>
             </div>
-<div onClick={()=>router.push("/admin/dashboardadmins") }>
+<div onClick={()=>router.push("/admin/dashboardadmins") } style={{cursor:"pointer"}}>
         <InfoCard title="المشرفين" value={admins} >
           {/* @ts-ignore */}
           <RoundIcon
@@ -616,18 +635,9 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
             className="mr-4"/>
         </InfoCard>
 </div>
-        <InfoCard title="السير الذاتية المحجوزة" value={0}>
-          {/* @ts-ignore */}
-          <RoundIcon
-            icon={ChatIcon}
-            iconColorClass="text-teal-500 dark:text-teal-100"
-            bgColorClass="bg-teal-100 dark:bg-teal-500"
-            className="mr-4"
-          />
-        </InfoCard>
- 
-          {/* <div  style={{cursor:"pointer"}} onClick={e=>setTypeList("offices")}> */}
-        <InfoCard  title="المحجوز" value={bookedReserved.length}  >
+        
+           <div  onClick={()=>router.push("/admin/orders")} style={{cursor:"pointer"}}>
+        <InfoCard  title="المحجوز"  value={bookedReserved.length}  >
           {/* @ts-ignore */}
           <RoundIcon
           
@@ -637,9 +647,10 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
             className="mr-4"
             />
         </InfoCard>
-            {/* </div> */}
+            </div> 
 
 
+           <div  onClick={()=>router.push("/admin/homemaidlist ")} style={{cursor:"pointer"}}>
 
 <InfoCard  title="قائمة الوصول" value={Transfer.length}  >
           {/* @ts-ignore */}
@@ -651,9 +662,28 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
             className="mr-4"
             />
         </InfoCard>
-        
+</div>        
 
- 
+
+
+           <div  onClick={()=>router.push("/admin/cancelledcontracts")} style={{cursor:"pointer"}}>
+
+<InfoCard  title="عقود ملغاة" value={cancelledcontracts.length}  >
+          {/* @ts-ignore */}
+          <RoundIcon
+          
+            icon={MoneyIcon}
+            iconColorClass="text-green-500 dark:text-green-100"
+            bgColorClass="bg-red-100 dark:bg-black-500"
+            className="mr-4"
+            />
+        </InfoCard>
+</div>        
+
+
+
+
+
       </div>
 
       {/* <div>
