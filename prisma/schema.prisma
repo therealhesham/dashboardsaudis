@@ -11,7 +11,7 @@ generator client {
 datasource db {
   provider = "mongodb"
  
-  url      = "mongodb+srv://heshammoha231992:BozLnMORjollMgoC@cluster0.ewjihyo.mongodb.net/rawaesdashboard"
+  url      =env("DATABASE_URL")
 }
 model Office{
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
