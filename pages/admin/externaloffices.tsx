@@ -138,7 +138,7 @@ return (
               <TableCell>Flag</TableCell>
 
               <TableCell>Generate Form</TableCell>
-              <TableCell>Registered CV</TableCell>
+              {/* <TableCell>Registered CV</TableCell> */}
             </tr>
           </TableHeader>
           <TableBody>
@@ -169,14 +169,14 @@ return (
 {/* <span ></span> */}
 
 
-                <TableCell>
+                {/* <TableCell>
                  {e.fields["السير الذاتية"] ? <span className="text-md">
                  {e?.fields["السير الذاتية"].map(s=>
                  
                  <li><Link href={"../client/cvdetails/"+s}><span className="text-md" style={{textDecorationLine:"underline",textDecorationColor:"blueviolet"}}>{s}</span></Link></li>)}  
                    
                   </span>:""}
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             ))}
           </TableBody>

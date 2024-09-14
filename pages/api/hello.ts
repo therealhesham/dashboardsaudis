@@ -20,7 +20,10 @@ const result =  await new Promise((resolve,reject)=>{
 
 
 const results=    base('السير الذاتية').select({
-  view: "الاساسي"
+  view: "الاساسي",
+  
+     filterByFormula:`({fldIAYbOhnZkVnear}!="Fales")`
+
     }).all()
 
  resolve(results)

@@ -388,7 +388,7 @@ Admins()
 
 const  deleterecord = async (id)=>{
 
-const fetcher = await fetch('../api/deletecv',{method:"post",headers: {'Accept':'application/json',
+const fetcher = await fetch('../api/hide',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify({id:id})})
 
@@ -745,9 +745,9 @@ Date
               {listType =="workers"?<TableCell>الديانة</TableCell>:null}
               {listType =="workers"?<TableCell>حالة الحجز</TableCell>:null}
 
-              {listType =="workers"?<TableCell>Book</TableCell>:null}
+              {listType =="workers"?<TableCell>حجز</TableCell>:null}
 
-              {listType =="workers"?<TableCell>Delete</TableCell>:null}
+              {listType =="workers"?<TableCell>اخفاء</TableCell>:null}
 
             </tr>
           </TableHeader>
@@ -821,7 +821,7 @@ Date
                 <TableCell>
                 
 
-                <Button onClick={()=>{deleterecord(e.id)  }} style={{backgroundColor:"red"}}>Delete CV </Button>
+                <Button onClick={()=>{deleterecord(e.id)  }} style={{backgroundColor:"red"}}>Hide</Button>
                 </TableCell>
 
 
