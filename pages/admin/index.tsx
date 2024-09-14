@@ -61,7 +61,7 @@ import { useRouter } from 'next/router'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
 import dayjs from 'dayjs'
-import { Rating } from '@mui/material'
+import { Alert, Rating } from '@mui/material'
 // Rating
 
 // import link from 'next/link'
@@ -221,12 +221,14 @@ const search = ()=>{
     const fetcher =  await fetch("./api/searchbutton",{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify({cvnumber})})
+      if(fetcher.status >=300) return alert ("لا يوجد نتائج")
     const f = await fetcher.json()
 // console.log(,f)
-  .then(json  => {
-//  console.log(json)
-//  if ()
-  json?setLength(json.length):"";
+
+.then(json  => {
+// if(json.length<1) return console.log("لا يوجد نتائج")
+
+json?setLength(json.length):"";
 
     // console.log('parsed json', json) // access json.body here
     setFulldata(json)
@@ -572,6 +574,12 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
       </Modal>:""
 
       }
+
+
+
+
+
+      
 <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalHeader>{`Book CV Number ${cvnumberbook}`}</ModalHeader>
         <ModalBody>
@@ -796,7 +804,7 @@ Date
                 <TableCell>
                   {/* <Link href={"/admin/officeinfo/"+e?.fields["External office - المكتب الخارجي"]}  >                  */}
                   {/* <span className="text-sm"> */}
-                  <span className="text-sm">{e?.fields["Religion - الديانة"]?e?.fields["حالة الحجز"]:""}</span>
+                  <span className="text-sm">{e?.fields["حالة الحجز"]}</span>
 
                     
                     {/* {new Date(user.date).toLocaleDateString()} */}
@@ -809,7 +817,7 @@ Date
 
                 <TableCell>
 
-                <Button onClick={()=>{bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"]) }} style={{backgroundColor:"wheat",color:"black"}}>Book CV </Button>
+                <Button        disabled={!e?.fields["حالة الحجز"]?false:true} onClick={()=>{bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"]) }} style={{cursor:!e?.fields["حالة الحجز"]?"pointer":"none",backgroundColor:"wheat",color:"black"}}>Book CV </Button>
                 </TableCell>
 
 

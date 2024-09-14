@@ -25,7 +25,7 @@ const result =  await new Promise((resolve,reject)=>{
   // '(.*)'
 const results=    base('السير الذاتية').select({
   
-   filterByFormula:`And({fldfmxECQcDVvcjvH}=${cvnumber})`
+   filterByFormula:`And({fldfmxECQcDVvcjvH}=${cvnumber},{fldIAYbOhnZkVnear}!="Fales")`
 ,        view: "الاساسي"
     }).all()
 // english id
@@ -37,7 +37,7 @@ const results=    base('السير الذاتية').select({
     // console.log(result)
 
 // console.log(result)
-if(result.length == 0) return  res.status(300).json("data 0")
+if(result.length == 0) return  res.status(300).json({error:"nodata"})
   res.status(200).json(result)
   
 } catch (error) {
