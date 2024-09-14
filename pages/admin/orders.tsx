@@ -146,7 +146,7 @@ changestatetypes(new Date())
 const confirmchange=async (id)=>{
 if(bookingstatus == "حذف"){
 
-const fetcher = await fetch('../api/deleterder',{method:"post",headers: {'Accept':'application/json',
+const fetcher = await fetch('../api/deleteorder',{method:"post",headers: {'Accept':'application/json',
         "Content-Type": "application/json",
       },body:JSON.stringify({id,status:bookingstatus})})
 

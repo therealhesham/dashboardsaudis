@@ -746,6 +746,8 @@ Date
         <Table>
           <TableHeader>
             <tr>
+              {listType =="workers"?<TableCell>رقم السي في</TableCell>:null}
+
               {listType =="workers"?<TableCell>اسم العامل</TableCell>:<TableCell>اسماء المكاتب</TableCell>}
               {/* {listType =="workers"?<TableCell>العمر</TableCell>: null} */}
               {listType =="workers"?<TableCell>الحالة الاجتماعية</TableCell>:null}
@@ -762,6 +764,11 @@ Date
           <TableBody>
             {paginatedData?.map((e, i) => (
               <TableRow key={i}>
+                
+                <TableCell>
+                 {e?.fields["م"] }
+                  {/* <Badge type={user.status}>{user.status}</Badge> */}
+                </TableCell>
                 <TableCell>
                 
                   <div className="flex items-center text-sm" style={{width:"200px"}}>
@@ -817,7 +824,7 @@ Date
 
                 <TableCell>
 
-                <Button        disabled={!e?.fields["حالة الحجز"]?false:true} onClick={()=>{bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"]) }} style={{cursor:!e?.fields["حالة الحجز"]?"pointer":"none",backgroundColor:"wheat",color:"black"}}>Book CV </Button>
+                <Button        disabled={e?.fields["حالة الحجز"] == null?false:true} onClick={()=>{bookmodal(e.fields["م"],e.id,e.fields["Name - الاسم"]) }} style={{cursor:!e?.fields["حالة الحجز"]?"pointer":"none",backgroundColor:"wheat",color:"black"}}>Book CV </Button>
                 </TableCell>
 
 

@@ -33,9 +33,22 @@ const update = base('السير الذاتية المحجوزة').update([
 
  
 
+
+
+
+
+
+
+   
    
   })
 
+
+
+
+
+
+  
 // console.log(result)
   res.status(200).json(result)  
 } catch (error) {
