@@ -19,18 +19,10 @@ let arr = []
 const result =  await new Promise((resolve,reject)=>{
 
 // base('السير الذاتية').find
-const results=    base('السير الذاتية').select({
-  view: "الاساسي",
+const results=    base('السير الذاتية المحجوزة').select({
+  view: "جدول الحجوزات",
   
-  // offset:10
-  fields:["fldfmxECQcDVvcjvH","fldKKxbf5nHUYaBuw","fld1k07dcF6YGJK2Z","fldiWcMdEYNY6TJWy","fld0apYy0E2enqyWS","fldEYaSy8nlV1btk6","fldVp4gvVPuUJnbyR","fldeROrfXwANuBYX7","fldUXlZQMZR89xcot","fldkgrB3ZE5A38lh9","fldgFtv56XDjzWzKF","fld4CC8YwGvwrpjYD",
-"fldLTVgq9xStOPmIV","fldzjT7W4eQmUkgJM","fldyKcHVYquQQMA3T",
-"fldJDblLbnP2gqiOj" ],
-// maxRecords:10
-// pageSize:10
-  // ,
-
-  filterByFormula:`({fldIAYbOhnZkVnear}!="Fales")`
+  filterByFormula:`({fld8SGdyC4NFmzQgE}="محتمل")`
 
     }).all()
 
@@ -38,6 +30,7 @@ const results=    base('السير الذاتية').select({
 })
 
 
+// console.log(result.length)
   res.status(200).json(result)
 }
 

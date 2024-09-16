@@ -165,6 +165,8 @@ openModal()
 
   const router = useRouter()
 const [list,setList]=useState([]);
+const[newres,setResevationsLength]=useState(0)
+
 function onPageChange(p: number) {
   console.log(p)
   // console.log(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
@@ -282,8 +284,15 @@ useEffect(() => {
 
 
 
-})()
+})();
+(async function NewReservations(){
+  const fetcher =  await fetch("./api/newreservations");
+    const f = await fetcher.json()
+  
+// const f = await fetcher.json()
+setResevationsLength(f.length)
 
+})()
 
       async function names( )  {
     const fetcher =  await fetch("./api/hello");
@@ -610,50 +619,124 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
       {/* <!-- Cards --> */}
       <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
           {/* @ts-ignore */}
+
+          <div  style={{cursor:"pointer"}} onClick={e=>router.push("admin/newreservations")}>
+        <InfoCard title=" الحجوزات الجديدة" value={newres}  >
+                 
+                 
+                 <div className='text-orange-500 mr-4 dark:text-orange-100  dark:bg-orange-500'>
+
+<svg
+  fill="none"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  viewBox="0 0 24 24"
+  stroke="currentColor"  height="40px" width="50px"
+>
+  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+</svg>
+
+
+
+
+
+
+
+                 </div>
+       </InfoCard>
+                 </div>
+
+
+      
+
           <div  style={{cursor:"pointer"}} onClick={e=>setTypeList("workers")}>
         <InfoCard title=" المتاح من العاملين" value={length}  >
-                 <RoundIcon
-                 
-                 icon={PeopleIcon}
-                 iconColorClass="text-orange-500 dark:text-orange-100"
-                 bgColorClass="bg-orange-100 dark:bg-orange-500"
-                 className="mr-4"
-                 />
-        </InfoCard>
+                 <div className='text-green-500 mr-4 dark:text-orange-100 bg-orange-100 dark:bg-orange-500'>
+
+
+
+<svg fill="currentColor" viewBox="0 0 20 20" height="40px" width="50px">
+  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+</svg>
+
+</div>      </InfoCard>
                  </div>
  
           <div  style={{cursor:"pointer"}} onClick={e=>setTypeList("offices")}>
         <InfoCard  title="المكاتب الخارجية" value={officelist.length}  >
           {/* @ts-ignore */}
-          <RoundIcon
-          
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-yellow-100 dark:bg-green-500"
-            className="mr-4"
-            />
+         
+         
+         
+                 <div className='text-wheat-500 mr-4 dark:text-orange-100  dark:bg-white-500'>
+         
+         
+         <svg
+  fill="none"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  viewBox="0 0 24 24"
+  stroke="currentColor" height="40px" width="50px"
+>
+  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+</svg>
+         </div>
+         
+         
+         
+    
         </InfoCard>
             </div>
 <div onClick={()=>router.push("/admin/dashboardadmins") } style={{cursor:"pointer"}}>
         <InfoCard title="المشرفين" value={admins} >
           {/* @ts-ignore */}
-          <RoundIcon
-            iconColorClass="text-blue-500 dark:text-blue-100"
-            bgColorClass="bg-blue-100 dark:bg-blue-500"
-            className="mr-4"/>
+          
+          
+                 <div className='text-orange-500 dark:text-orange-100  dark:bg-orange-500'>
+          
+         <svg
+  // fill="none"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  viewBox="0 0 64 64"
+  stroke="currentColor" 
+  height="40px" width="50px"
+> <title>User</title>
+  <desc>A line styled icon from Orion Icon Library.</desc>
+  <path data-name="layer1" d="M46 26c0 6.1-3.4 11.5-7 14.8V44c0 2 1 5.1 11 7a15.5 15.5 0 0 1 12 11H2a13.4 13.4 0 0 1 11-11c10-1.8 12-5 12-7v-3.2c-3.6-3.3-7-8.6-7-14.8v-9.6C18 6 25.4 2 32 2s14 4 14 14.4z"
+  fill="none" stroke="#202020" stroke-miterlimit="10" stroke-width="2" stroke-linejoin="round"
+  stroke-linecap="round" ></path>
+</svg>
+</div>          
+          
+          
+          
+          
+          
+          
+          
         </InfoCard>
 </div>
         
            <div  onClick={()=>router.push("/admin/orders")} style={{cursor:"pointer"}}>
         <InfoCard  title="المحجوز"  value={bookedReserved.length}  >
           {/* @ts-ignore */}
-          <RoundIcon
-          
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-yellow-100 dark:bg-green-500"
-            className="mr-4"
-            />
+  
+  <div className='text-orange-500 dark:text-orange-100   dark:bg-orange-500'>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+  height="40px" width="50px"
+aria-describedby="desc" role="img"  >
+  {/* <title>Travel Ticket</title> */}
+  <desc>A solid styled icon from Orion Icon Library.</desc>
+  <path data-name="layer1"
+  d="M2 14v36h60V14zm16 30h-8a2 2 0 0 1 0-4h8a2 2 0 0 1 0 4zm12-12H10a2 2 0 0 1 0-4h20a2 2 0 0 1 0 4zm6-8H10a2 2 0 0 1 0-4h26a2 2 0 0 1 0 4zm10 20a2 2 0 0 1-4 0V20a2 2 0 0 1 4 0zm8-2a2 2 0 0 1-4 0v-2a2 2 0 0 1 4 0zm0-10a2 2 0 0 1-4 0V22a2 2 0 0 1 4 0z"
+  fill="#e28743" ></path>
+</svg>
+  </div>
+  
         </InfoCard>
             </div> 
 
@@ -662,13 +745,20 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
 
 <InfoCard  title="قائمة الوصول" value={Transfer.length}  >
           {/* @ts-ignore */}
-          <RoundIcon
-          
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-red-100 dark:bg-black-500"
-            className="mr-4"
-            />
+
+  <div className='text-orange-500 dark:text-orange-100   dark:bg-orange-500'>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+aria-describedby="desc" role="img" height="40px" width="50px"
+ar>
+  <title>Airplane Mode</title>
+  <desc>A line styled icon from Orion Icon Library.</desc>
+  <path data-name="layer1"
+  d="M57.5 7.5a5 5 0 0 0-7.1 0L39.9 18.1l-25.6-3.3s-1.9-.3-2.7.5l-3 3a1.3 1.3 0 0 0-.4 1.4c.2.5 1.6 1.2 2 1.4L28 30l-7.2 7.2-.7.7-9.1-1.3a1.6 1.6 0 0 0-1.5.5l-2.2 2.2c-.3.3-.9 1 .4 1.6l11.6 4.8s4.2 10.3 4.8 11.6 1.3.7 1.6.4l2.2-2.2a1.6 1.6 0 0 0 .5-1.5l-1.3-9.1.7-.7 7.2-7.1 9 17.7c.2.5.9 1.9 1.4 2a1.3 1.3 0 0 0 1.4-.4l3-3c.8-.8.5-2.7.5-2.7l-3.4-25.6 10.6-10.6a5 5 0 0 0 0-7z"
+  fill="#abdbe3" stroke="#202020" stroke-linecap="round" stroke-linejoin="round"
+  stroke-width="2"></path>
+</svg>
+</div>
         </InfoCard>
 </div>        
 
@@ -678,13 +768,19 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
 
 <InfoCard  title="عقود ملغاة" value={cancelledcontracts.length}  >
           {/* @ts-ignore */}
-          <RoundIcon
-          
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-red-100 dark:bg-black-500"
-            className="mr-4"
-            />
+
+  <div className='text-orange-500 dark:text-orange-100   dark:bg-orange-500'>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+aria-describedby="desc" role="img" height="40px" width="50px">
+  <title>Unavailable</title>
+  <desc>A line styled icon from Orion Icon Library.</desc>
+  <path data-name="layer1"
+  d="M32 2a30 30 0 1 0 30 30A30.034 30.034 0 0 0 32 2zm0 7.059a22.82 22.82 0 0 1 13.524 4.425l-32.04 32.04A22.925 22.925 0 0 1 32 9.06zm0 45.883a22.815 22.815 0 0 1-13.523-4.426l32.039-32.04A22.926 22.926 0 0 1 32 54.942z"
+  fill="#d80707" stroke="#202020" stroke-miterlimit="10" stroke-width="1" stroke-linejoin="round"
+  stroke-linecap="round"></path>
+</svg>
+</div>
         </InfoCard>
 </div>        
 
