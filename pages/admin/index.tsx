@@ -854,7 +854,7 @@ Date
       <Label >
   {/* <span>search by cv number</span> */}
  
- <div style={{display:"inline-flex"}}> <Input  placeholder='search by cv number' className="mt-1 " style={{width:"180px"}} onChange={(e)=>
+ <div style={{display:"inline-flex"}}> <Input  placeholder='البحث بالاسم او رقم السيرة الذاتية' className="mt-1 " style={{width:"180px"}} onChange={(e)=>
   {filter(e.target.value)
   setCVnumber()}}/> <Button onClick={()=>search()}  style={{backgroundColor:"#e28743"}}> search</Button>
 </div>
