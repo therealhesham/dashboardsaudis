@@ -90,7 +90,11 @@ aria-hidden='true'
           </main>
         </div>
       </div>
-  :<div><div className='flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900'>
+
+  :
+  <div>
+    <form>
+    <div className='flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900'>
   <div className='flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800'>
         <div className='flex flex-col overflow-y-auto md:flex-row'>
           <div className='relative h-32 md:h-auto md:w-1/2'>
@@ -133,7 +137,8 @@ aria-hidden='true'
               </Label>
 
               {/* <Link href='/example' passHref={true}> */}
-                <Button  onClick={handleSignIn} className='mt-4' block style={{backgroundColor:"#003749"}}>
+                <Button  onSubmit={handleSignIn
+                  } onClick={handleSignIn} type='submit' className='mt-4' block style={{backgroundColor:"#003749"}}>
                   Log in
                 </Button>
               {/* </Link> */}
@@ -167,7 +172,9 @@ aria-hidden='true'
           </main>
         </div>
       </div>
-    </div></div>
+    </div>
+    </form>
+    </div>
   
   );
 }

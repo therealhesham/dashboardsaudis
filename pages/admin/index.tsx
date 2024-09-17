@@ -12,7 +12,7 @@ import PageTitle from 'example/components/Typography/PageTitle'
 import RoundIcon from 'example/components/RoundIcon'
 import Layout from 'example/containers/Layout'
 import response, { ITableData } from 'utils/demo/tableData'
-import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from 'icons'
+import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon, BellIcon } from 'icons'
 // import 
 import {
   TableBody,
@@ -62,6 +62,7 @@ import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
 import dayjs from 'dayjs'
 import { Alert, Rating } from '@mui/material'
+import { BellOutlined } from '@ant-design/icons'
 // Rating
 
 // import link from 'next/link'
@@ -213,7 +214,7 @@ if(fetcher.status !=200 ) alert ("Error Booking ")
 
 }
 
-
+// const [originalArray,setOriginalArray]=useState([...paginatedData])
 
 
   
@@ -291,7 +292,9 @@ useEffect(() => {
   
 // const f = await fetcher.json()
 setResevationsLength(f.length)
-
+// if(f.f)
+console.log(f)
+// f.filter(e=>e.fields["حالة الحجز"]=="حجز من موقع" && e.fields)
 })()
 
       async function names( )  {
@@ -434,7 +437,21 @@ openModal()
 
 }
 
+const filter=(e)=>{
+try {
+if(!Number(e) ){
+  const f = fulldata.filter(n=>n.fields["Name - الاسم"].toUpperCase().includes(e.toUpperCase()))
+setPaginatedData(f)
+}else{
+ const s = fulldata.filter(n=>n.fields["م"]==e)
+setPaginatedData(s)
+}
+  
+} catch (error) {
+console.log(error)  
+}
 
+}
 const [isCvModalOpen,setcvopen]=useState(false)
 return (
 
@@ -622,7 +639,10 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
 
           <div  style={{cursor:"pointer"}} onClick={e=>router.push("admin/newreservations")}>
         <InfoCard title=" الحجوزات الجديدة" value={newres}  >
-                 
+       
+       
+        {/* <BellIcon  style={{zIndex:99, width:"40px",height:"40px",position:"absolute",marginBottom:"20px",marginRight:"2px"}}/>
+                  */}
                  
                  <div className='text-orange-500 mr-4 dark:text-orange-100  dark:bg-orange-500'>
 
@@ -834,7 +854,9 @@ Date
       <Label >
   {/* <span>search by cv number</span> */}
  
- <div style={{display:"inline-flex"}}> <Input  placeholder='search by cv number' className="mt-1" style={{width:"180px"}} onChange={(e)=>setCVnumber(e.target.value)}/> <Button onClick={()=>search()}> search</Button>
+ <div style={{display:"inline-flex"}}> <Input  placeholder='search by cv number' className="mt-1 " style={{width:"180px"}} onChange={(e)=>
+  {filter(e.target.value)
+  setCVnumber()}}/> <Button onClick={()=>search()}  style={{backgroundColor:"#e28743"}}> search</Button>
 </div>
 </Label>
 {listType =="workers"?
