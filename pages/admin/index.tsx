@@ -398,6 +398,26 @@ Admins()
 
 }, [deletedid])
 
+  async function fetchHidden( )  {
+    const fetcher =  await fetch("./api/hiddenlist");
+    const f = await fetcher.json()
+
+  .then(json  => {
+//  console.log(json)
+//  if ()
+  json?setLength(json.length):"";
+
+    // console.log('parsed json', json) // access json.body here
+    setFulldata(json)
+    json?setPaginatedData(_.reverse(json).slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
+// console.log(new Date().getSeconds())
+    // setData(json)   
+
+  } 
+  // names();
+
+)
+}
 
 
 const  deleterecord = async (id)=>{
@@ -641,8 +661,8 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
         <InfoCard title=" الحجوزات الجديدة" value={newres}  >
        
        
-        {/* <BellIcon  style={{zIndex:99, width:"40px",height:"40px",position:"absolute",marginBottom:"20px",marginRight:"2px"}}/>
-                  */}
+        {/* <BellIcon  style={{zIndex:1, width:"30px",height:"20px",position:"absolute",marginBottom:"20px",marginRight:"2px"}}/> */}
+                  
                  
                  <div className='text-orange-500 mr-4 dark:text-orange-100  dark:bg-orange-500'>
 
@@ -805,6 +825,24 @@ aria-describedby="desc" role="img" height="40px" width="50px">
 </div>        
 
 
+           <div  onClick={()=>router.push("/admin/hiddenlist")} style={{cursor:"pointer"}}>
+
+<InfoCard  title="سير تم اخفائها عن العميل"   >
+          {/* @ts-ignore */}
+
+  <div className='text-orange-500 dark:text-orange-100   dark:bg-orange-500'>
+<svg fill="#202020" height="20px" width="20px" version="1.1" id="Layer_1"   viewBox="0 0 330 330"  >
+<path id="XMLID_2_" d="M325.607,304.394l-63.479-63.479c38.57-29.035,63.522-64.92,65.247-67.437c3.501-5.11,3.501-11.846,0-16.956
+	c-2.925-4.269-72.659-104.544-162.371-104.544c-25.872,0-50.075,8.345-71.499,20.313L25.607,4.394
+	c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213l63.478,63.478C29.299,118.12,4.35,154.006,2.625,156.523
+	c-3.5,5.109-3.5,11.845,0,16.955c2.925,4.268,72.65,104.546,162.378,104.546c25.868,0,50.069-8.345,71.493-20.314l67.897,67.898
+	C307.323,328.536,311.161,330,315,330c3.839,0,7.678-1.464,10.606-4.394C331.465,319.749,331.465,310.252,325.607,304.394z
+	 M165.003,81.977c60.26,0,113.408,60.338,131.257,83.022c-9.673,12.294-29.705,35.629-55.609,54.439L115.673,94.461
+	C131.079,86.902,147.736,81.977,165.003,81.977z M165.003,248.023c-60.285,0-113.439-60.364-131.273-83.037
+	c9.651-12.303,29.652-35.658,55.574-54.47l124.99,124.99C198.884,243.084,182.236,248.023,165.003,248.023z"/>
+</svg></div>
+        </InfoCard>
+</div>        
 
 
 

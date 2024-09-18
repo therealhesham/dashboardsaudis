@@ -44,7 +44,7 @@ const routes: IRoute[] = [
 
 {
     path: '/admin/addcountry', 
-    icon: 'FormsIcon', 
+    icon: 'PeopleIcon', 
     name: 'اضافة دولة ', 
     // exact: true,
   },

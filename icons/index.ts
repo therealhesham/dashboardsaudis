@@ -26,8 +26,9 @@ import DropdownIcon from './dropdown.svg'
 import OutlinePersonIcon from './outlinePerson.svg'
 import OutlineCogIcon from './outlineCog.svg'
 import OutlineLogoutIcon from './outlineLogout.svg'
+import Country from "./Country.svg"
 
-export {
+export {Country,
   ButtonsIcon,
   CardsIcon,
   ChartsIcon,

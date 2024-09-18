@@ -29,7 +29,7 @@ const update = base('السير الذاتية').update([
   {
     id: req.body.id,
     "fields": {
-      "isHidden":"Fales",
+      "isHidden":"True",
       
     }}])
 
@@ -51,7 +51,6 @@ const update = base('السير الذاتية').update([
 
 
 
-    console.log('Retrieved', 90);
 
   res.status(200).json("sign")
     // console.log('Retrieved', 81);
