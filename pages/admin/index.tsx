@@ -395,7 +395,7 @@ Admins()
 } catch (error) {
   console.log(error)
 }  
-
+// if(newres>0) openModal(op)
 }, [deletedid])
 
   async function fetchHidden( )  {
@@ -461,6 +461,24 @@ const filter=(e)=>{
 try {
 if(!Number(e) ){
   const f = fulldata.filter(n=>n.fields["Name - الاسم"].toUpperCase().includes(e.toUpperCase()))
+setPaginatedData(f)
+}else{
+ const s = fulldata.filter(n=>n.fields["م"]==e)
+setPaginatedData(s)
+}
+  
+} catch (error) {
+console.log(error)  
+}
+
+}
+
+
+
+const filterpassprot=(e)=>{
+try {
+if(!Number(e) ){
+  const f = fulldata.filter(n=>n.fields["Passport number - رقم الجواز"].toUpperCase().includes(e.toUpperCase()))
 setPaginatedData(f)
 }else{
  const s = fulldata.filter(n=>n.fields["م"]==e)
@@ -660,9 +678,9 @@ data.fields["sewing - الخياطة"] == e?<Rating  name="half-rating" defaultV
           <div  style={{cursor:"pointer"}} onClick={e=>router.push("admin/newreservations")}>
         <InfoCard title=" الحجوزات الجديدة" value={newres}  >
        
-       
-        {/* <BellIcon  style={{zIndex:1, width:"30px",height:"20px",position:"absolute",marginBottom:"20px",marginRight:"2px"}}/> */}
-                  
+{/*        
+        <BellIcon  style={{zIndex:1, width:"30px",height:"20px",position:"absolute",marginBottom:"20px",marginRight:"2px"}}/>
+                   */}
                  
                  <div className='text-orange-500 mr-4 dark:text-orange-100  dark:bg-orange-500'>
 
@@ -827,10 +845,10 @@ aria-describedby="desc" role="img" height="40px" width="50px">
 
            <div  onClick={()=>router.push("/admin/hiddenlist")} style={{cursor:"pointer"}}>
 
-<InfoCard  title="سير تم اخفائها عن العميل"   >
+<InfoCard  title="سير تم اخفائها عن العميل"  className="text-white" >
           {/* @ts-ignore */}
 
-  <div className='text-orange-500 dark:text-orange-100   dark:bg-orange-500'>
+  <div className='text-orange-500 dark:text-orange-100  dark:bg-orange-500' >
 <svg fill="#202020" height="20px" width="20px" version="1.1" id="Layer_1"   viewBox="0 0 330 330"  >
 <path id="XMLID_2_" d="M325.607,304.394l-63.479-63.479c38.57-29.035,63.522-64.92,65.247-67.437c3.501-5.11,3.501-11.846,0-16.956
 	c-2.925-4.269-72.659-104.544-162.371-104.544c-25.872,0-50.075,8.345-71.499,20.313L25.607,4.394
@@ -894,8 +912,19 @@ Date
  
  <div style={{display:"inline-flex"}}> <Input  placeholder='البحث بالاسم او رقم السيرة الذاتية' className="mt-1 " style={{width:"180px"}} onChange={(e)=>
   {filter(e.target.value)
-  setCVnumber()}}/> <Button onClick={()=>search()}  style={{backgroundColor:"#e28743"}}> search</Button>
+  setCVnumber()}}/>
+  
+   <Button onClick={()=>search()}  style={{backgroundColor:"#e28743"}}> search</Button>
 </div>
+
+ <div style={{display:"inline-flex"}}> <Input  placeholder='البحث برقم جواز السفر' className="mt-1 " style={{width:"180px"}} onChange={(e)=>
+  {filterpassprot(e.target.value)
+  setCVnumber()}}/>
+  
+   {/* <Button onClick={()=>search()}  style={{backgroundColor:"#e28743"}}> search</Button> */}
+</div>
+
+
 </Label>
 {listType =="workers"?
       <TableContainer>
@@ -909,6 +938,8 @@ Date
               {listType =="workers"?<TableCell>الحالة الاجتماعية</TableCell>:null}
               {listType =="workers"?<TableCell>الجنسية</TableCell>:null}
               {listType =="workers"?<TableCell>الديانة</TableCell>:null}
+             {listType =="workers"?<TableCell>رقم الجواز</TableCell>:null}
+             
               {listType =="workers"?<TableCell>حالة الحجز</TableCell>:null}
 
               {listType =="workers"?<TableCell>حجز</TableCell>:null}
@@ -960,7 +991,16 @@ Date
                   {/* </span> */}
                 {/* </Link> */}
                 </TableCell>
+<TableCell>
+                  {/* <Link href={"/admin/officeinfo/"+e?.fields["External office - المكتب الخارجي"]}  >                  */}
+                  {/* <span className="text-sm"> */}
+                  <span className="text-sm">{e?.fields["Passport number - رقم الجواز"]?e?.fields["Passport number - رقم الجواز"]:""}</span>
 
+                    
+                    {/* {new Date(user.date).toLocaleDateString()} */}
+                  {/* </span> */}
+                {/* </Link> */}
+                </TableCell>
 
 
 

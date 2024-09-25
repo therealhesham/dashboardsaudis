@@ -30,6 +30,33 @@ const routes: IRoute[] = [
     name: 'الرئيسية', 
     exact: true,
   },  {
+    icon: 'HomeIcon', 
+    name: 'اضافات',
+    routes:[{
+    path: '/admin/addcountry', 
+    icon: 'PeopleIcon', 
+    name: 'اضافة دولة ', 
+    // exact: true,
+  },{
+    path: '/admin/addoffice', 
+    icon: 'CardsIcon', 
+    name: 'اضافة مكتب', 
+    // exact: true,
+  },  {
+    path: '/admin/addhomemaid',
+    icon: 'CardsIcon',
+    name: 'اضافة الى قائمة الوصول',
+  },
+ 
+
+ 
+  {
+    path: '/admin/newmaleworker',
+    icon: 'CardsIcon',
+    name: 'اضافة عمالة ذكور',
+  },
+ ]
+  } , {
     path: '/admin/orders', 
     icon: 'HomeIcon', 
     name: 'قائمة الطلبات'
@@ -42,12 +69,7 @@ const routes: IRoute[] = [
   
   
 
-{
-    path: '/admin/addcountry', 
-    icon: 'PeopleIcon', 
-    name: 'اضافة دولة ', 
-    // exact: true,
-  },
+
 {
     path: '/admin/clientslist', 
     icon: 'HomeIcon', 
@@ -57,11 +79,6 @@ const routes: IRoute[] = [
     path: '/admin/employees', 
     icon: 'HomeIcon', 
     name: 'الموظفين', 
-  },{
-    path: '/admin/addoffice', 
-    icon: 'CardsIcon', 
-    name: 'اضافة مكتب', 
-    // exact: true,
   },{
     path: '/admin/externaloffices', 
     icon: 'HomeIcon', 
@@ -80,19 +97,6 @@ const routes: IRoute[] = [
     icon: 'CardsIcon',
     name: 'قائمة الوصول',
   },
- 
-  {
-    path: '/admin/addhomemaid',
-    icon: 'CardsIcon',
-    name: 'اضافة الى قائمة الوصول',
-  },
- 
-  {
-    path: '/admin/newmaleworker',
-    icon: 'CardsIcon',
-    name: 'اضافة عمالة ذكور',
-  },
- 
   {
     path: '/admin/maleworkers',
     icon: 'CardsIcon',

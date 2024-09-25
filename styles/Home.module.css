@@ -7,6 +7,15 @@
   align-items: center;
   height: 100vh;
 }
+.li{
+  list-style: none;
+}
+.li::before {
+  font-size: "35px";
+    content: '\2022';
+    /* margin-right: "1px"; */
+    color:rgb(202, 156, 40);
+}
 
 @media only screen and (max-width: 786px) {
    .divbox{
@@ -84,10 +93,10 @@ background: linear-gradient(to bottom, #F37335, #FDC830); /* W3C, IE 10+/ Edge, 
     align-items: center;
 
     grid-template-columns: repeat(2, auto);
-grid-template-rows: repeat(3, auto);
+/* grid-template-rows: repeat(3, auto); */
 
 /* grid-template-columns: 22px; */
-    grid-row-gap: 22px;
+    grid-row-gap: 12px;
     /* justify-content: space-evenly; */
   grid-column-gap: 11px;
   

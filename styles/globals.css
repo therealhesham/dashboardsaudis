@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
 html,
 body {
   padding: 0;
@@ -14,6 +16,13 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.reem-kufi{
+  font-family: "Reem Kufi", sans-serif;
+  /* font-optical-sizing: auto; */
+  /* font-weight: <weight>; */
+  /* font-style: normal; */
 }
 
 .divbox{

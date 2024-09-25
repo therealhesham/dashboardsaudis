@@ -19,7 +19,7 @@ import Slider from '@mui/material/Slider';
 import dayjs from 'dayjs'
 
 
-function DashboardClient() {
+function DashboardClient(props) {
  
   const [isModalOpen, setIsModalOpen] = useState(false)
   function openModal() {
@@ -104,7 +104,7 @@ const media = useMediaQuery('(max-width:820px)',{noSsr:false})
       elem?.blur();
     }
   };
-
+console.log(props)
 const [offset,setOffset] = useState("")
   const [previousNationality,setPreviousNationality]=useState("");
 const [previousreligion,setPreviousreligion]=useState("");
@@ -120,26 +120,47 @@ setData(filtering)
 
 }
 
+const [isServer, setIsServer] = useState(typeof window === 'undefined')
+  const style = {
+    color: isServer ? 'red' : 'yellow',
+  }
+  console.log('SeverSide: isServer', isServer)
 
+  useEffect(() => {
+      try {
 
-useEffect(()=>{
+    const token = Cookies.get("token")
+  const decoder = jwtDecode(token);
+      if(!decoder.admin)return router.replace("/client");
   
-try {
- const token =  Cookies.get("token")
- const decoder = jwtDecode(token)
- console.log(decoder.isUser)
- setUser(decoder)
-} catch (error) {
-  setUser({isUser:false})
-} 
-(async function getname(){
-const fetcher = await fetch('../api/listfifty',{method:"get"})
-const waiter = await fetcher.json()
-setData(waiter)
+// console.log(decoder.idnumber)
+  } catch (error) {
+    router.replace("/client")
+  }
 
-})()
+
+    setIsServer(typeof window === 'undefined')
+    console.log('ClientSide: isServer', isServer)
+  }, [isServer])
+
+// useEffect(()=>{
   
-  },[])
+// try {
+//  const token =  Cookies.get("token")
+//  const decoder = jwtDecode(token)
+//  console.log(decoder.isUser)
+//  setUser(decoder)
+// } catch (error) {
+//   setUser({isUser:false})
+// } 
+// (async function getname(){
+// const fetcher = await fetch('../api/listfifty',{method:"get"})
+// const waiter = await fetcher.json()
+// setData(waiter)
+
+// })()
+  
+//   },[])
 return (
 <div  style={{backgroundColor:"whitesmoke",minHeight:"100vh"}}>
 
@@ -313,12 +334,14 @@ router.reload()
 
 </div> */}
  
-  <div style={{display:'grid',gridTemplateColumns:media?"100%":"20% 80%"}}>
-<div style={{marginTop:"60px",margin:"20px",borderRadius:"10px",gridRowStart:media?"1":null,gridRowEnd:media?"2":null,gridColumnStart:media?null:1,gridColumnEnd:media?null:1,overflow:"hidden",}}>
+  <div style={{display:'grid',gridTemplateRows:media?"100%":""}}>
+    {/* <div style={{height:"20%",marginBottom:"20px"}}> */}
+<div style={{display:"inline-flex",backgroundColor:"#Ecc383",flexDirection:"row-reverse",height:"120%",alignItems:"baseline"}}>
 
-<Label >
-          <span>الجنسية</span>
-            <Select className="mt-1" onChange={e=>{
+{/* <Label > */}
+    <span style={{fontFamily:"Reem Kufi"}}>الجنسية</span>
+<Label> 
+            <Select style={{}} className="mt-1" onChange={e=>{
               
               setNationality(e.target.value);
               
@@ -353,14 +376,15 @@ router.reload()
 
   </Select>
 
-  
+  </Label>
+       
 
 
   
-        </Label>
+        {/* </Label> */}
 
+          <span style={{fontFamily:"Reem Kufi"}}>الديانة</span>
 <Label >
-          <span>الديانة</span>
             <Select className="mt-1" onChange={e=>{
               
               setReligon(e.target.value);
@@ -385,8 +409,8 @@ router.reload()
         </Label>
        
        
+          <span style={{fontFamily:"Reem Kufi"}}>سنوات الخبرة</span>
 <Label >
-          <span>سنوات الخبرة</span>
             <Select className="mt-1" onChange={e=>{
               
               setExperience(e.target.value);
@@ -409,31 +433,13 @@ router.reload()
   
         </Label>
        
-       
-        <Label>
-          <span>العمر</span>
-        
-        <Box >
-      <Slider
-        getAriaLabel={() => 'Age Range'}
-        value={value}
-        style={{color:"#003749"}}
-        // color="success"
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-      />
-    </Box>
-</Label>
         {/* <input type="range" min={0} max="60"  onChange={e=>console.log(e.target.value)} className="range" /> */}
 
 
-<div style={{display:"flex",justifyContent:"center",marginTop:"5px"}}><Button style={{alignItems:"center",cursor:"pointer",backgroundColor:"#Ecc383"}} onClick={()=>post()}>Search</Button></div>
+<Button style={{alignContent:"center",cursor:"pointer",backgroundColor:"#003749"}} onClick={()=>post()}>Search</Button>
 </div>
-  
-  <div>
-  
 
+  
        <Modal  isOpen={isModalOpen} onClose={closeModal}>
         <ModalHeader>نأسف</ModalHeader>
         <ModalBody>
@@ -447,12 +453,16 @@ router.reload()
         </ModalFooter>
       </Modal>
 {/* <div> */}
-        {!filtering?
-        <p style={{display: "flex",justifyContent: "flex-start",marginRight:"16px"}}  dir="rtl"  className={Style['almarai-bold'] } >احدث سير ذاتية</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
 {/* </div> */}
-  {data.length>0?
-  <div  className={Style.divbox} style={{display: media?"grid":"grid",marginTop:"10px", gridTemplateColumns: media?"repeat(1, 80%)":"repeat(4, auto)"}}>{data?.map((e,i)=>
-    <div style={{width:media?"100%":"90%",display:"flex",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"160px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
+            {!filtering?
+        <p style={{display: "flex",justifyContent: "flex-end",marginRight:"16px",marginTop:'6px'}}    className={Style['almarai-bold'] } >احدث سير ذاتية</p>:<p style={{display: "flex",justifyContent: "flex-end",margin:"6px"}} className={Style['almarai-bold'] } >نتائج البحث {data.length} سيرة ذاتية </p>}
+
+  <div  className={Style.divbox} style={{top:2, backgroundColor:"whitesmoke",borderRadius:"12px",display: media?"grid":"grid",marginTop:"10px", justifyContent:'center',gridTemplateColumns: media?"repeat(1, 90%)":"repeat(2, 40%)"}}>
+
+    
+    {props.waiter.map((e,i)=>
+
+<div style={{width:media?"100%":"100%",display:"flex",direction:"rtl",gridTemplateColumns:"repeat(2, auto)",justifyContent:"space-around",backgroundColor:"white",height:"190px"}}  key={i} className="card card-compact card-side w-100 bg-base-100 shadow-xl"  onClick={()=>console.log(e)}>
 { e.fields.phone != null ? <span style={{position:"absolute",zIndex:"99",left:"5px" ,backgroundColor:"red",color:"white",display:"flex",justifyContent:"center",top:"8px"}} > محجوزة </span>:""}
   {/* <div style={{right:"9px",cursor:"pointer",top:"10px",position:"absolute"}}
     
@@ -471,7 +481,7 @@ router.reload()
 
     </div> */}
 
-  <div className="pic" style={{width:"40%",maxHeight:"120px",marginTop:"9px",display:"flex",justifyContent:"center"}}> 
+  <div className="pic" style={{width:"30%",maxHeight:"80%",marginTop:"9px",display:"flex",justifyContent:"center"}}> 
     {/* <div  style={{width:"80px",height:"70px"}}>  */}
     {/* <div style={{right:"15px",cursor:"pointer",top:"10px",position:"absolute"}}
         >
@@ -491,34 +501,36 @@ router.reload()
       {e?.fields.Picture?
 
       // <div   >
-      <img  style={{height:"130px",width:"min-content"}}    src={e?.fields.Picture[0].url}  />
+      <img    style={{borderRadius:"12px"}}  src={e?.fields.Picture[0].url}  height='100%'/>
       // </div>
       :""}
 
 
 {/* </div> */}
-    <span style={{ display:"flex",justifyItems:"center",position:"absolute", bottom:"12px",backgroundColor:"white",padding:"5px",borderRadius:"6px",color:"gray"}}>{e?.fields["م"]}</span>
 
 </div>
 
   <div className="card-body" style={{}}>
-      {/* <h2 className="card-title">{e?.fields['م']}</h2>   */}
-    <div className="textcard" dir='rtl' style={{marginRight:"1px"}}>
-      {/* {/* e?.fields[ksd["age - العمر"] } */}
-    {/* <p >{e.fields["Name - الاسم"]}</p> */}
-      <li  style={{fontSize:"13px"}}  >{e.fields['Nationality copy']}</li> 
 
-      < li  style={{fontSize:"13px"}}>{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
-      <li  style={{fontSize:"13px"}}>{e?.fields["marital status - الحالة الاجتماعية"]}</li>
+      {/* <h2 className="card-title">{e?.fields['م']}</h2>   */}
+    <div className="textcard" dir='rtl' style={{marginRight:"10px"}}>
+ <li style={{listStyle:"none"}}>   
+  <span style={{ color:"rgb(202, 156, 40)",fontWeight:"bold",fontSize:"30px"}}>{e?.fields["م"]}</span>
+     </li> {/* {/* e?.fields[ksd["age - العمر"] } */}
+    {/* <p >{e.fields["Name - الاسم"]}</p> */}
+      <li  style={{fontSize:"20px", fontFamily:"Noto Kufi Arabic",marginBottom:"3px"}} className={Style.li}  >{e.fields['Nationality copy']}</li> 
+
+      < li  style={{fontSize:"20px", fontFamily:"Noto Kufi Arabic",marginBottom:"3px"}}  className={Style.li}>{Math.ceil(dayjs(new Date()).diff(e.fields['date of birth - تاريخ الميلاد'])/31556952000)} </li> 
+      <li  style={{fontSize:"20px", fontFamily:"Noto Kufi Arabic",marginBottom:"3px"}}  className={Style.li}>{e?.fields["marital status - الحالة الاجتماعية"]}</li>
       {/* <p  >{e?.fields["External office - المكتب الخارجي (from External office - المكتب الخارجي)"][0]}</p> */}
-      <li style={{fontSize:"13px"}}>{e?.fields["Religion - الديانة"]}</li>
+      <li style={{fontSize:"20px" , fontFamily:"Noto Kufi Arabic",marginBottom:"3px"}}  className={Style.li}>{e?.fields["Religion - الديانة"]}</li>
 
       
       
       
       </div>
     {/* <div className="card-actions justify-end  pointer"> */}
-<div style={{ bottom:"10px",position:"absolute",marginBottom:"1px",display:"flex",justifyItems:"space-between",fontSize:"12px",right:"6px"}}>
+<div style={{ marginTop:'1px',display:"flex",marginRight:"10%",justifyItems:"space-between",fontSize:"12px",right:"6px"}}>
 <div  onClick={()=>router.push("../client/book/"+e.id)} style={{display:"inline-flex",cursor:"pointer"}}> 
   {/* <Link href={"../client/book/"+e.id} > */}
 
@@ -556,12 +568,11 @@ router.reload()
 )}
 
   
-  </div>: <div style={{display:"flex",justifyContent:"center"}}>
-    <GridLoader  loading={filterdatastatus?true:false} style={{width:"800px",height:"600px"}}/>
-    </div>
-  }
+  </div>
   
-  </div></div>
+  {/* </div> */}
+  
+  </div>
  </div>
   
   
@@ -584,3 +595,12 @@ router.reload()
 
 
 export default DashboardClient
+export async function getServerSideProps(){
+
+// console.log(location.origin)
+const fetcher = await fetch('https://rawaes-dashboard.vercel.app/api/listfifty',{method:"get"})
+const waiter = await fetcher.json()
+return {props:{waiter}}
+
+
+}

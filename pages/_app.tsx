@@ -41,7 +41,7 @@ if(router.pathname=="/client/login") router.replace("/client");
 
   } catch (error) {
 if(router.pathname=="/admin/login") return ;
-    router.replace("/client/login")
+    // router.replace("/client/login")
   }
   
 },[])
