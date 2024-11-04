@@ -1,3 +1,5 @@
+//@ts-ignore
+//@ts-nocheck
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { PrismaClient } from "@prisma/client";
@@ -15,7 +17,21 @@ type Data = {
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
 try {
+try{
+const prisma = new PrismaClient()
 
+  const token = req.cookies.token
+
+
+const decoder = jwt.verify(token,"secret")
+const finder = await prisma.user.findFirst({where:{idnumber:decoder?.idnumber}})
+if(finder.role != "adminstrator"  ) return   res.status(301).json("error");
+
+} catch (error) {
+  console.log(error)
+  res.status(301).json("error")
+  
+}
   const promising = await new Promise(resolve=>{
 
 const create= base('مصدر العميل').select({

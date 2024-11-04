@@ -21,6 +21,20 @@ type Data = {
 //@ts-ignore
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
   const arr = [];
+  try{
+
+  const token = req.cookies.token
+
+
+const decoder = jwt.verify(token,"secret")
+const finder = await prisma.user.findFirst({where:{idnumber:decoder?.idnumber}})
+if(finder.role != "adminstrator"  ) return   res.status(301).json("error");
+
+} catch (error) {
+  console.log(error)
+  res.status(301).json("error")
+  
+}
   try {
   const token = req.cookies.token;
   const verify= jwt.verify(token,'secret');

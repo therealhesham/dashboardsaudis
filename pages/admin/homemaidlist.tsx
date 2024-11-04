@@ -20,10 +20,14 @@ import {
   TableCell,
   TableRow,
   TableFooter,
+  Select,
   Avatar,
+  ModalBody,ModalFooter,ModalHeader,
   Badge,
   Pagination,
   Button,
+  Modal,
+  Input,
 } from '@roketid/windmill-react-ui'
 
 import {
@@ -44,6 +48,8 @@ import {
 } from 'chart.js'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { duration } from '@mui/material'
+import { set } from 'mongoose'
 
 function HomeMaidList() {
   Chart.register(
@@ -56,7 +62,7 @@ function HomeMaidList() {
     Tooltip,
     Legend
   )
-
+const [dataObject,setDataObject]=useState({})
   // console.log(dayjs())
   const [page, setPage] = useState(1)
   const [length,setLength]=useState(0)
@@ -73,58 +79,128 @@ const router = useRouter()
   const [paginatedData,setPaginatedData]=useState([])
   // console.log(time)
   const [listType,setTypeList] = useState("workers")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+const [isUpdateStatus,setisUpdateStatus]=useState("")
+  function openModal() {
+    setIsModalOpen(true)
+  }
+
+  function closeModal() {
+    setIsModalOpen(false)
+  }
 
 
 function onPageChange(p: number) {
-    // json?setData(json?.slice((page - 1) * resultsPerPage, page * resultsPerPage)):console.log("e");
 setPaginatedData(fulldata.slice((p - 1) * resultsPerPage, p * resultsPerPage))
-    // setPage(p)
   }
-  // on page change, load new sliced data
-  // here you would make another server request for new data
-  useEffect(() => {
-    
-// jwtDecode
-    
+const [sponsorName,setSponsor]=useState("");
+const [SponsorMobile,setSponsorMobile]=useState("");
+const [workerName,setWorkerName]=useState("");
+const[workerPassportNumber,setPassportNumber]=useState("");
+const[applicationDate,setApplicationDate]=useState("")
+const[workerMobile,setWorkerMobile]=useState("")
+const[kingdomentry,setKingdomEntry]=useState("")
+const[duration,setDuration]=useState("");
+const[externalOffice,setExternalOffice]=useState("")
+const[endOfMusanadDuration,setendOfMusanadDuration]=useState(0);
+const[externalofficeApproval,setExternalOfficeApproval]=useState("");
+const[externalOfficelinkDate,setExternalOfficeLinkDate]=useState("");
+const[agencyWorkDate,setAgenctWorkDate]=useState("");
+const[stampingDate,setStampingDate]=useState("");
+const[bookingDate,setBookingDate]=useState("");
+const [externalOfficeNotify,setExternalOfficeNotify]=useState("")
+const[arrivalDate,setArrivalDate]=useState("");
+const[statusDue,setStatusDue]=useState("");
+const[medicalCheck,setMedicalCheck]=useState("");
+const[sposnorPassportNumber,setSposnorPassportNumber]=useState(0);
+const[arrivalCity,setArrivalCity]=useState("");
+const[orderStatus,setOrderStatus]=useState("");
+const[delegate,setDelegate]=useState("");
+const [timeStampe,setTimeStamp]=useState(0)  
+const obj ={ 
+    id:isUpdateStatus
+,      "اسم الكفيل": sponsorName, 
+      "\"هوية الكفيل  The identity of the sponsor\"": sposnorPassportNumber,
+      "\"جوال الكفيل  The sponsor's mobile\"": SponsorMobile,
+      "\"اسم العاملة  The name of the worker\"": workerName,
+      "\"تارخ تقديم الطلب  The date of application\"":new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "\"رقم الجواز  Passport number\"": workerPassportNumber,
+      "الفترة الزمنية": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),     
+      "\"موافقة المكتب الخارجي  External office approval\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "\"تاريخ الربط مع المكتب الخارجي  Date of connection with the external office\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "\"تاريخ عمل الوكالة  Agency work history\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "\"تاريخ التختيم في السفارة   The date stamped at the embassy\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "\"تاريخ الحجز  booking date\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+            "\"تاريخ الوصول  date of arrival\"": new Date().toLocaleDateString("fr-ca").replaceAll("/","-"),
+      "المبلغ  للمكتب الخارجي": statusDue,
+      "الكشف الطبي": medicalCheck, 
+           "\"مدينة الوصول  arrival city\"": arrivalCity
+      ,"حالة الطلب": orderStatus,
+      "التفويض": delegate
+    }
+
+  useEffect(() => {  
     try {
-    
-  
       async function names( )  {
      await fetch("../api/homemaidlist").then(response => response.json())
   .then(json  => {
     json?setLength(json.length):"";
-    // console.log('parsed json', json) // access json.body here
-    setFulldata(json)
+    setFulldata(json.reverse());
+  console.log(json)
     json?setPaginatedData(json?.slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
- 
- console.log(json)
-    // setData(json)   
-// const arr=[];
-  // json?.length>0?json.map(e=>{if(!arr.includes(e.fields.office)) arr.push(e.fields.office)}):console.log(json.length)
-  // setofficelist(arr)
-} 
-  // names();
-
-)
-}
+} )}
 names()
 
 } catch (error) {
-  console.log(error)
+  console.log(error.message)
 }  
 
-}, [])
+}, [timeStampe])
+const delet=async()=>{
 
+  
+}
+const confirmUpdate=async ()=>{
+
+const update = await fetch("../api/updateHomemaid",{body:JSON.stringify(obj),method:"post",headers:{'Accept':'application/json'}});
+console.log(update)
+if(update.status == 200) {
+
+  setisUpdateStatus(0)
+setTimeStamp(Date.now())
+}
+}
+const edit =async (id)=>{
+
+  setisUpdateStatus(id)
+const finder =fulldata.find(e=>e.id==id)
+console.log(finder)
+setSponsor(finder.fields["اسم الكفيل"])
+setSponsorMobile(finder.fields["\"جوال الكفيل  The sponsor's mobile\""])
+setSposnorPassportNumber(finder.fields[ "\"هوية الكفيل  The identity of the sponsor\""])
+setWorkerName(finder.fields["\"اسم العاملة  The name of the worker\""])
+setPassportNumber(finder.fields["\"رقم الجواز  Passport number\""])
+setApplicationDate(finder.fields["\"تارخ تقديم الطلب  The date of application\""])
+setMedicalCheck(finder.fields["الكشف الطبي"])
+setKingdomEntry(finder.fields["تاريخ الدخول للمملكة"])
+setExternalOffice(finder.fields["المكتب الخارجي"])
+setWorkerMobile(finder.fields["رقم جوال العامله"])
+setArrivalCity(finder.fields["\"مدينة الوصول  arrival city\""])
+setOrderStatus(finder.fields["حالة الطلب"])
+setStatusDue(finder.fields["المبلغ  للمكتب الخارجي"])
+setDelegate(finder.fields["التفويض"])
+}
 
 return (
-<Layout><div>
-  <Button style={{margin:"13px",backgroundColor:"#Ecc383"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
+<Layout>
+  <div>
+              {/* <Button style={{margin:"13px",backgroundColor:"#Ecc383"}} onClick={()=> router.back()}>الرجوع للخلف</Button> */}
       <PageTitle>قائمة الوصول</PageTitle>
-  
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
       </div>
 
       <TableContainer>
+  {/* <Button >اضافة جديد</Button> */}
         <Table>
           <TableHeader>
 
@@ -132,21 +208,22 @@ return (
 
 
             <tr>
-              <TableCell>اسم العميل</TableCell>
-              <TableCell>Client Name in English</TableCell>
-              <TableCell>عقد مساند الداخلي</TableCell>
-              <TableCell>رقم الهوية الوطنية</TableCell>
-              <TableCell>رقم التواصل</TableCell>
+              <TableCell>تعديل</TableCell>
+{isUpdateStatus?<TableCell>تأكيد</TableCell>:""}
+              <TableCell>اسم الكفيل</TableCell>
+              <TableCell>هوية الكفيل</TableCell>
+              <TableCell>جوال الكفيل</TableCell>
+              <TableCell>اسم العاملة</TableCell>
               <TableCell>رقم جواز السفر</TableCell>
-              <TableCell>تاريخ الوصول </TableCell>
-              <TableCell>المتبقى على دخول المملكة </TableCell>
+              <TableCell>حالة الطلب</TableCell>
 
-              <TableCell>مدة العمل</TableCell>
-              <TableCell>التكلفة</TableCell>
+              <TableCell>تاريخ تقديم الطلب</TableCell>
+              <TableCell>الكشف الطبي</TableCell>
+<TableCell>الفترة الزمنية</TableCell>
+              <TableCell>تاريخ دخول المملكة</TableCell>
+
               <TableCell>رقم هاتف العاملة</TableCell>
               <TableCell>ملاحظات</TableCell>
-              <TableCell>حذف</TableCell>
-              <TableCell>الغاء</TableCell>
 
 
 
@@ -160,59 +237,176 @@ return (
               <TableRow key={i}>
 
 
-                
+
                 <TableCell>
-                  <span className="text-md">{e.fields["اسم العميل"]}</span>
 
-                </TableCell>
-                 <TableCell>
-                  <span className="text-md">{e.fields["اسم العميل انجليزي"]}</span>
+{isUpdateStatus!=e.id?<Button color='dodgerblue' onClick={()=>edit(e.id)}>تعديل</Button>:<Button color='dodgerblue' onClick={()=>setisUpdateStatus("")}>الغاء التعديل</Button>
 
+}
                 </TableCell>
 
-                 <TableCell>
-                  <span className="text-md">{e.fields["عقد مساند الداخلي"]}</span>
+                
+                
+{
 
-                </TableCell>
+ isUpdateStatus!=e.id?     
+ null:    <TableCell>
+<Button color='dodgerblue' onClick={()=>confirmUpdate()}>تأكيد التعديل</Button>
 
-                 <TableCell>
-                  <span className="text-md">{e.fields["رقم الهويه"]}</span>
-
-                </TableCell>
-
-                 <TableCell>
-                  <span className="text-md">{e.fields["رقم التواصل"]}</span>
 
                 </TableCell>
 
-                 <TableCell>
-                  <span className="text-md">{e.fields["الجواز"]}</span>
-
+} 
+                <TableCell>
+                 {isUpdateStatus!=e.id? <span className="text-md">{e.fields["اسم الكفيل"]}</span>
+:<Input value={sponsorName} onChange={(e)=>setSponsor(e.target.value)}/>}
                 </TableCell>
-
                  <TableCell>
-                  <span className="text-md">{e.fields["تاريخ الدخول للمملكة"]}</span>
-
-                </TableCell>
-
-                 <TableCell>
-{((dayjs(e.fields["تاريخ الدخول للمملكة"]).diff(new Date()))/100000000).toFixed()}
+                  {isUpdateStatus!=e.id?
+                  <span className="text-md">{e.fields[ "\"هوية الكفيل  The identity of the sponsor\""]}</span>:
+<Input value={sposnorPassportNumber} onChange={(e)=>setSposnorPassportNumber(e.target.value)}/>
+                  }
 
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.fields["مده العمل"]}</span>
+                                    {isUpdateStatus!=e.id?
+                  <span className="text-md">{e.fields["\"جوال الكفيل  The sponsor's mobile\""]}</span>
+:
+<Input value={SponsorMobile} onChange={(e)=>setSponsorMobile(e.target.value)}/>
+                  }
+
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.fields["التكلفه"]}</span>
+
+                  {isUpdateStatus!=e.id?<span className="text-md">{e.fields["\"اسم العاملة  The name of the worker\""]}</span>
+:
+<Input value={workerName} onChange={(e)=>setWorkerName(e.target.value)}/>
+
+                }</TableCell>
+                 <TableCell>
+
+{isUpdateStatus!=e.id?
+<span className="text-md">{e.fields["\"رقم الجواز  Passport number\""]}</span>
+  :
+<Input value={workerPassportNumber} onChange={(e)=>setPassportNumber(e.target.value)}/>
+
+
+}
+
+                </TableCell>
+
+
+
+
+                 <TableCell>
+
+{isUpdateStatus!=e.id?
+<span className="text-md">{e.fields["حالة الطلب"]}</span>
+  :
+  
+          <Select onChange={()=>setOrderStatus(e.target.value)}>
+            <option value='------'>-----</option>
+
+            <option value='هروب العاملة '>هروب العاملة </option>
+
+            <option value='الغاء الطلب'>الغاء الطلب</option>
+
+            <option value='تم الوصول '>تم الوصول </option>
+            <option value='قيد المراجعة'>قيد المراجعة</option>
+
+            <option value='YES'>YES</option>
+
+
+            <option value='NO'>NO</option>
+
+
+          </Select>
+
+
+}
+
+                </TableCell>
+
+
+
+
+
+                 <TableCell>
+{isUpdateStatus!=e.id?
+<span className="text-md">{e.fields["\"تارخ تقديم الطلب  The date of application\""]}</span>
+:
+<Input value={applicationDate} onChange={(e)=>setApplicationDate(e.target.value)} type='date'/>
+}
+                </TableCell>
+
+
+                 <TableCell>
+
+{isUpdateStatus!=e.id?
+
+<span className="text-md">{e.fields["الكشف الطبي"]}</span>
+:
+<Input value={medicalCheck} onChange={(e)=>setMedicalCheck(e.target.value)}/>
+
+}
+
+
+
 
                 </TableCell>
 
                  <TableCell>
-                  <span className="text-md">{e.fields["رقم جوال العامله"]}</span>
+
+{isUpdateStatus!=e.id?
+
+<span className="text-md">{e.fields["الفترة الزمنية"]}</span>
+:
+<Input value={duration} onChange={(e)=>setDuration(e.target.value)} type='date'/>
+
+}
+
+
+
+
+                </TableCell>
+
+                 <TableCell>
+
+                  {isUpdateStatus!=e.id?
+<span className="text-md">{e.fields["تاريخ الدخول للمملكة"]}</span>
+:
+<Input value={kingdomentry} onChange={(e)=>setKingdomEntry(e.target.value)} type='date'/>
+
+
+}
+
+                </TableCell>
+
+
+
+
+                 <TableCell>
+
+
+                  {isUpdateStatus!=e.id?
+                  <span className="text-md">{e.fields["المكتب الخارجي"]}</span>
+                  :
+                  <Input value={externalOffice} onChange={(e)=>setExternalOffice(e.target.value)}/>
+                  }
+
+                </TableCell>
+
+                 <TableCell>
+                  {isUpdateStatus!=e.id?
+
+                    <span className="text-md">{e.fields["رقم جوال العامله"]}</span>
+              :<Input value={workerMobile} onChange={(e)=>setWorkerMobile(e.target.value)}/>
+
+                  }
 
                 </TableCell>
 

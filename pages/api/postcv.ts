@@ -14,6 +14,20 @@ var base = new Airtable({apiKey: 'patovGWItwsDoXzng.84565b10c27835cf1ac38c9f9b64
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
   console.log(req.body)
 // sendSuggestion()
+try{
+
+  const token = req.cookies.token
+
+
+const decoder = jwt.verify(token,"secret")
+const finder = await prisma.user.findFirst({where:{idnumber:decoder?.idnumber}})
+if(finder.role != "adminstrator"  ) return   res.status(301).json("error");
+
+} catch (error) {
+  console.log(error)
+  res.status(301).json("error")
+  
+}
 try {
 
 const result =  await new Promise((resolve,reject)=>{

@@ -289,31 +289,19 @@ useEffect(() => {
 (async function NewReservations(){
   const fetcher =  await fetch("./api/newreservations");
     const f = await fetcher.json()
-  
-// const f = await fetcher.json()
+console.log("f",f)
 setResevationsLength(f.length)
-// if(f.f)
-console.log(f)
-// f.filter(e=>e.fields["حالة الحجز"]=="حجز من موقع" && e.fields)
 })()
 
       async function names( )  {
     const fetcher =  await fetch("./api/hello");
     const f = await fetcher.json()
+    .then(json  => {  json?setLength(json.length):"";
 
-  .then(json  => {
-//  console.log(json)
-//  if ()
-  json?setLength(json.length):"";
-
-    // console.log('parsed json', json) // access json.body here
     setFulldata(json)
     json?setPaginatedData(_.reverse(json).slice((0) * resultsPerPage, page * resultsPerPage)):console.log("e");
-// console.log(new Date().getSeconds())
-    // setData(json)   
 
   } 
-  // names();
 
 )
 }

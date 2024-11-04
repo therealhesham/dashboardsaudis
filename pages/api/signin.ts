@@ -1,3 +1,4 @@
+//@ts-nocheck
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import jwt from "jsonwebtoken";
@@ -13,6 +14,7 @@ export default async function handler(
 ) {
 try {
   // await prisma..
+ 
 // console.log(req.headers.cookie)
 
   const createAdmin=await prisma.user.findFirst({where:{idnumber:Number(req.body.idnumber)}})

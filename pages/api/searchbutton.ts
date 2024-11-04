@@ -17,7 +17,20 @@ export default async function handler(req,res: NextApiResponse) {
 // sendSuggestion()
 let arr = []
 console.log(req.body)
+  try{
 
+  const token = req.cookies.token
+
+
+const decoder = jwt.verify(token,"secret")
+const finder = await prisma.user.findFirst({where:{idnumber:decoder?.idnumber}})
+if(finder.role != "adminstrator"  ) return   res.status(301).json("error");
+
+} catch (error) {
+  console.log(error)
+  res.status(301).json("error")
+  
+}
 try {
 const result =  await new Promise((resolve,reject)=>{
   const {cvnumber}=req.body;

@@ -29,26 +29,33 @@ notes,
 homemaidname
 
 }=req.body;
-
-
+const obj = {
+ "اسم الكفيل": "تركيه خليل ابراهيم الحزيمي",
+      "\"هوية الكفيل  The identity of the sponsor\"": 1042214955,
+      "\"جوال الكفيل  The sponsor's mobile\"": "532422484",
+      "\"اسم العاملة  The name of the worker\"": "BEGUM SUMI",
+      "\"رقم الجواز  Passport number\"": "A07323151",
+      "جنسية العاملة": "بنجلاديش",
+      "\"تارخ تقديم الطلب  The date of application\"": "2023-01-11",
+      "الفترة الزمنية": "2023-04-11",
+      "\"موافقة المكتب الخارجي  External office approval\"": "2023-05-13",
+      "\"تاريخ الربط مع المكتب الخارجي  Date of connection with the external office\"": "2023-05-13",
+      "\"تاريخ عمل الوكالة  Agency work history\"": "2023-05-27",
+      "\"تاريخ التختيم في السفارة   The date stamped at the embassy\"": "2008-06-20",
+      "\"تاريخ الحجز  booking date\"": "2023-04-06",
+      "\"تاريخ الوصول  date of arrival\"": "2023-06-11",
+      "رقم الحدود": 0,
+      "المبلغ  للمكتب الخارجي": "تم",
+      "الكشف الطبي": "NOT FIT",
+      "\"مدينة الوصول  arrival city\"": " المدينة المنورة",
+      "حالة الطلب": "تم الوصول ",
+      "التفويض": "no"}
 const result =  await new Promise((resolve,reject)=>{
+  console.log(req.body)
 const create = base('قائمة وصول الخادمات').create([
   {
-    "fields": {
-      // "Name": req.body.country
-      "اسم العميل":clientname,
-      "اسم العميل انجليزي":clientnameinenglishlanguage,
-      "عقد مساند الداخلي":Number(internalmusanedContract),
-      "رقم الهويه":Number(nationalidnumber),
-      "رقم جوال العامله":homemaidnumber,
-      "الجواز":passportnumber,
-      "اسم العاملة المنزلية":homemaidname,
-      "تاريخ الدخول للمملكة":kingdomentrydate,
-      "تاريخ اليوم":daydate,
-      "مدة العمل":workduration,
-      "التكلفه":Number(cost),
-"ملاحظات":notes
-    }
+    "fields": req.body
+    
   }
 ])
 

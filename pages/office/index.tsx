@@ -72,7 +72,8 @@ function Dashboard() {
   // here you would make another server request for new data
   useEffect(() => {
       async function names( )  {
-      fetch("./api/hello").then(response => response.json())
+        const cv = ""
+      fetch("./api/officecv?id="+cv).then(response => response.json())
   .then(json  => {
     console.log('parsed json', json) // access json.body here
     setData(json?.slice((page - 1) * resultsPerPage, page * resultsPerPage))
@@ -90,47 +91,6 @@ function Dashboard() {
       {/* <CTA /> */}
 
       {/* <!-- Cards --> */}
-      <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-        <InfoCard title="   المتاح للاستقدام بقاعدة البيانات" value={data.length}>
-          {/* @ts-ignore */}
-          <RoundIcon
-            icon={PeopleIcon}
-            iconColorClass="text-orange-500 dark:text-orange-100"
-            bgColorClass="bg-orange-100 dark:bg-orange-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="المكاتب الخارجية" value="8">
-          {/* @ts-ignore */}
-          <RoundIcon
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-yellow-100 dark:bg-green-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="المشرفين" value="1">
-          {/* @ts-ignore */}
-          <RoundIcon
-            icon={CartIcon}
-            iconColorClass="text-blue-500 dark:text-blue-100"
-            bgColorClass="bg-blue-100 dark:bg-blue-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="استقدامات" value="35">
-          {/* @ts-ignore */}
-          <RoundIcon
-            icon={ChatIcon}
-            iconColorClass="text-teal-500 dark:text-teal-100"
-            bgColorClass="bg-teal-100 dark:bg-teal-500"
-            className="mr-4"
-          />
-        </InfoCard>
-      </div>
 
       <TableContainer>
         <Table>
@@ -191,18 +151,6 @@ function Dashboard() {
         </TableFooter>
       </TableContainer>
 
-      <PageTitle>Charts</PageTitle>
-      <div className="grid gap-6 mb-8 md:grid-cols-2">
-        <ChartCard title="Revenue">
-          <Doughnut {...doughnutOptions} />
-          <ChartLegend legends={doughnutLegends} />
-        </ChartCard>
-
-        <ChartCard title="Traffic">
-          <Line {...lineOptions} />
-          <ChartLegend legends={lineLegends} />
-        </ChartCard>
-      </div>
     </Layout>
   )
 }

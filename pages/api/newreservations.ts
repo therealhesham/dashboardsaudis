@@ -15,6 +15,7 @@ type Data = {
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse) {
 // sendSuggestion()
+
 let arr = []
 const result =  await new Promise((resolve,reject)=>{
 
@@ -30,7 +31,7 @@ const results=    base('السير الذاتية المحجوزة').select({
 })
 
 
-// console.log(result.length)
+console.log(result.length)
   res.status(200).json(result)
 }
 
