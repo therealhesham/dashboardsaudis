@@ -207,7 +207,7 @@ errorfunc()
 {fetching?<div  style={{display:"flex",justifyContent:"center"}}><ClipLoader  cssOverride={{width:"390px",height:"390px",alignSelf:"center"}}/>  
 </div>
 : <form onSubmit={handleSubmit(onSubmit)}>
-      <PageTitle>اضافة الى قائمة الانتظار</PageTitle>
+      <PageTitle>اضافة الى قائمة الوصول</PageTitle>
        <div dir='rtl' style={{display:"grid",gridTemplateColumns: "auto auto auto",gap:"19px"}} className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <Label>
           <span>اسم الكفيل</span>

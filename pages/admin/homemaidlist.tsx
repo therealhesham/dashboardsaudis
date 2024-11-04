@@ -156,8 +156,15 @@ names()
 }  
 
 }, [timeStampe])
-const delet=async()=>{
+const delet=async(id)=>{
 
+const update = await fetch("../api/deletehomemaid",{body:JSON.stringify({id}),method:"post",headers:{'Accept':'application/json'}});
+console.log(update)
+if(update.status == 200) {
+
+  setisUpdateStatus(0)
+setTimeStamp(Date.now())
+}
   
 }
 const confirmUpdate=async ()=>{
@@ -192,8 +199,9 @@ setDelegate(finder.fields["التفويض"])
 }
 
 return (
-<Layout>
-  <div>
+<div>
+  <Button style={{margin:"1 3px"}} onClick={()=> router.back()}>الرجوع للخلف</Button>
+   <div>
               {/* <Button style={{margin:"13px",backgroundColor:"#Ecc383"}} onClick={()=> router.back()}>الرجوع للخلف</Button> */}
       <PageTitle>قائمة الوصول</PageTitle>
       <div className="grid gap-6 mb-8 md:grid-cols-2 ">
@@ -209,7 +217,7 @@ return (
 
             <tr>
               <TableCell>تعديل</TableCell>
-{isUpdateStatus?<TableCell>تأكيد</TableCell>:""}
+{isUpdateStatus?<TableCell>تأكيد</TableCell>:<TableCell>حذف</TableCell>}
               <TableCell>اسم الكفيل</TableCell>
               <TableCell>هوية الكفيل</TableCell>
               <TableCell>جوال الكفيل</TableCell>
@@ -250,7 +258,9 @@ return (
 {
 
  isUpdateStatus!=e.id?     
- null:    <TableCell>
+
+<TableCell><Button style={{backgroundColor:"red"}} onClick={()=>alert(e.id)}>  حذف</Button>
+</TableCell>:    <TableCell>
 <Button color='dodgerblue' onClick={()=>confirmUpdate()}>تأكيد التعديل</Button>
 
 
@@ -438,7 +448,7 @@ return (
       </TableContainer>
 
                 </div>
- </Layout>
+ </div>
 
   )
 }
