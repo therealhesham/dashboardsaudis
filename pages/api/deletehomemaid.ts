@@ -26,9 +26,9 @@ console.log(obj)
 const {id}=JSON.parse(req.body)
 console.log(JSON.parse(req.body))
 const result =  await new Promise((resolve,reject)=>{
-const create = base('قائمة وصول الخادمات').destroy([req.body.id])
+// const create = base('قائمة وصول الخادمات').destroy([req.body.id])
 // console.log(result)
-  res.status(200).json(create)  
+  // res.status(200).json(create)  
 })
 
 
